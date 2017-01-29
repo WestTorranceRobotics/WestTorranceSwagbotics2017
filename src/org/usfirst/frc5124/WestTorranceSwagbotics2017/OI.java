@@ -61,5 +61,21 @@ public class OI {
        		return 0;
         }	
     }
+    
+    public double getLeftSensitivity(double sens) {
+	    if(Math.abs(driver.getRawAxis(1)) > 0.02) {
+	    	return (sens * (Math.pow(driver.getRawAxis(1), 3))) + (driver.getRawAxis(1) * (1 - sens));
+	    } else {
+	    	return 0;
+	    }
+	}
+    	
+    public double getRightSensitvity(double sens) {	
+       	if(Math.abs(driver.getRawAxis(5)) > 0.02) {
+       		return (sens * (Math.pow(driver.getRawAxis(5), 3))) + (driver.getRawAxis(5) * (1 - sens));
+       	} else {
+       		return 0;
+        }	
+    }
 }
 
