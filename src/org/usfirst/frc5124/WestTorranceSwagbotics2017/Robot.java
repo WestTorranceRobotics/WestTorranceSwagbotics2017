@@ -41,7 +41,7 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-    RobotMap.init();
+    	RobotMap.init();
         
         drivetrain = new Drivetrain();
 
@@ -67,6 +67,7 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        Timer.delay(0.005);
     }
 
     public void teleopInit() {

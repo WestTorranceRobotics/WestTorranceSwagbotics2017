@@ -30,7 +30,7 @@ public class OI {
 
     public OI() {
 
-        	//joysticks
+        //joysticks
     	driver = new Joystick(0);
         operator = new Joystick(1);
         // SmartDashboard Buttons
@@ -46,7 +46,7 @@ public class OI {
         return operator;
     }
     
-	public double getLeft() {
+	/*public double getLeft() {
 	    if(Math.abs(driver.getRawAxis(1)) > 0.07) {
 	    	return driver.getRawAxis(1);
 	    } else {
@@ -60,10 +60,10 @@ public class OI {
        	} else {
        		return 0;
         }	
-    }
+    }*/
     
     public double getLeftSensitivity(double sens) {
-	    if(Math.abs(driver.getRawAxis(1)) > 0.02) {
+	    if(Math.abs(driver.getRawAxis(1)) > 0.04) {
 	    	return (sens * (Math.pow(driver.getRawAxis(1), 3))) + (driver.getRawAxis(1) * (1 - sens));
 	    } else {
 	    	return 0;
@@ -71,11 +71,30 @@ public class OI {
 	}
     	
     public double getRightSensitvity(double sens) {	
-       	if(Math.abs(driver.getRawAxis(5)) > 0.02) {
+       	if(Math.abs(driver.getRawAxis(5)) > 0.04) {
        		return (sens * (Math.pow(driver.getRawAxis(5), 3))) + (driver.getRawAxis(5) * (1 - sens));
        	} else {
        		return 0;
         }	
     }
+    
+    public double getLeftYAxis() {
+    	if(Math.abs(driver.getRawAxis(1)) > 0.02) {
+    		return driver.getRawAxis(1);
+    	} else {
+    		return 0;
+    	}
+    }
+    
+    public double getRightXAxis() {
+    	if(Math.abs(driver.getRawAxis(4)) > 0.02) {
+    		return driver.getRawAxis(4);
+    	} else {
+    		return 0;
+    	}
+    }
+    
+    
+    
 }
 

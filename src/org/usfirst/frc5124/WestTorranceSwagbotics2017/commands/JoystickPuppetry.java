@@ -19,7 +19,8 @@ public class JoystickPuppetry extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drivetrain.tank(Robot.oi.getLeftSensitivity(.7), Robot.oi.getRightSensitvity(.7));
+    	//Robot.drivetrain.tank(Robot.oi.getLeftSensitivity(.7), Robot.oi.getRightSensitvity(.7));
+    	Robot.drivetrain.robonaughtDrive(Robot.oi.getLeftYAxis(), Robot.oi.getRightXAxis());
     }
 
     // Make this return true when this Command no longer needs to run execute()

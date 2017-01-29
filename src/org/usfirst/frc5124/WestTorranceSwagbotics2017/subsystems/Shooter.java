@@ -1,0 +1,59 @@
+package org.usfirst.frc5124.WestTorranceSwagbotics2017.subsystems;
+
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.RobotMap;
+
+import com.ctre.CANTalon;
+
+import edu.wpi.first.wpilibj.command.Subsystem;
+
+/**
+ *
+ */
+public class Shooter extends Subsystem {
+
+    private final CANTalon leftShootermotor = RobotMap.shooterLeftShooterMotor;
+    private final CANTalon centerShootermotor = RobotMap.shooterCenterShooterMotor;
+    private final CANTalon rightShootermotor = RobotMap.shooterRightShooterMotor;
+    
+    public static final int shootingSpeed = 17000;
+
+    public void initDefaultCommand() {
+    }
+    
+    public void setLeftShooter(double speed) {
+    	leftShootermotor.set(speed);
+    }
+    
+    public void setCenterShooter(double speed) {
+    	centerShootermotor.set(speed);
+    }
+    
+    public void setRightShooter(double speed) {
+    	rightShootermotor.set(speed);
+    }
+    
+    public void setAllShooters(double speed) {
+    	setLeftShooter(speed);
+    	setCenterShooter(speed);
+    	setRightShooter(speed);
+    }
+    
+    public double getLeftVelocity() {
+    	return leftShootermotor.getEncVelocity();
+    }
+    
+    public double getCenterVelocity() {
+    	return centerShootermotor.getEncVelocity();
+    }
+    
+    public double getRightVelocity() {
+    	return rightShootermotor.getEncVelocity();
+    }
+    
+    public int getShootingSpeed() {
+    	return shootingSpeed;
+    }
+    
+    
+}
+
