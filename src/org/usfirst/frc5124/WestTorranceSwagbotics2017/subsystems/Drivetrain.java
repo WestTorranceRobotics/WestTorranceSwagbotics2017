@@ -20,7 +20,7 @@ public class Drivetrain extends PIDSubsystem {
     private final RobotDrive robotDrive = RobotMap.drivetrainRobotDrive;
     
     public Drivetrain() {
-		super(0, 0, 0);
+		super(0, 0, 0); //TODO tune drivetrain PID
 		getPIDController().setAbsoluteTolerance(50);
 		getPIDController().setContinuous(false);
 		getPIDController().setOutputRange(-0.5, 0.5);
@@ -45,7 +45,7 @@ public class Drivetrain extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		
+		//TODO use the output for  drivetrain PID
 	}
 }
 
