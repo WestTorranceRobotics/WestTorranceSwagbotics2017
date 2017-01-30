@@ -3,6 +3,7 @@ package org.usfirst.frc5124.WestTorranceSwagbotics2017.commands;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  *
@@ -24,6 +25,7 @@ public class GearHolderBraceForImpact extends Command {
     }
     
     protected void end() {
+    	Scheduler.getInstance().add(new GearHolderAutoRelase());
     }
 
     protected void interrupted() {
