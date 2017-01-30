@@ -36,7 +36,8 @@ public class Robot extends IterativeRobot {
     }
 
     public void disabledInit(){
-
+    	Robot.gearHolder.pusherExtend();
+    	Robot.gearHolder.holderGrab();
     }
 
     public void disabledPeriodic() {
