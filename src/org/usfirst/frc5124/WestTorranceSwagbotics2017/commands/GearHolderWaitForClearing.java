@@ -7,22 +7,20 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class JoystickPuppetry extends Command {
+public class GearHolderWaitForClearing extends Command {
 
-    public JoystickPuppetry() {
-        requires(Robot.drivetrain);
+    public GearHolderWaitForClearing() {
+        requires(Robot.gearHolder);
     }
 
     protected void initialize() {
     }
 
     protected void execute() {
-    	//Robot.drivetrain.tank(Robot.oi.getLeftSensitivity(.7), Robot.oi.getRightSensitvity(.7));
-    	Robot.drivetrain.robonaughtDrive(Robot.oi.getLeftYAxis(), Robot.oi.getRightXAxis());
     }
 
     protected boolean isFinished() {
-        return false;
+        return !Robot.gearHolder.getLimitSwitch();
     }
 
     protected void end() {

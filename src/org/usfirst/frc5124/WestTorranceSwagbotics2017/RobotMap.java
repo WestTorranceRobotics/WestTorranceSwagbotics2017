@@ -50,7 +50,7 @@ public class RobotMap {
     	gearHolderHolderSolenoid = new DoubleSolenoid(0, 1);
     	LiveWindow.addActuator("Gear Holder", "Holder Solenoid", gearHolderHolderSolenoid);
     	
-    	gearHolderPusherSolenoid = new DoubleSolenoid(2, 3);
+    	gearHolderPusherSolenoid = new DoubleSolenoid(3, 2);
     	LiveWindow.addActuator("Gear Holder", "Pusher Solenoid", gearHolderPusherSolenoid);
     	
     	gearHolderLimitSwitch = new DigitalInput(3);
@@ -119,7 +119,7 @@ public class RobotMap {
         drivetrainRobotDrive.setSafetyEnabled(true);
         drivetrainRobotDrive.setExpiration(0.1);
         drivetrainRobotDrive.setSensitivity(1);
-        drivetrainRobotDrive.setMaxOutput(1.0);
+        drivetrainRobotDrive.setMaxOutput(0.25);
         drivetrainRobotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
         drivetrainRobotDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
         drivetrainRobotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);

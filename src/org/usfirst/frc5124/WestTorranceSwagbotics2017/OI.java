@@ -13,6 +13,7 @@ package org.usfirst.frc5124.WestTorranceSwagbotics2017;
 
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.*;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -34,6 +35,11 @@ public class OI {
     	driver = new Joystick(0);
         operator = new Joystick(1);
         // SmartDashboard Buttons
+        
+        SmartDashboard.putData("Extend Pusher", new GearHolderExtendPusher());
+        SmartDashboard.putData("Retract Pusher", new GearHolderRectractPusher());
+        SmartDashboard.putData("Open", new GearHolderClose());
+        SmartDashboard.putData("Close", new GearHolderOpen());
 
         
     }
@@ -93,6 +99,17 @@ public class OI {
     		return 0;
     	}
     }
+    
+    public void vibrateDriver() {
+    	driver.setRumble(GenericHID.RumbleType.kLeftRumble, 0.5);
+    	driver.setRumble(GenericHID.RumbleType.kRightRumble, 1);
+    }
+    
+    public void stopVibrate() {
+    	driver.setRumble(GenericHID.RumbleType.kLeftRumble, 0);
+    	driver.setRumble(GenericHID.RumbleType.kRightRumble, 0);
+    }
+    
     
     
     

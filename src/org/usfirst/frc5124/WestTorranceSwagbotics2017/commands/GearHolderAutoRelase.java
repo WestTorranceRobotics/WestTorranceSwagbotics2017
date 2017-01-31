@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class GearHolderAutoRelase extends CommandGroup {
 
     public GearHolderAutoRelase() {
-        addSequential(new GearHolderOpen());
-        addSequential(new Wait(.2));
-        addSequential(new GearHolderRectractPusher());
-        addSequential(new Wait(.5));
+        addSequential(new GearHolderSafelyOpen());
+        addSequential(new Wait(2.5));
+        addSequential(new GearHolderWaitForClearing());
+        addSequential(new GearHolderSafelyClose());
     }
 }

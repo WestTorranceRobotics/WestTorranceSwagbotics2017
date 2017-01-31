@@ -13,6 +13,8 @@ public class GearHolder extends Subsystem {
     private final DoubleSolenoid holderSolenoid = RobotMap.gearHolderHolderSolenoid;
     private final DoubleSolenoid pusherSolenoid = RobotMap.gearHolderPusherSolenoid;
     private final DigitalInput limitSwitch = RobotMap.gearHolderLimitSwitch;
+    
+    public static boolean switchIsPressed = false;
 
     public void initDefaultCommand() {
     	setDefaultCommand(new GearHolderBraceForImpact());
