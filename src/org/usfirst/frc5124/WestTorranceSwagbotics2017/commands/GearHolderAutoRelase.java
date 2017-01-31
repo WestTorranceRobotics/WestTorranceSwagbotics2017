@@ -9,7 +9,8 @@ public class GearHolderAutoRelase extends CommandGroup {
 
     public GearHolderAutoRelase() {
         addSequential(new GearHolderOpen());
-        addSequential(new Wait(1));
-        addSequential(new GearHolderExtendPusher());
+        addSequential(new Wait(.2));
+        addSequential(new GearHolderRectractPusher());
+        addSequential(new Wait(.5));
     }
 }

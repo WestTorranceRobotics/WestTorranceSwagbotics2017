@@ -15,6 +15,8 @@ public class GearHolderBraceForImpact extends Command {
     }
 
     protected void initialize() {
+    	Robot.gearHolder.holderGrab();
+    	Robot.gearHolder.pusherExtend();
     }
 
     protected void execute() {
