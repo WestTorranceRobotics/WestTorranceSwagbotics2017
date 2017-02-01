@@ -5,9 +5,6 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.*;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.subsystems.*;
 
 
@@ -61,20 +58,6 @@ public class Robot extends IterativeRobot {
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        
-        SmartDashboard.putBoolean("is pressed", Robot.gearHolder.switchIsPressed);
-        
-        if(Robot.gearHolder.getLimitSwitch()) {
-        	Robot.gearHolder.switchIsPressed = true;
-        } else {
-        	Robot.gearHolder.switchIsPressed = false;
-        }
-        
-        if(Robot.gearHolder.switchIsPressed) {
-        	Robot.oi.vibrateDriver();
-        } else {
-        	Robot.oi.stopVibrate();
-        }
         
         Timer.delay(0.005);
     }
