@@ -1,22 +1,24 @@
 package org.usfirst.frc5124.WestTorranceSwagbotics2017.subsystems;
 
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.Robot;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.RobotMap;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.*;
-
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Drivetrain extends PIDSubsystem {
+public class Drivetrain extends Subsystem {
 
-	private final Encoder encoder = RobotMap.drivetrainEncoder;
-    private final RobotDrive robotDrive = RobotMap.drivetrainRobotDrive;
+	private final RobotDrive robotDrive = RobotMap.drivetrainRobotDrive;
+    private final Encoder encoder = RobotMap.drivetrainEncoder;
+    
+    public double encoderOutput = 0;
+    public double gyroOutput = 0;
+    public boolean encoderEnabled = false;
+    public boolean gyroEnabled = false;
     
     public Drivetrain() {
-		super(0, 0, 0); //TODO tune drivetrain PID
-		getPIDController().setAbsoluteTolerance(50);
-		getPIDController().setContinuous(false);
-		getPIDController().setOutputRange(-0.5, 0.5);
 	}
 
     public void initDefaultCommand() {
@@ -30,15 +32,60 @@ public class Drivetrain extends PIDSubsystem {
     public void robonaughtDrive(double power, double turn) {
     	robotDrive.arcadeDrive(power, turn);
     }
-
-	@Override
-	protected double returnPIDInput() {
-		return encoder.get();
-	}
-
-	@Override
-	protected void usePIDOutput(double output) {
-		//TODO use the output for  drivetrain PID
-	}
+    
+    public void enableEncoderPID() {
+    	Robot.encoderPIDHandler.enable();
+    	encoderEnabled = true;
+    }
+    
+    public void enableGyroPID() {
+    	Robot.gyroPIDHandler.enable();
+    	gyroEnabled = true;
+    }
+    
+    public void disableEncoderPID() {
+    	Robot.encoderPIDHandler.disable();
+    	encoderEnabled = false;
+    	encoderOutput = 0;
+    }
+    
+    public void disableGyroPID() {
+    	Robot.gyroPIDHandler.disable();
+    	gyroEnabled = false;
+    	gyroOutput = 0;
+    }
+    
+    public void enableAll() {
+    	enableEncoderPID();
+    	enableGyroPID();
+    }
+    
+    public void disableAll() {
+    	disableEncoderPID();
+    	disableGyroPID();
+    }
+    
+    public void writeEncoderOutput(double input) {
+    	encoderOutput = input;
+    }
+    
+    public void writeGyroOutput(double input) {
+    	gyroOutput = input;
+    }
+    
+    public void iWannaWalkLikeYouTalkLikeYouToo() {
+    	tank(encoderOutput, /*gyroOutput*/0);
+    }
+    
+    public void setSetpoints(int encoderSetpoint/*, double gyroSetpoint*/) {
+    	Robot.encoderPIDHandler.setSetpoint(encoderSetpoint + encoder.get());
+    	//Robot.gyroPIDHandler.setSetpoint(gyroSetpoint);
+    }
+    
+    public void stop() {
+    	tank(0, 0);
+    }
+   
+    
 }
 

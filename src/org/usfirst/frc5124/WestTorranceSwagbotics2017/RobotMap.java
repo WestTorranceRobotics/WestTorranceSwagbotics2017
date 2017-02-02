@@ -1,5 +1,6 @@
 package org.usfirst.frc5124.WestTorranceSwagbotics2017;
 
+import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -33,6 +34,7 @@ public class RobotMap {
 	//DriveTrain
 	public static Compressor drivetrainCompressor;
 	public static Encoder drivetrainEncoder;
+	public static ADIS16448_IMU drivetrainIMU;
     public static VictorSP drivetrainLeft1;
     public static VictorSP drivetrainLeft2;
     public static VictorSP drivetrainRight1;
@@ -99,6 +101,8 @@ public class RobotMap {
     	//drivetrainCompressor = new Compressor(0);
     	
     	drivetrainEncoder = new Encoder(0, 1);
+    	
+    	//drivetrainIMU = new ADIS16448_IMU();
 
         drivetrainLeft1 = new VictorSP(0);
         LiveWindow.addActuator("Drivetrain", "Left 1", drivetrainLeft1);
@@ -115,10 +119,10 @@ public class RobotMap {
         drivetrainRobotDrive = new RobotDrive(drivetrainLeft1, drivetrainLeft2,
               drivetrainRight1, drivetrainRight2);
         
-        drivetrainRobotDrive.setSafetyEnabled(true);
+        drivetrainRobotDrive.setSafetyEnabled(false);
         drivetrainRobotDrive.setExpiration(0.1);
         drivetrainRobotDrive.setSensitivity(1);
-        drivetrainRobotDrive.setMaxOutput(0.25);
+        drivetrainRobotDrive.setMaxOutput(1);
         drivetrainRobotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
         drivetrainRobotDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
         drivetrainRobotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
