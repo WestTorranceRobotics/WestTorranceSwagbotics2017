@@ -38,31 +38,18 @@ public class Drivetrain extends Subsystem {
     	encoderEnabled = true;
     }
     
-    public void enableGyroPID() {
-    	Robot.gyroPIDHandler.enable();
-    	gyroEnabled = true;
-    }
-    
     public void disableEncoderPID() {
     	Robot.encoderPIDHandler.disable();
     	encoderEnabled = false;
     	encoderOutput = 0;
     }
     
-    public void disableGyroPID() {
-    	Robot.gyroPIDHandler.disable();
-    	gyroEnabled = false;
-    	gyroOutput = 0;
-    }
-    
     public void enableAll() {
     	enableEncoderPID();
-    	enableGyroPID();
     }
     
     public void disableAll() {
     	disableEncoderPID();
-    	disableGyroPID();
     }
     
     public void writeEncoderOutput(double input) {
@@ -74,7 +61,7 @@ public class Drivetrain extends Subsystem {
     }
     
     public void iWannaWalkLikeYouTalkLikeYouToo() {
-    	tank(encoderOutput, /*gyroOutput*/0);
+    	tank(encoderOutput, 0);
     }
     
     public void setSetpoints(int encoderSetpoint/*, double gyroSetpoint*/) {
