@@ -4,14 +4,14 @@ import org.usfirst.frc5124.WestTorranceSwagbotics2017.Robot;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.RobotMap;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.*;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Drivetrain extends Subsystem {
 
 	private final RobotDrive robotDrive = RobotMap.drivetrainRobotDrive;
-    private final Encoder encoder = RobotMap.drivetrainEncoder;
+    private final Encoder leftEncoder = RobotMap.drivetrainLeftEncoder;
+    private final Encoder rightEncoder = RobotMap.drivetrainRightEncoder;
     
     public double encoderOutput = 0;
     public double gyroOutput = 0;
@@ -20,6 +20,15 @@ public class Drivetrain extends Subsystem {
     
     public Drivetrain() {
 	}
+    
+    public void resetEncoders() {
+    	leftEncoder.reset();
+    	rightEncoder.reset();
+    }
+    
+    public int getLeft() {
+    	return leftEncoder.get();
+    }
 
     public void initDefaultCommand() {
         setDefaultCommand(new JoystickPuppetry());
@@ -65,7 +74,7 @@ public class Drivetrain extends Subsystem {
     }
     
     public void setSetpoints(int encoderSetpoint/*, double gyroSetpoint*/) {
-    	Robot.encoderPIDHandler.setSetpoint(encoderSetpoint + encoder.get());
+    	Robot.encoderPIDHandler.setSetpoint(encoderSetpoint + leftEncoder.get());
     	//Robot.gyroPIDHandler.setSetpoint(gyroSetpoint);
     }
     

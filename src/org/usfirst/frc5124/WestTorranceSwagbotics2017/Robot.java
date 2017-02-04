@@ -4,11 +4,8 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutoDrive;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.subsystems.*;
 
 
@@ -45,7 +42,7 @@ public class Robot extends IterativeRobot {
     public void disabledInit(){
     	Robot.gearHolder.pusherRetract();
     	Robot.gearHolder.holderGrab();
-    	RobotMap.drivetrainEncoder.reset();
+    	RobotMap.drivetrainLeftEncoder.reset();
     }
 
     public void disabledPeriodic() {
@@ -58,7 +55,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
-        SmartDashboard.putNumber("Enc", RobotMap.drivetrainEncoder.get());
+        SmartDashboard.putNumber("Enc", RobotMap.drivetrainLeftEncoder.get());
         Timer.delay(0.005);
     }
 

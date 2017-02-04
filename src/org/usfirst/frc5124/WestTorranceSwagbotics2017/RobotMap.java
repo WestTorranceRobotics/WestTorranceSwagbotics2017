@@ -15,6 +15,7 @@ public class RobotMap {
 	//Gear Holder
 	public static DoubleSolenoid gearHolderHolderSolenoid;
 	public static DoubleSolenoid gearHolderPusherSolenoid;
+	public static DoubleSolenoid gearHolderFunnelSolenoid;
 	public static DigitalInput gearHolderLimitSwitch;
 	
 	//Conveyor
@@ -33,7 +34,8 @@ public class RobotMap {
 	
 	//DriveTrain
 	public static Compressor drivetrainCompressor;
-	public static Encoder drivetrainEncoder;
+	public static Encoder drivetrainLeftEncoder;
+	public static Encoder drivetrainRightEncoder;
 	public static ADIS16448_IMU drivetrainIMU;
     public static VictorSP drivetrainLeft1;
     public static VictorSP drivetrainLeft2;
@@ -51,8 +53,11 @@ public class RobotMap {
     	gearHolderHolderSolenoid = new DoubleSolenoid(0, 1);
     	LiveWindow.addActuator("Gear Holder", "Holder Solenoid", gearHolderHolderSolenoid);
     	
-    	gearHolderPusherSolenoid = new DoubleSolenoid(3, 2);
+    	gearHolderPusherSolenoid = new DoubleSolenoid(2, 3);
     	LiveWindow.addActuator("Gear Holder", "Pusher Solenoid", gearHolderPusherSolenoid);
+    	
+    	gearHolderFunnelSolenoid = new DoubleSolenoid(4, 5);
+    	LiveWindow.addActuator("Gear Holder", "Funnel Solenoid", gearHolderFunnelSolenoid);
     	
     	gearHolderLimitSwitch = new DigitalInput(3);
     	
@@ -100,7 +105,8 @@ public class RobotMap {
     	
     	//drivetrainCompressor = new Compressor(0);
     	
-    	drivetrainEncoder = new Encoder(0, 1);
+    	drivetrainLeftEncoder = new Encoder(0, 1);
+    	drivetrainRightEncoder = new Encoder(2, 3);
     	
     	//drivetrainIMU = new ADIS16448_IMU();
 
