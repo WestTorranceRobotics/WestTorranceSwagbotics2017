@@ -29,6 +29,10 @@ public class Drivetrain extends Subsystem {
     public int getLeft() {
     	return leftEncoder.get();
     }
+    
+    public void setDrivetrainSpeed(double speed) {
+    	robotDrive.setMaxOutput(speed);
+    }
 
     public void initDefaultCommand() {
         setDefaultCommand(new JoystickPuppetry());

@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.subsystems.*;
 
-
 public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
@@ -36,7 +35,6 @@ public class Robot extends IterativeRobot {
         
         oi = new OI();
         
-
     }
 
     public void disabledInit(){
