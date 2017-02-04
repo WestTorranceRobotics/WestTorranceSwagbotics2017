@@ -27,12 +27,10 @@ public class OI {
         
         
         // SmartDashboard Buttons
-        SmartDashboard.putData("Go 1 foot", new AutoDrive(260, 0));
         SmartDashboard.putData("Extend Pusher", new GearHolderExtendPusher());
         SmartDashboard.putData("Retract Pusher", new GearHolderRectractPusher());
         SmartDashboard.putData("Open", new GearHolderOpen());
         SmartDashboard.putData("Close", new GearHolderClose());
-        SmartDashboard.putBoolean("finish", Robot.encoderPIDHandler.onTarget());
         
     }
 

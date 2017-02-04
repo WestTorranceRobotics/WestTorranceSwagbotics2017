@@ -19,7 +19,6 @@ public class Robot extends IterativeRobot {
     public static Shooter shooter;
     public static Hanger hanger;
     public static Drivetrain drivetrain;
-    public static EncoderPIDHandler encoderPIDHandler;
 
     public void robotInit() {
     	
@@ -31,7 +30,6 @@ public class Robot extends IterativeRobot {
         shooter = new Shooter();
         hanger = new Hanger();
         drivetrain = new Drivetrain();
-        encoderPIDHandler = new EncoderPIDHandler();
         
         oi = new OI();
         
