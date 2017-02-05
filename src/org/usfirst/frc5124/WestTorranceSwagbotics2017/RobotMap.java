@@ -2,6 +2,8 @@ package org.usfirst.frc5124.WestTorranceSwagbotics2017;
 
 import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.FeedbackDevice;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -82,12 +84,39 @@ public class RobotMap {
     	//////////////////////
     	
     	shooterLeftShooterMotor = new CANTalon(3);
+    	shooterLeftShooterMotor.enableBrakeMode(false);
+    	shooterLeftShooterMotor.setProfile(0);
+    	shooterLeftShooterMotor.setP(.1);
+    	shooterLeftShooterMotor.setI(0);
+    	shooterLeftShooterMotor.setD(0);
+    	shooterLeftShooterMotor.setF(0.037);
+    	shooterLeftShooterMotor.setAllowableClosedLoopErr(50);
+    	shooterLeftShooterMotor.setControlMode(2);
+    	shooterLeftShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	LiveWindow.addActuator("Shooter", "Left Shooter", shooterLeftShooterMotor);
     	
     	shooterCenterShooterMotor = new CANTalon(4);
+    	shooterCenterShooterMotor.enableBrakeMode(false);
+    	shooterCenterShooterMotor.setProfile(0);
+    	shooterCenterShooterMotor.setP(.1);
+    	shooterCenterShooterMotor.setI(0);
+    	shooterCenterShooterMotor.setD(0);
+    	shooterCenterShooterMotor.setF(0.037);
+    	shooterCenterShooterMotor.setAllowableClosedLoopErr(50);
+    	shooterCenterShooterMotor.setControlMode(2);
+    	shooterCenterShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	LiveWindow.addActuator("Shooter", "Center Shooter", shooterCenterShooterMotor);
     	
     	shooterRightShooterMotor = new CANTalon(5);
+    	shooterRightShooterMotor.enableBrakeMode(false);
+    	shooterRightShooterMotor.setProfile(0);
+    	shooterRightShooterMotor.setP(.1);
+    	shooterRightShooterMotor.setI(0);
+    	shooterRightShooterMotor.setD(0);
+    	shooterRightShooterMotor.setF(0.037);
+    	shooterRightShooterMotor.setAllowableClosedLoopErr(50);
+    	shooterRightShooterMotor.setControlMode(2);
+    	shooterRightShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	LiveWindow.addActuator("Shooter", "Right Shooter", shooterRightShooterMotor);
     	
     	

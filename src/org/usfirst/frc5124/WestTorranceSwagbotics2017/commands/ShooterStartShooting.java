@@ -1,32 +1,30 @@
 package org.usfirst.frc5124.WestTorranceSwagbotics2017.commands;
 
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.RobotMap;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
-public class ConveyorConveyDown extends Command {
+public class ShooterStartShooting extends Command {
 
-    public ConveyorConveyDown() {
-        requires(Robot.conveyor);
+    public ShooterStartShooting() {
+        requires(Robot.shooter);
     }
 
     protected void initialize() {
+    	Robot.shooter.setControlMode(2);
+    	Robot.shooter.setAllShooters(Robot.shooter.getShootingSpeed());
     }
 
     protected void execute() {
-    	Robot.conveyor.down();
     }
 
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     protected void end() {
     }
-    
+
     protected void interrupted() {
-    	Robot.conveyor.stop();
     }
 }

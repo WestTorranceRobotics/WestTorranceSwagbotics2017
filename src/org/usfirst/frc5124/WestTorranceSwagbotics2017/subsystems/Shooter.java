@@ -1,14 +1,10 @@
 package org.usfirst.frc5124.WestTorranceSwagbotics2017.subsystems;
 
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.RobotMap;
-
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- *
- */
 public class Shooter extends Subsystem {
 
     private final CANTalon leftShootermotor = RobotMap.shooterLeftShooterMotor;
@@ -36,6 +32,16 @@ public class Shooter extends Subsystem {
     	setLeftShooter(speed);
     	setCenterShooter(speed);
     	setRightShooter(speed);
+    }
+    
+    public void setControlMode(int mode) {
+    	leftShootermotor.setControlMode(mode);
+    	centerShootermotor.setControlMode(mode);
+    	rightShootermotor.setControlMode(mode);
+    }
+    
+    public void enableControl() {
+    	
     }
     
     public double getLeftVelocity() {

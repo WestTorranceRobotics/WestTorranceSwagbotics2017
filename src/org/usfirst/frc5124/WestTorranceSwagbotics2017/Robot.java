@@ -14,7 +14,7 @@ public class Robot extends IterativeRobot {
 
     public static OI oi;
     public static GearHolder gearHolder;
-    public static Conveyor conveyor;
+    public static FuelInjector fuelInjector;
     public static Intake intake;
     public static Shooter shooter;
     public static Hanger hanger;
@@ -25,7 +25,7 @@ public class Robot extends IterativeRobot {
     	RobotMap.init();
         
         gearHolder = new GearHolder();
-        conveyor = new Conveyor();
+        fuelInjector = new FuelInjector();
         intake = new Intake();
         shooter = new Shooter();
         hanger = new Hanger();
