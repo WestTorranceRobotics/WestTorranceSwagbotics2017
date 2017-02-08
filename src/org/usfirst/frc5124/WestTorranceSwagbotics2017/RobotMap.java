@@ -135,7 +135,7 @@ public class RobotMap {
     	//drivetrainCompressor = new Compressor(0);
     	
     	drivetrainLeftEncoder = new Encoder(0, 1);
-    	drivetrainRightEncoder = new Encoder(2, 3);
+    	//drivetrainRightEncoder = new Encoder(2, 3);
     	
     	//drivetrainIMU = new ADIS16448_IMU();
 

@@ -62,6 +62,12 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         
+        if(Robot.gearHolder.getLimitSwitch()) {
+        	oi.vibrateDriver();
+        } else {
+        	oi.stopVibrate();
+        }
+        
         Timer.delay(0.005);
     }
 
