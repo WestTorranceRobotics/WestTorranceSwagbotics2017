@@ -12,9 +12,9 @@ public class AutoDriveByEncoder extends Command {
 	int distance = 0;
 	double power = 0.6;
 
-    public AutoDriveByEncoder(int encoderDistance) {
+    public AutoDriveByEncoder(int inches) {
         requires(Robot.drivetrain);
-        distance = encoderDistance;
+        distance = (int) (inches * 76.3943726841);
     }
 
     protected void initialize() {

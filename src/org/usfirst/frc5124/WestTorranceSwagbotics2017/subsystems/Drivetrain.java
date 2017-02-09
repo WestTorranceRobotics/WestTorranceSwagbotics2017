@@ -16,7 +16,7 @@ public class Drivetrain extends Subsystem {
     
     public void resetEncoders() {
     	leftEncoder.reset();
-    	rightEncoder.reset();
+    	//rightEncoder.reset();
     }
     
     public int getLeft() {

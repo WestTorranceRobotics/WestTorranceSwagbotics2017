@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousTestDrive;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.subsystems.*;
 
 public class Robot extends IterativeRobot {
@@ -33,6 +35,8 @@ public class Robot extends IterativeRobot {
         
         oi = new OI();
         
+        autonomousCommand = new AutonomousTestDrive();
+        
     }
 
     public void disabledInit(){
@@ -53,6 +57,7 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
         SmartDashboard.putNumber("Enc", RobotMap.drivetrainLeftEncoder.get());
         Timer.delay(0.005);
+        SmartDashboard.putNumber("Gyro", RobotMap.drivetrainIMU.getAngleZ());
     }
 
     public void teleopInit() {
@@ -67,6 +72,11 @@ public class Robot extends IterativeRobot {
         } else {
         	oi.stopVibrate();
         }
+        //gyro
+        SmartDashboard.putNumber("dgree", RobotMap.drivetrainIMU.getAngleZ());
+        
+        
+        //gyro
         
         Timer.delay(0.005);
     }

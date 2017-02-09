@@ -23,6 +23,8 @@ public class RobotMap {
 	//Conveyor
 	public static VictorSP conveyorConveyorMotor;
 	
+
+	
 	//Intake
 	public static VictorSP intakeIntakeMotor;
 	
@@ -136,9 +138,9 @@ public class RobotMap {
     	
     	drivetrainLeftEncoder = new Encoder(0, 1);
     	//drivetrainRightEncoder = new Encoder(2, 3);
-    	
-    	//drivetrainIMU = new ADIS16448_IMU();
-
+    	//gyro
+    	drivetrainIMU = new ADIS16448_IMU();
+    	//gyro
         drivetrainLeft1 = new VictorSP(0);
         LiveWindow.addActuator("Drivetrain", "Left 1", drivetrainLeft1);
         
