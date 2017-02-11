@@ -22,9 +22,7 @@ public class RobotMap {
 	
 	//Conveyor
 	public static VictorSP conveyorConveyorMotor;
-	
 
-	
 	//Intake
 	public static VictorSP intakeIntakeMotor;
 	

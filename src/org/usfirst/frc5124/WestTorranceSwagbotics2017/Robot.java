@@ -20,6 +20,7 @@ public class Robot extends IterativeRobot {
     public static Intake intake;
     public static Shooter shooter;
     public static Hanger hanger;
+    
     public static Drivetrain drivetrain;
 
     public void robotInit() {
