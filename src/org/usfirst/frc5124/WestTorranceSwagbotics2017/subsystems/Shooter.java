@@ -60,6 +60,18 @@ public class Shooter extends Subsystem {
     	return shootingSpeed;
     }
     
+    public double getLeftCurrent() {
+    	return leftShootermotor.getOutputCurrent();
+    }
+    
+    public double getCenterCurrent() {
+    	return centerShootermotor.getOutputCurrent();
+    }
+    
+    public double getRightCurrent() {
+    	return rightShootermotor.getOutputCurrent();
+    }
+    
     
 }
 

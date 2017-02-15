@@ -18,7 +18,7 @@ public class JoystickPuppetry extends Command {
 
     protected void execute() {
     	//Robot.drivetrain.tank(Robot.oi.getLeftSensitivity(.7), Robot.oi.getRightSensitvity(.7));
-    	Robot.drivetrain.robonaughtDrive(Robot.oi.getLeftYAxis(), Robot.oi.getRightXAxis());
+    	Robot.drivetrain.robonaughtDrive(Robot.oi.getLeftYAxisSens(), Robot.oi.getRightXAxisSens());
     }
 
     protected boolean isFinished() {

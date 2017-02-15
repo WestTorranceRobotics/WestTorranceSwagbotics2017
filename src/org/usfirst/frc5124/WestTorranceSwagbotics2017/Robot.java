@@ -6,11 +6,22 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousTestDrive;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.subsystems.*;
 
 public class Robot extends IterativeRobot {
+	
+	public int index = 0;
+	public Timer autoTimer = new Timer();
+	
+	File f;
+	BufferedWriter bw;
+	FileWriter fw;
 
     Command autonomousCommand;
 
@@ -38,12 +49,30 @@ public class Robot extends IterativeRobot {
         
         autonomousCommand = new AutonomousTestDrive();
         
+        try{ 
+        	
+        	f = new File("/home/lvuser/Output.txt");
+        	
+        	if(!f.exists()) {
+        		f.createNewFile();
+        	}
+        	
+        	fw = new FileWriter(f);
+        	
+        } catch (IOException e) {
+        	e.printStackTrace();
+        }
+        
+        bw = new BufferedWriter(fw);
+        
     }
 
     public void disabledInit(){
-    	Robot.gearHolder.pusherRetract();
-    	Robot.gearHolder.holderGrab();
-    	RobotMap.drivetrainLeftEncoder.reset();
+    	//Robot.gearHolder.pusherRetract();
+    	//Robot.gearHolder.holderGrab();
+    	//RobotMap.drivetrainLeftEncoder.reset();
+    	autoTimer.stop();
+    	autoTimer.reset();
     }
 
     public void disabledPeriodic() {
@@ -52,13 +81,27 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         if (autonomousCommand != null) autonomousCommand.start();
+        autoTimer.start();
+        index = 0;
     }
 
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
-        SmartDashboard.putNumber("Enc", RobotMap.drivetrainLeftEncoder.get());
+        
+        if(autoTimer.get() % .1 == 0) {
+        	//SmartDashboard.putNumber("Current " + index , Robot.shooter.getLeftCurrent());
+        	//SmartDashboard.putNumber("Velocity " + index, Robot.shooter.getLeftVelocity());
+        	//index++;
+        	
+        	try {
+				bw.write(autoTimer.get() + "," + Robot.shooter.getLeftCurrent() + "," + Robot.shooter.getLeftVelocity() + ":");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+        	
+        }
+        
         Timer.delay(0.005);
-        SmartDashboard.putNumber("Gyro", RobotMap.drivetrainIMU.getAngleZ());
     }
 
     public void teleopInit() {
@@ -67,17 +110,23 @@ public class Robot extends IterativeRobot {
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        
+        /*
         if(Robot.gearHolder.getLimitSwitch()) {
         	oi.vibrateDriver();
         } else {
         	oi.stopVibrate();
         }
-        //gyro
-        SmartDashboard.putNumber("dgree", RobotMap.drivetrainIMU.getAngleZ());
+        */
         
-        
-        //gyro
+        double power = Math.abs((oi.getOperator().getRawAxis(3) - 1)/-2);
+        if (power > .1) {
+        	shooter.setAllShooters(-power);
+        	SmartDashboard.putNumber("pr", power);
+        }
+        else {
+        	shooter.setAllShooters(0);
+        	SmartDashboard.putNumber("pr", power);
+        }
         
         Timer.delay(0.005);
     }

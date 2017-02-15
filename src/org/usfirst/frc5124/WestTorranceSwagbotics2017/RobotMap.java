@@ -20,8 +20,8 @@ public class RobotMap {
 	public static DoubleSolenoid gearHolderFunnelSolenoid;
 	public static DigitalInput gearHolderLimitSwitch;
 	
-	//Conveyor
-	public static VictorSP conveyorConveyorMotor;
+	//Fuel Injector
+	public static VictorSP fuelInjectorFuelInjectorMotor;
 
 	//Intake
 	public static VictorSP intakeIntakeMotor;
@@ -32,7 +32,7 @@ public class RobotMap {
 	public static CANTalon shooterRightShooterMotor;
 	
 	//Hanger
-	public static CANTalon hangerHangerMotor;
+	public static VictorSP hangerHangerMotor;
 	
 	//DriveTrain
 	public static Compressor drivetrainCompressor;
@@ -52,10 +52,10 @@ public class RobotMap {
     	///GEAR HOLDER HARDWARE///
     	//////////////////////////
     	
-    	gearHolderHolderSolenoid = new DoubleSolenoid(0, 1);
+    	gearHolderHolderSolenoid = new DoubleSolenoid(2, 7);
     	LiveWindow.addActuator("Gear Holder", "Holder Solenoid", gearHolderHolderSolenoid);
     	
-    	gearHolderPusherSolenoid = new DoubleSolenoid(2, 3);
+    	gearHolderPusherSolenoid = new DoubleSolenoid(3, 6);
     	LiveWindow.addActuator("Gear Holder", "Pusher Solenoid", gearHolderPusherSolenoid);
     	
     	gearHolderFunnelSolenoid = new DoubleSolenoid(4, 5);
@@ -63,19 +63,19 @@ public class RobotMap {
     	
     	gearHolderLimitSwitch = new DigitalInput(3);
     	
-    	///////////////////////
-    	///CONVEYOR HARDWARE///
-    	///////////////////////
+    	////////////////////////////
+    	///FUEL INJECTOR HARDWARE///
+    	////////////////////////////
     	
-    	conveyorConveyorMotor = new VictorSP(6);
-    	LiveWindow.addActuator("Conveyor", "Conveyor Motor", conveyorConveyorMotor);
+    	fuelInjectorFuelInjectorMotor = new VictorSP(5);
+    	LiveWindow.addActuator("Fuel Injector", "Fuel Injector Motor", fuelInjectorFuelInjectorMotor);
     	
     	
     	/////////////////////
     	///INATKE HARDWARE///
     	/////////////////////
     	
-    	intakeIntakeMotor = new VictorSP(5);
+    	intakeIntakeMotor = new VictorSP(4);
     	LiveWindow.addActuator("Intake", "Intake Motor", intakeIntakeMotor);
     	
     	
@@ -91,7 +91,7 @@ public class RobotMap {
     	shooterLeftShooterMotor.setD(0);
     	shooterLeftShooterMotor.setF(0.037);
     	shooterLeftShooterMotor.setAllowableClosedLoopErr(50);
-    	shooterLeftShooterMotor.setControlMode(2);
+    	shooterLeftShooterMotor.setControlMode(0);
     	shooterLeftShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	LiveWindow.addActuator("Shooter", "Left Shooter", shooterLeftShooterMotor);
     	
@@ -103,7 +103,7 @@ public class RobotMap {
     	shooterCenterShooterMotor.setD(0);
     	shooterCenterShooterMotor.setF(0.037);
     	shooterCenterShooterMotor.setAllowableClosedLoopErr(50);
-    	shooterCenterShooterMotor.setControlMode(2);
+    	shooterCenterShooterMotor.setControlMode(0);
     	shooterCenterShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	LiveWindow.addActuator("Shooter", "Center Shooter", shooterCenterShooterMotor);
     	
@@ -115,7 +115,7 @@ public class RobotMap {
     	shooterRightShooterMotor.setD(0);
     	shooterRightShooterMotor.setF(0.037);
     	shooterRightShooterMotor.setAllowableClosedLoopErr(50);
-    	shooterRightShooterMotor.setControlMode(2);
+    	shooterRightShooterMotor.setControlMode(0);
     	shooterRightShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	LiveWindow.addActuator("Shooter", "Right Shooter", shooterRightShooterMotor);
     	
@@ -124,7 +124,7 @@ public class RobotMap {
     	///HANGER HARDWARE///
     	/////////////////////
     	
-    	hangerHangerMotor = new CANTalon(6);
+    	hangerHangerMotor = new VictorSP(6);
     	LiveWindow.addActuator("Hanger", "Hanger Motor", hangerHangerMotor);
     	
     	
@@ -134,21 +134,21 @@ public class RobotMap {
     	
     	//drivetrainCompressor = new Compressor(0);
     	
-    	drivetrainLeftEncoder = new Encoder(0, 1);
-    	//drivetrainRightEncoder = new Encoder(2, 3);
-    	//gyro
+    	drivetrainLeftEncoder = new Encoder(6, 7);
+    	drivetrainRightEncoder = new Encoder(8, 9);
+    	
     	drivetrainIMU = new ADIS16448_IMU();
-    	//gyro
+    
         drivetrainLeft1 = new VictorSP(0);
         LiveWindow.addActuator("Drivetrain", "Left 1", drivetrainLeft1);
         
         drivetrainLeft2 = new VictorSP(1);
         LiveWindow.addActuator("Drivetrain", "Left 2", drivetrainLeft2);
         
-        drivetrainRight1 = new VictorSP(2);
+        drivetrainRight1 = new VictorSP(3);
         LiveWindow.addActuator("Drivetrain", "Right 1", drivetrainRight1);
         
-        drivetrainRight2 = new VictorSP(3);
+        drivetrainRight2 = new VictorSP(2);
         LiveWindow.addActuator("Drivetrain", "Right 2", drivetrainRight2);
         
         drivetrainRobotDrive = new RobotDrive(drivetrainLeft1, drivetrainLeft2,

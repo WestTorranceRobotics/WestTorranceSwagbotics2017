@@ -60,6 +60,22 @@ public class OI {
     	}
     }
     
+    public double getLeftYAxisSens() {
+    	if(Math.abs(driver.getRawAxis(1)) > 0.02) {
+    		return Math.pow(driver.getRawAxis(1), 3);
+    	} else {
+    		return 0;
+    	}
+    }
+    
+    public double getRightXAxisSens() {
+    	if(Math.abs(driver.getRawAxis(4)) > 0.02) {
+    		return Math.pow(driver.getRawAxis(4), 3);
+    	} else {
+    		return 0;
+    	}
+    }
+    
     public void vibrateDriver() {
     	driver.setRumble(GenericHID.RumbleType.kLeftRumble, 0.5);
    		driver.setRumble(GenericHID.RumbleType.kRightRumble, 1);

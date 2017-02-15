@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class FuelInjector extends Subsystem {
 
-    private final VictorSP fuelInjectorMotor = RobotMap.conveyorConveyorMotor;
+    private final VictorSP fuelInjectorMotor = RobotMap.fuelInjectorFuelInjectorMotor;
 
     public void initDefaultCommand() {
     }

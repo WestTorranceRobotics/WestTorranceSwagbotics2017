@@ -4,6 +4,7 @@ import org.usfirst.frc5124.WestTorranceSwagbotics2017.RobotMap;
 
 import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -11,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Hanger extends Subsystem {
 
-    private final CANTalon hangerMotor = RobotMap.hangerHangerMotor;
+    private final VictorSP hangerMotor = RobotMap.hangerHangerMotor;
 
     public void initDefaultCommand() {
     }
@@ -23,8 +24,8 @@ public class Hanger extends Subsystem {
     public void stop() {
     	hangerMotor.set(0);
     }
-    
+    /*
     public double getCurrentLoad() {
     	return hangerMotor.getOutputCurrent();
-    }
+    }*/
 }
