@@ -1,18 +1,20 @@
 package org.usfirst.frc5124.WestTorranceSwagbotics2017.commands;
 
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ShooterStartShooting extends Command {
+/**
+ *
+ */
+public class DrivetrainStopForGear extends Command {
 
-    public ShooterStartShooting() {
-        requires(Robot.shooter);
+    public DrivetrainStopForGear() {
+        requires(Robot.drivetrain);
     }
 
     protected void initialize() {
-    	Robot.shooter.setControlMode(2);
-    	Robot.shooter.setAllShooters(Robot.shooter.getShootingSpeed());
-    	
+    	Robot.drivetrain.stop();
     }
 
     protected void execute() {
@@ -21,7 +23,7 @@ public class ShooterStartShooting extends Command {
     protected boolean isFinished() {
         return true;
     }
-
+    
     protected void end() {
     }
 

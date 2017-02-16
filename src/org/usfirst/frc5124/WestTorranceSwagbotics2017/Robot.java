@@ -10,8 +10,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousTestDrive;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.ShooterStartShooting;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.subsystems.*;
 
 public class Robot extends IterativeRobot {
@@ -47,7 +46,9 @@ public class Robot extends IterativeRobot {
         
         oi = new OI();
         
-        autonomousCommand = new AutonomousTestDrive();
+        //autonomousCommand = new AutonomousTestDrive();
+        
+        autonomousCommand = new ShooterStartShooting();
         
         try{ 
         	
@@ -110,13 +111,22 @@ public class Robot extends IterativeRobot {
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        /*
+        
+        if(Robot.oi.getDriver().getRawButton(1)) {
+        	Robot.drivetrain.setDrivetrainSpeed(1);
+        } else {
+        	Robot.drivetrain.setDrivetrainSpeed(0.66);
+        }
+        
         if(Robot.gearHolder.getLimitSwitch()) {
         	oi.vibrateDriver();
         } else {
         	oi.stopVibrate();
         }
-        */
+        
+        double hanger = oi.getOperator().getY();
+        
+        Robot.hanger.setHangerPower(hanger);
         
         double power = Math.abs((oi.getOperator().getRawAxis(3) - 1)/-2);
         if (power > .1) {

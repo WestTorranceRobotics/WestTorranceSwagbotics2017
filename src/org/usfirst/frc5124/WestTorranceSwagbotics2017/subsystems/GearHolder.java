@@ -46,7 +46,7 @@ public class GearHolder extends Subsystem {
     }
     
     public boolean getLimitSwitch() {
-    	return limitSwitch.get();
+    	return !limitSwitch.get();
     }
     
 }

@@ -16,7 +16,8 @@ public class OI {
     public Joystick operator;
     
     //joystickbuttons
-    //ipublic JoystickButton button1;
+    public JoystickButton operatorButton11;
+    public JoystickButton operatorButton12;
 
     public OI() {
 
@@ -25,7 +26,11 @@ public class OI {
         operator = new Joystick(1);
         
         //joystick buttons
+        operatorButton11 = new JoystickButton(operator, 11);
+        operatorButton11.whenPressed(new GearHolderFunnelBackward());
         
+        operatorButton12 = new JoystickButton(operator, 12);
+        operatorButton12.whenPressed(new GearHolderFunnelForward());
         
         
         // SmartDashboard Buttons

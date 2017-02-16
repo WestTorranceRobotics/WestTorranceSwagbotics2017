@@ -21,7 +21,8 @@ public class GearHolderBraceForImpact extends Command {
     }
 
     protected boolean isFinished() {
-        return Robot.gearHolder.getLimitSwitch() ? Robot.oi.getDriver().getRawButton(1) : false;
+        //return Robot.gearHolder.getLimitSwitch() ? Robot.oi.getDriver().getRawButton(1) : false;
+    	return Robot.gearHolder.getLimitSwitch();
     }
     
     protected void end() {

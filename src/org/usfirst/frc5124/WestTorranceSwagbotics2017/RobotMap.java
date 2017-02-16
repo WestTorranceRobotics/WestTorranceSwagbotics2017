@@ -61,7 +61,7 @@ public class RobotMap {
     	gearHolderFunnelSolenoid = new DoubleSolenoid(4, 5);
     	LiveWindow.addActuator("Gear Holder", "Funnel Solenoid", gearHolderFunnelSolenoid);
     	
-    	gearHolderLimitSwitch = new DigitalInput(3);
+    	gearHolderLimitSwitch = new DigitalInput(5);
     	
     	////////////////////////////
     	///FUEL INJECTOR HARDWARE///
@@ -132,10 +132,11 @@ public class RobotMap {
     	///DRIVETRAIN HARDWARE///
     	/////////////////////////
     	
-    	//drivetrainCompressor = new Compressor(0);
+    	drivetrainCompressor = new Compressor(0);
+    	drivetrainCompressor.setClosedLoopControl(false);
     	
-    	drivetrainLeftEncoder = new Encoder(6, 7);
-    	drivetrainRightEncoder = new Encoder(8, 9);
+    	drivetrainLeftEncoder = new Encoder(8, 9);
+    	drivetrainRightEncoder = new Encoder(6, 7);
     	
     	drivetrainIMU = new ADIS16448_IMU();
     

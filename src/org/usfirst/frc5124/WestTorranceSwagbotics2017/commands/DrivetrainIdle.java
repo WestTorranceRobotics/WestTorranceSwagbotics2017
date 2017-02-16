@@ -1,25 +1,28 @@
 package org.usfirst.frc5124.WestTorranceSwagbotics2017.commands;
 
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ShooterStartShooting extends Command {
+/**
+ *
+ */
+public class DrivetrainIdle extends Command {
 
-    public ShooterStartShooting() {
-        requires(Robot.shooter);
+    public DrivetrainIdle() {
+        requires(Robot.drivetrain);
+        setTimeout(0.5);
     }
 
     protected void initialize() {
-    	Robot.shooter.setControlMode(2);
-    	Robot.shooter.setAllShooters(Robot.shooter.getShootingSpeed());
-    	
     }
 
     protected void execute() {
+    	Robot.drivetrain.stop();
     }
 
     protected boolean isFinished() {
-        return true;
+        return isTimedOut();
     }
 
     protected void end() {
