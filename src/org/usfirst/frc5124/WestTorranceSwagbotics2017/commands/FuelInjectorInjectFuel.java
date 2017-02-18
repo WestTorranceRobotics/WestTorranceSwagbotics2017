@@ -20,10 +20,11 @@ public class FuelInjectorInjectFuel extends Command {
     }
 
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     protected void end() {
+    	Robot.fuelInjector.stop();
     }
     
     protected void interrupted() {

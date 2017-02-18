@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class IntakeExhaust extends Command {
+public class IntakeMoveToShooter extends Command {
 
-    public IntakeExhaust() {
+    public IntakeMoveToShooter() {
         requires(Robot.intake);
     }
 
@@ -17,7 +17,7 @@ public class IntakeExhaust extends Command {
     }
 
     protected void execute() {
-    	Robot.intake.exhaust();
+    	Robot.intake.intakeSlow();
     }
 
     protected boolean isFinished() {
@@ -29,6 +29,6 @@ public class IntakeExhaust extends Command {
     }
 
     protected void interrupted() {
-    	Robot.intake.stop();
+    	end();
     }
 }

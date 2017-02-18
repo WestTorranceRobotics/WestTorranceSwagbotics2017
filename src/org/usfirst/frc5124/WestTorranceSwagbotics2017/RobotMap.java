@@ -32,7 +32,7 @@ public class RobotMap {
 	public static CANTalon shooterRightShooterMotor;
 	
 	//Hanger
-	public static VictorSP hangerHangerMotor;
+	public static CANTalon hangerHangerMotor;
 	
 	//DriveTrain
 	public static Compressor drivetrainCompressor;
@@ -67,7 +67,7 @@ public class RobotMap {
     	///FUEL INJECTOR HARDWARE///
     	////////////////////////////
     	
-    	fuelInjectorFuelInjectorMotor = new VictorSP(5);
+    	fuelInjectorFuelInjectorMotor = new VictorSP(4);
     	LiveWindow.addActuator("Fuel Injector", "Fuel Injector Motor", fuelInjectorFuelInjectorMotor);
     	
     	
@@ -75,7 +75,7 @@ public class RobotMap {
     	///INATKE HARDWARE///
     	/////////////////////
     	
-    	intakeIntakeMotor = new VictorSP(4);
+    	intakeIntakeMotor = new VictorSP(5);
     	LiveWindow.addActuator("Intake", "Intake Motor", intakeIntakeMotor);
     	
     	
@@ -124,7 +124,7 @@ public class RobotMap {
     	///HANGER HARDWARE///
     	/////////////////////
     	
-    	hangerHangerMotor = new VictorSP(6);
+    	hangerHangerMotor = new CANTalon(6);
     	LiveWindow.addActuator("Hanger", "Hanger Motor", hangerHangerMotor);
     	
     	
@@ -133,7 +133,6 @@ public class RobotMap {
     	/////////////////////////
     	
     	drivetrainCompressor = new Compressor(0);
-    	drivetrainCompressor.setClosedLoopControl(false);
     	
     	drivetrainLeftEncoder = new Encoder(8, 9);
     	drivetrainRightEncoder = new Encoder(6, 7);

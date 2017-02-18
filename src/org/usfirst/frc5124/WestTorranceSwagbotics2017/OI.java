@@ -16,8 +16,17 @@ public class OI {
     public Joystick operator;
     
     //joystickbuttons
+    public JoystickButton operatorButton3;
+    public JoystickButton operatorButton4;
+    public JoystickButton operatorButton5;
+    public JoystickButton operatorButton6;
+    public JoystickButton operatorButton7;
+    public JoystickButton operatorButton8;
+    public JoystickButton operatorButton9;
+    public JoystickButton operatorButton10;
     public JoystickButton operatorButton11;
     public JoystickButton operatorButton12;
+    
 
     public OI() {
 
@@ -26,18 +35,34 @@ public class OI {
         operator = new Joystick(1);
         
         //joystick buttons
-        operatorButton11 = new JoystickButton(operator, 11);
-        operatorButton11.whenPressed(new GearHolderFunnelBackward());
+        operatorButton4 = new JoystickButton(operator, 4);
+        operatorButton4.whileHeld(new IntakeAndFuelInjectorHopper());
         
-        operatorButton12 = new JoystickButton(operator, 12);
-        operatorButton12.whenPressed(new GearHolderFunnelForward());
+        operatorButton5 = new JoystickButton(operator, 5);
+        operatorButton5.whileHeld(new IntakeAndFuelInjectorShooter());
+        
+        operatorButton6 = new JoystickButton(operator, 6);
+        operatorButton6.whenPressed(new GearHolderSafelyOpen());
+        
+        operatorButton7 = new JoystickButton(operator, 7);
+        operatorButton7.whenPressed(new GearHolderSafelyClose());
+        
+        operatorButton8 = new JoystickButton(operator, 8);
+        operatorButton8.whenPressed(new GearHolderFunnelBackward());
+        
+        operatorButton9 = new JoystickButton(operator, 9);
+        operatorButton9.whenPressed(new GearHolderFunnelForward());
         
         
         // SmartDashboard Buttons
         SmartDashboard.putData("Extend Pusher", new GearHolderExtendPusher());
         SmartDashboard.putData("Retract Pusher", new GearHolderRectractPusher());
-        SmartDashboard.putData("Open", new GearHolderOpen());
-        SmartDashboard.putData("Close", new GearHolderClose());
+        SmartDashboard.putData("Open GearHolder", new GearHolderOpen());
+        SmartDashboard.putData("Close Gearholder", new GearHolderClose());
+        SmartDashboard.putData("Forward", new GearHolderFunnelForward());
+        SmartDashboard.putData("backward", new GearHolderFunnelBackward());
+        
+        SmartDashboard.putData("auto do", new GearHolderAutoRelase());
         
     }
 

@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class GearHolderAutoRelase extends CommandGroup {
 
     public GearHolderAutoRelase() {
-    	addSequential(new DrivetrainStopForGear());
-    	addParallel(new DrivetrainIdle());
+    	//addSequential(new DrivetrainStopForGear());
+    	//addParallel(new DrivetrainIdle());
         addSequential(new GearHolderSafelyOpen());
         addSequential(new Wait(2));
         addSequential(new GearHolderWaitForClearing());

@@ -1,34 +1,30 @@
 package org.usfirst.frc5124.WestTorranceSwagbotics2017.commands;
 
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
-public class IntakeExhaust extends Command {
+public class HangerHang extends Command {
 
-    public IntakeExhaust() {
-        requires(Robot.intake);
+    public HangerHang() {
+        requires(Robot.hanger);
     }
 
     protected void initialize() {
     }
 
     protected void execute() {
-    	Robot.intake.exhaust();
+    	Robot.hanger.magicHang();
     }
 
     protected boolean isFinished() {
-        return false;
+        return Robot.hanger.getCurrentLoad() > 20;
     }
 
     protected void end() {
-    	Robot.intake.stop();
+    	Robot.hanger.stop();
     }
 
     protected void interrupted() {
-    	Robot.intake.stop();
+    	end();
     }
 }

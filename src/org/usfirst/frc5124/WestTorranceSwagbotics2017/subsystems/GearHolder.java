@@ -15,18 +15,18 @@ public class GearHolder extends Subsystem {
     private final DoubleSolenoid funnelSolenoid = RobotMap.gearHolderFunnelSolenoid;
     private final DigitalInput limitSwitch = RobotMap.gearHolderLimitSwitch;
     
-    public static boolean switchIsPressed = false;
+    public boolean switchIsPressed = false;
 
     public void initDefaultCommand() {
     	setDefaultCommand(new GearHolderBraceForImpact());
     }
     
     public void holderGrab() {
-    	holderSolenoid.set(Value.kForward);
+    	holderSolenoid.set(Value.kReverse);
     }
     
     public void holderLetItGo() {
-    	holderSolenoid.set(Value.kReverse);
+    	holderSolenoid.set(Value.kForward);
     }
     
     public void pusherExtend() {
@@ -38,11 +38,11 @@ public class GearHolder extends Subsystem {
     }
     
     public void funnelForward() {
-    	funnelSolenoid.set(Value.kForward);
+    	funnelSolenoid.set(Value.kReverse);
     }
     
     public void funnelBackward() {
-    	funnelSolenoid.set(Value.kReverse);
+    	funnelSolenoid.set(Value.kForward);
     }
     
     public boolean getLimitSwitch() {

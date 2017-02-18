@@ -13,15 +13,19 @@ public class Intake extends Subsystem {
     }
     
     public void intake() {
-    	intakeMotor.set(1);
+    	intakeMotor.set(-1);
     }
     
     public void exhaust() {
-    	intakeMotor.set(-1);
+    	intakeMotor.set(1);
     }
     
     public void stop() {
     	intakeMotor.set(0);
+    }
+    
+    public void intakeSlow() {
+    	intakeMotor.set(-0.5);
     }
     
 }

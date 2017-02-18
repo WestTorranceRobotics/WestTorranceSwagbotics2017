@@ -48,7 +48,7 @@ public class Robot extends IterativeRobot {
         
         //autonomousCommand = new AutonomousTestDrive();
         
-        autonomousCommand = new ShooterStartShooting();
+        //autonomousCommand = new ShooterStartShooting();
         
         try{ 
         	
@@ -69,8 +69,8 @@ public class Robot extends IterativeRobot {
     }
 
     public void disabledInit(){
-    	//Robot.gearHolder.pusherRetract();
-    	//Robot.gearHolder.holderGrab();
+    	Robot.gearHolder.pusherRetract();
+    	Robot.gearHolder.holderGrab();
     	//RobotMap.drivetrainLeftEncoder.reset();
     	autoTimer.stop();
     	autoTimer.reset();
@@ -88,19 +88,14 @@ public class Robot extends IterativeRobot {
 
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
-        
-        if(autoTimer.get() % .1 == 0) {
-        	//SmartDashboard.putNumber("Current " + index , Robot.shooter.getLeftCurrent());
-        	//SmartDashboard.putNumber("Velocity " + index, Robot.shooter.getLeftVelocity());
-        	//index++;
-        	
+       
         	try {
 				bw.write(autoTimer.get() + "," + Robot.shooter.getLeftCurrent() + "," + Robot.shooter.getLeftVelocity() + ":");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
         	
-        }
+        
         
         Timer.delay(0.005);
     }

@@ -9,7 +9,7 @@ public class GearHolderSafelyOpen extends CommandGroup {
 
     public GearHolderSafelyOpen() {
     	addSequential(new GearHolderOpen());
-        addSequential(new Wait(/*0.125*/1));
+        addSequential(new Wait(0.125));
         addSequential(new GearHolderExtendPusher());
     }
 }

@@ -3,23 +3,32 @@ import org.usfirst.frc5124.WestTorranceSwagbotics2017.RobotMap;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.*;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Drivetrain extends Subsystem {
+public class Drivetrain extends PIDSubsystem {
 
 	private final RobotDrive robotDrive = RobotMap.drivetrainRobotDrive;
     private final Encoder leftEncoder = RobotMap.drivetrainLeftEncoder;
     private final Encoder rightEncoder = RobotMap.drivetrainRightEncoder;
     
     public Drivetrain() {
+    	super(0, 0, 0);
+    	getPIDController().setContinuous(false);
+    	getPIDController().setAbsoluteTolerance(100);
+    	getPIDController().setOutputRange(-0.7, 0.7);
 	}
     
     public void resetEncoders() {
     	leftEncoder.reset();
-    	//rightEncoder.reset();
+    	rightEncoder.reset();
     }
     
     public int getLeft() {
+    	return leftEncoder.get();
+    }
+    
+    public int getRight() {
     	return leftEncoder.get();
     }
     
@@ -42,6 +51,16 @@ public class Drivetrain extends Subsystem {
     public void stop() {
     	tank(0, 0);
     }
+
+	@Override
+	protected double returnPIDInput() {
+		return leftEncoder.get();
+	}
+
+	@Override
+	protected void usePIDOutput(double output) {
+		robotDrive.arcadeDrive(output, 0);
+	}
    
     
 }

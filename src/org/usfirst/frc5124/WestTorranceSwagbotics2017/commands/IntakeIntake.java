@@ -17,10 +17,11 @@ public class IntakeIntake extends Command {
     }
 
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     protected void end() {
+    	Robot.intake.stop();
     }
 
     protected void interrupted() {

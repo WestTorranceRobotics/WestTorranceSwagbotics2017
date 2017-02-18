@@ -13,11 +13,11 @@ public class FuelInjector extends Subsystem {
     }
     
     public void inject() {
-    	fuelInjectorMotor.set(1);
+    	fuelInjectorMotor.set(0.5);
     }
     
     public void extract() {
-    	fuelInjectorMotor.set(1);
+    	fuelInjectorMotor.set(-1);
     }
     
     public void stop() {
