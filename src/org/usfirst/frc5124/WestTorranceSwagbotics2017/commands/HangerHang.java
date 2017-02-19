@@ -13,11 +13,12 @@ public class HangerHang extends Command {
     }
 
     protected void execute() {
-    	Robot.hanger.magicHang();
+    	Robot.hanger.setHangerPower(-0.5);
     }
 
     protected boolean isFinished() {
-        return Robot.hanger.getCurrentLoad() > 20;
+        //return Robot.hanger.getCurrentLoad() > 20 || Robot.oi.getOperator().getRawButton(3);
+    	return false;
     }
 
     protected void end() {

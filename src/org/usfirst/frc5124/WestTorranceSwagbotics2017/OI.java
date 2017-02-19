@@ -16,9 +16,20 @@ public class OI {
     public Joystick operator;
     
     //joystickbuttons
+    
+    public JoystickButton driverButton2;
+    public JoystickButton driverButton4;
+    public JoystickButton driverButton5;
+    public JoystickButton driverButton6;
+    public JoystickButton driverButton8;
+    
+    
+    public JoystickButton operatorButton2;
     public JoystickButton operatorButton3;
     public JoystickButton operatorButton4;
+    public JoystickButton operatorButton4copy;
     public JoystickButton operatorButton5;
+    public JoystickButton operatorButton5copy;
     public JoystickButton operatorButton6;
     public JoystickButton operatorButton7;
     public JoystickButton operatorButton8;
@@ -35,11 +46,23 @@ public class OI {
         operator = new Joystick(1);
         
         //joystick buttons
+        operatorButton2 = new JoystickButton(operator, 2);
+        operatorButton2.whileHeld(new HangerHangReverse());
+        
+        operatorButton3 = new JoystickButton(operator, 3);
+        operatorButton3.whileHeld(new HangerHang());
+        
         operatorButton4 = new JoystickButton(operator, 4);
-        operatorButton4.whileHeld(new IntakeAndFuelInjectorHopper());
+        operatorButton4.whileHeld(new IntakeIntake());
+        
+        operatorButton4copy = new JoystickButton(operator, 4);
+        operatorButton4copy.whileHeld(new FuelInjectorExtractFuel());
         
         operatorButton5 = new JoystickButton(operator, 5);
-        operatorButton5.whileHeld(new IntakeAndFuelInjectorShooter());
+        operatorButton5.whileHeld(new IntakeIntake());
+        
+        operatorButton5copy = new JoystickButton(operator, 5);
+        operatorButton5copy.whileHeld(new FuelInjectorInjectFuel());
         
         operatorButton6 = new JoystickButton(operator, 6);
         operatorButton6.whenPressed(new GearHolderSafelyOpen());
@@ -83,8 +106,8 @@ public class OI {
     }
     
     public double getRightXAxis() {
-    	if(Math.abs(driver.getRawAxis(4)) > 0.02) {
-    		return driver.getRawAxis(4);
+    	if(Math.abs(driver.getRawAxis(2)) > 0.02) {
+    		return driver.getRawAxis(2);
     	} else {
     		return 0;
     	}
@@ -99,8 +122,8 @@ public class OI {
     }
     
     public double getRightXAxisSens() {
-    	if(Math.abs(driver.getRawAxis(4)) > 0.02) {
-    		return Math.pow(driver.getRawAxis(4), 3);
+    	if(Math.abs(driver.getRawAxis(2)) > 0.02) {
+    		return Math.pow(driver.getRawAxis(2), 3);
     	} else {
     		return 0;
     	}

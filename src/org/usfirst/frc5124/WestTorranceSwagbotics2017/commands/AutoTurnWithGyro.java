@@ -14,10 +14,8 @@ public class AutoTurnWithGyro extends Command {
 	double power = 0.5;
 	
     public AutoTurnWithGyro(double wanna) {
+    	requires(Robot.drivetrain);
     	desire = wanna;
-    
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
@@ -40,6 +38,7 @@ public class AutoTurnWithGyro extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.drivetrain.stop();
     }
 
     // Called when another command which requires one or more of the same

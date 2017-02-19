@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class GearHolderSafelyClose extends CommandGroup {
 
     public GearHolderSafelyClose() {
+    	addSequential(new GearHolderFunnelBackward());
+    	addSequential(new Wait(1));
         addSequential(new GearHolderRectractPusher());
         addSequential(new Wait(0.5));
         addSequential(new GearHolderClose());

@@ -38,11 +38,11 @@ public class GearHolder extends Subsystem {
     }
     
     public void funnelForward() {
-    	funnelSolenoid.set(Value.kReverse);
+    	funnelSolenoid.set(Value.kForward);
     }
     
     public void funnelBackward() {
-    	funnelSolenoid.set(Value.kForward);
+    	funnelSolenoid.set(Value.kReverse);
     }
     
     public boolean getLimitSwitch() {

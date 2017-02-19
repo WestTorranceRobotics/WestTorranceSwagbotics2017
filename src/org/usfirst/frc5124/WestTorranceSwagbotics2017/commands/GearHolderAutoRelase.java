@@ -11,8 +11,9 @@ public class GearHolderAutoRelase extends CommandGroup {
     	//addSequential(new DrivetrainStopForGear());
     	//addParallel(new DrivetrainIdle());
         addSequential(new GearHolderSafelyOpen());
-        addSequential(new Wait(2));
+        addSequential(new Wait(1));
         addSequential(new GearHolderWaitForClearing());
+        addSequential(new Wait(1));
         addSequential(new GearHolderSafelyClose());
     }
 }

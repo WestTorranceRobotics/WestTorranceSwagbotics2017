@@ -110,20 +110,20 @@ public class Robot extends IterativeRobot {
         if(Robot.oi.getDriver().getRawButton(1)) {
         	Robot.drivetrain.setDrivetrainSpeed(1);
         } else {
-        	Robot.drivetrain.setDrivetrainSpeed(0.66);
+        	Robot.drivetrain.setDrivetrainSpeed(0.5);
         }
         
-        if(Robot.gearHolder.getLimitSwitch()) {
+       /* if(Robot.gearHolder.getLimitSwitch()) {
         	oi.vibrateDriver();
         } else {
         	oi.stopVibrate();
-        }
+        }*/
         
-        double hanger = oi.getOperator().getY();
+      //  double hanger = oi.getOperator().getY();
         
-        Robot.hanger.setHangerPower(hanger);
+       // Robot.hanger.setHangerPower(hanger);
         
-        double power = Math.abs((oi.getOperator().getRawAxis(3) - 1)/-2);
+       /* double power = Math.abs((oi.getOperator().getRawAxis(3) - 1)/-2);
         if (power > .1) {
         	shooter.setAllShooters(-power);
         	SmartDashboard.putNumber("pr", power);
@@ -131,7 +131,7 @@ public class Robot extends IterativeRobot {
         else {
         	shooter.setAllShooters(0);
         	SmartDashboard.putNumber("pr", power);
-        }
+        }*/
         
         Timer.delay(0.005);
     }
