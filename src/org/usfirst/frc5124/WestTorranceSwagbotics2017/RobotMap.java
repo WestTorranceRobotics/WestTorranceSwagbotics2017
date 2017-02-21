@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj.Encoder;
 
 public class RobotMap {
 	
+	//Agitator
+    public static VictorSP agitatorAgitatorMotor;
+	
 	//Gear Holder
 	public static DoubleSolenoid gearHolderHolderSolenoid;
 	public static DoubleSolenoid gearHolderPusherSolenoid;
@@ -47,6 +50,13 @@ public class RobotMap {
 
     public static void init() {
     	
+    	///////////////////////
+    	///AGITATOR HARDWARE///
+    	///////////////////////
+    	
+    	agitatorAgitatorMotor = new VictorSP(6);
+    	LiveWindow.addActuator("Agitator", "Agitator Motor", agitatorAgitatorMotor);
+    	
     	
     	//////////////////////////
     	///GEAR HOLDER HARDWARE///
@@ -62,6 +72,7 @@ public class RobotMap {
     	LiveWindow.addActuator("Gear Holder", "Funnel Solenoid", gearHolderFunnelSolenoid);
     	
     	gearHolderLimitSwitch = new DigitalInput(5);
+    	
     	
     	////////////////////////////
     	///FUEL INJECTOR HARDWARE///
@@ -91,7 +102,7 @@ public class RobotMap {
     	shooterLeftShooterMotor.setD(0);
     	shooterLeftShooterMotor.setF(0.037);
     	shooterLeftShooterMotor.setAllowableClosedLoopErr(50);
-    	shooterLeftShooterMotor.setControlMode(0);
+    	shooterLeftShooterMotor.setControlMode(2);
     	shooterLeftShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	LiveWindow.addActuator("Shooter", "Left Shooter", shooterLeftShooterMotor);
     	
@@ -103,7 +114,7 @@ public class RobotMap {
     	shooterCenterShooterMotor.setD(0);
     	shooterCenterShooterMotor.setF(0.037);
     	shooterCenterShooterMotor.setAllowableClosedLoopErr(50);
-    	shooterCenterShooterMotor.setControlMode(0);
+    	shooterCenterShooterMotor.setControlMode(2);
     	shooterCenterShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	LiveWindow.addActuator("Shooter", "Center Shooter", shooterCenterShooterMotor);
     	
@@ -115,7 +126,7 @@ public class RobotMap {
     	shooterRightShooterMotor.setD(0);
     	shooterRightShooterMotor.setF(0.037);
     	shooterRightShooterMotor.setAllowableClosedLoopErr(50);
-    	shooterRightShooterMotor.setControlMode(0);
+    	shooterRightShooterMotor.setControlMode(2);
     	shooterRightShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	LiveWindow.addActuator("Shooter", "Right Shooter", shooterRightShooterMotor);
     	

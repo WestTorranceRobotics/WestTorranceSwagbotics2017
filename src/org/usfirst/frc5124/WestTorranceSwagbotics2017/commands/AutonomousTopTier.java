@@ -9,6 +9,7 @@ public class AutonomousTopTier extends CommandGroup {
 
     public AutonomousTopTier() {
         addSequential(new AutoKamikazeGear());
+        addSequential(new Wait(2));
         addParallel(new GearHolderAutoRelase());
     }
 }

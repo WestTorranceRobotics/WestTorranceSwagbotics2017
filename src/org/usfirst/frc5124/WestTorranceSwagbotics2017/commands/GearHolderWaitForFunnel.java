@@ -7,32 +7,35 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ShooterStopShooting extends Command {
+public class GearHolderWaitForFunnel extends Command {
 
-    public ShooterStopShooting() {
-        requires(Robot.shooter);
+    public GearHolderWaitForFunnel() {
+        requires(Robot.gearHolder);
+        if(Robot.gearHolder.getFunnelForward()) {
+        	setTimeout(1);
+        } else {
+        	setTimeout(0);
+        }
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	if(Robot.gearHolder.getFunnelForward()) {
+        	Robot.gearHolder.funnelBackward();
+        }
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return isTimedOut();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.shooter.setAllShooters(0);
-    	org.usfirst.frc5124.WestTorranceSwagbotics2017.RobotMap.shooterLeftShooterMotor.enableBrakeMode(false);
-    
-    	
     }
 
     // Called when another command which requires one or more of the same

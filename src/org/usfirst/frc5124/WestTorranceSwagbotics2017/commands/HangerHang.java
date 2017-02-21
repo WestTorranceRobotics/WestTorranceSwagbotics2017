@@ -13,7 +13,7 @@ public class HangerHang extends Command {
     }
 
     protected void execute() {
-    	Robot.hanger.setHangerPower(-0.5);
+    	Robot.hanger.setHangerPower(-1);
     }
 
     protected boolean isFinished() {

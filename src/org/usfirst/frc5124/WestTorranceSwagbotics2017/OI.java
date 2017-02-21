@@ -1,7 +1,6 @@
 package org.usfirst.frc5124.WestTorranceSwagbotics2017;
 
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.*;
-
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -16,15 +15,12 @@ public class OI {
     public Joystick operator;
     
     //joystickbuttons
-    
-    public JoystickButton driverButton2;
     public JoystickButton driverButton4;
-    public JoystickButton driverButton5;
-    public JoystickButton driverButton6;
-    public JoystickButton driverButton8;
+    public JoystickButton driverButton7;
     
     
     public JoystickButton operatorButton2;
+    public JoystickButton operatorButton2copy;
     public JoystickButton operatorButton3;
     public JoystickButton operatorButton4;
     public JoystickButton operatorButton4copy;
@@ -35,8 +31,6 @@ public class OI {
     public JoystickButton operatorButton8;
     public JoystickButton operatorButton9;
     public JoystickButton operatorButton10;
-    public JoystickButton operatorButton11;
-    public JoystickButton operatorButton12;
     
 
     public OI() {
@@ -46,8 +40,17 @@ public class OI {
         operator = new Joystick(1);
         
         //joystick buttons
+        driverButton4 = new JoystickButton(driver, 4);
+        driverButton4.whenPressed(new DrivetrainReverseFront());
+        
+        driverButton7 = new JoystickButton(driver, 7);
+        driverButton7.whileHeld(new ShooterTeleopShoot());
+        
         operatorButton2 = new JoystickButton(operator, 2);
-        operatorButton2.whileHeld(new HangerHangReverse());
+        operatorButton2.whileHeld(new IntakeExhaust());
+        
+        operatorButton2copy = new JoystickButton(operator, 2);
+        operatorButton2copy.whileHeld(new FuelInjectorInjectFuel());
         
         operatorButton3 = new JoystickButton(operator, 3);
         operatorButton3.whileHeld(new HangerHang());
@@ -76,16 +79,8 @@ public class OI {
         operatorButton9 = new JoystickButton(operator, 9);
         operatorButton9.whenPressed(new GearHolderFunnelForward());
         
-        
-        // SmartDashboard Buttons
-        SmartDashboard.putData("Extend Pusher", new GearHolderExtendPusher());
-        SmartDashboard.putData("Retract Pusher", new GearHolderRectractPusher());
-        SmartDashboard.putData("Open GearHolder", new GearHolderOpen());
-        SmartDashboard.putData("Close Gearholder", new GearHolderClose());
-        SmartDashboard.putData("Forward", new GearHolderFunnelForward());
-        SmartDashboard.putData("backward", new GearHolderFunnelBackward());
-        
-        SmartDashboard.putData("auto do", new GearHolderAutoRelase());
+        operatorButton10= new JoystickButton(operator, 10);
+        operatorButton10.whileHeld(new AgitatorAgitate());
         
     }
 

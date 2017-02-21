@@ -11,14 +11,14 @@ public class AutoKamikazeGear extends Command {
 
     public AutoKamikazeGear() {
         requires(Robot.drivetrain);
-        setTimeout(7);
+        setTimeout(10);
     }
 
     protected void initialize() {
     }
 
     protected void execute() {
-    	Robot.drivetrain.tank(0.5, 0.5);
+    	Robot.drivetrain.tank(0.35, 0.35);
     }
 
     protected boolean isFinished() {

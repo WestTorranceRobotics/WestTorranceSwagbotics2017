@@ -16,7 +16,8 @@ public class AutonomousFuelForRed extends CommandGroup {
     	addSequential(new AutoDriveByEncoder(18));
     	//Turn to face tank head on
     	addSequential(new AutoTurnWithGyro(45));
-    	//addSequential(new AutoShoot());    	
+    	//addSequential(new AutoShoot());   
+    	addSequential(new AutoShoot(5));
 
     }
 }

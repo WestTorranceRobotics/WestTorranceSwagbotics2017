@@ -1,5 +1,6 @@
 package org.usfirst.frc5124.WestTorranceSwagbotics2017;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -10,6 +11,10 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousBigShoots;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousTopTier;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.GearHolderSafelyClose;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.ShooterStartShooting;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.subsystems.*;
 
@@ -25,18 +30,19 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
 
     public static OI oi;
+    public static Agitator agitator;
     public static GearHolder gearHolder;
     public static FuelInjector fuelInjector;
     public static Intake intake;
     public static Shooter shooter;
     public static Hanger hanger;
-    
     public static Drivetrain drivetrain;
 
     public void robotInit() {
     	
     	RobotMap.init();
         
+    	agitator = new Agitator();
         gearHolder = new GearHolder();
         fuelInjector = new FuelInjector();
         intake = new Intake();
@@ -47,8 +53,10 @@ public class Robot extends IterativeRobot {
         oi = new OI();
         
         //autonomousCommand = new AutonomousTestDrive();
-        
+        autonomousCommand = new AutonomousBigShoots();
         //autonomousCommand = new ShooterStartShooting();
+        
+        CameraServer.getInstance().startAutomaticCapture();
         
         try{ 
         	
@@ -69,8 +77,6 @@ public class Robot extends IterativeRobot {
     }
 
     public void disabledInit(){
-    	Robot.gearHolder.pusherRetract();
-    	Robot.gearHolder.holderGrab();
     	//RobotMap.drivetrainLeftEncoder.reset();
     	autoTimer.stop();
     	autoTimer.reset();
@@ -81,6 +87,8 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
+    	//Scheduler.getInstance().add(new GearHolderSafelyClose());
+    	Robot.drivetrain.frontAndCenter();
         if (autonomousCommand != null) autonomousCommand.start();
         autoTimer.start();
         index = 0;
@@ -89,11 +97,11 @@ public class Robot extends IterativeRobot {
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
        
-        	try {
-				bw.write(autoTimer.get() + "," + Robot.shooter.getLeftCurrent() + "," + Robot.shooter.getLeftVelocity() + ":");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+        try {
+			bw.write(autoTimer.get() + "," + Robot.shooter.getLeftCurrent() + "," + Robot.shooter.getLeftVelocity() + ":");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
         	
         
         
@@ -102,12 +110,14 @@ public class Robot extends IterativeRobot {
 
     public void teleopInit() {
         if (autonomousCommand != null) autonomousCommand.cancel();
+        Robot.drivetrain.frontAndCenter();
+        Scheduler.getInstance().add(new GearHolderSafelyClose());
     }
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         
-        if(Robot.oi.getDriver().getRawButton(1)) {
+        if(Robot.oi.getDriver().getRawButton(5)) {
         	Robot.drivetrain.setDrivetrainSpeed(1);
         } else {
         	Robot.drivetrain.setDrivetrainSpeed(0.5);
@@ -122,8 +132,8 @@ public class Robot extends IterativeRobot {
       //  double hanger = oi.getOperator().getY();
         
        // Robot.hanger.setHangerPower(hanger);
-        
-       /* double power = Math.abs((oi.getOperator().getRawAxis(3) - 1)/-2);
+        /*
+        double power = Math.abs((oi.getOperator().getRawAxis(2) - 1)/-2);
         if (power > .1) {
         	shooter.setAllShooters(-power);
         	SmartDashboard.putNumber("pr", power);

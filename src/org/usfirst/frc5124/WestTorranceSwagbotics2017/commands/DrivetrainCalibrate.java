@@ -7,19 +7,19 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ShooterStopShooting extends Command {
+public class DrivetrainCalibrate extends Command {
 
-    public ShooterStopShooting() {
-        requires(Robot.shooter);
+    public DrivetrainCalibrate() {
+        requires(Robot.drivetrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.drivetrain.calibrate();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -29,10 +29,6 @@ public class ShooterStopShooting extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.shooter.setAllShooters(0);
-    	org.usfirst.frc5124.WestTorranceSwagbotics2017.RobotMap.shooterLeftShooterMotor.enableBrakeMode(false);
-    
-    	
     }
 
     // Called when another command which requires one or more of the same

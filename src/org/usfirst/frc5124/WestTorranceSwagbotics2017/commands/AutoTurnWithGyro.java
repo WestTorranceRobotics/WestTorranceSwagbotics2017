@@ -20,7 +20,7 @@ public class AutoTurnWithGyro extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	position = RobotMap.drivetrainIMU.getAngleZ();
+    	position = RobotMap.drivetrainIMU.getAngle();
     	Math.copySign(power, desire);
     	desire = position + desire;
     	
@@ -33,7 +33,7 @@ public class AutoTurnWithGyro extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (Math.abs(desire - (RobotMap.drivetrainIMU.getAngleZ() - position)) < 5);
+        return (Math.abs(desire - (RobotMap.drivetrainIMU.getAngle() - position)) < 5);
     }
 
     // Called once after isFinished returns true

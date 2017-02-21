@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutoDriveByEncoder extends Command {
 	
 	int distance = 0;
-	double power = 0.6;
+	double power = 0.45;
 
     public AutoDriveByEncoder(int inches) {
         requires(Robot.drivetrain);
