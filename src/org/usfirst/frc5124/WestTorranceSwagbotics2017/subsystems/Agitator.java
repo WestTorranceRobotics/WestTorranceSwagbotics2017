@@ -19,6 +19,10 @@ public class Agitator extends Subsystem {
     	agitatorMotor.set(1);
     }
     
+    public void reverse() {
+    	agitatorMotor.set(-1);
+    }
+    
     public void stop() {
     	agitatorMotor.set(0);
     }

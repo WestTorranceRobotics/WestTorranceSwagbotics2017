@@ -16,6 +16,8 @@ public class OI {
     
     //joystickbuttons
     public JoystickButton driverButton4;
+    public JoystickButton driverButton5;
+    public JoystickButton driverButton6;
     public JoystickButton driverButton7;
     
     
@@ -31,6 +33,7 @@ public class OI {
     public JoystickButton operatorButton8;
     public JoystickButton operatorButton9;
     public JoystickButton operatorButton10;
+    public JoystickButton operatorButton11;
     
 
     public OI() {
@@ -42,6 +45,12 @@ public class OI {
         //joystick buttons
         driverButton4 = new JoystickButton(driver, 4);
         driverButton4.whenPressed(new DrivetrainReverseFront());
+        
+        driverButton5 = new JoystickButton(driver, 5);
+        driverButton5.whenPressed(new GearHolderBackboardBack());
+        
+        driverButton6 = new JoystickButton(driver, 6);
+        driverButton6.whenPressed(new GearHolderBackboardForward());
         
         driverButton7 = new JoystickButton(driver, 7);
         driverButton7.whileHeld(new ShooterTeleopShoot());
@@ -79,8 +88,11 @@ public class OI {
         operatorButton9 = new JoystickButton(operator, 9);
         operatorButton9.whenPressed(new GearHolderFunnelForward());
         
-        operatorButton10= new JoystickButton(operator, 10);
+        operatorButton10 = new JoystickButton(operator, 10);
         operatorButton10.whileHeld(new AgitatorAgitate());
+        
+        operatorButton11= new JoystickButton(operator, 11);
+        operatorButton11.whileHeld(new AgitatorReverse());
         
     }
 

@@ -23,6 +23,9 @@ public class Robot extends IterativeRobot {
 	public int index = 0;
 	public Timer autoTimer = new Timer();
 	
+	public boolean autoHasStarted = false;
+	public boolean teleHasStarted = false;
+	
 	File f;
 	BufferedWriter bw;
 	FileWriter fw;
@@ -77,9 +80,11 @@ public class Robot extends IterativeRobot {
     }
 
     public void disabledInit(){
-    	//RobotMap.drivetrainLeftEncoder.reset();
     	autoTimer.stop();
     	autoTimer.reset();
+    	Robot.gearHolder.checkPosition();
+    	teleHasStarted = false;
+    	autoHasStarted = false;
     }
 
     public void disabledPeriodic() {
@@ -87,7 +92,6 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
-    	//Scheduler.getInstance().add(new GearHolderSafelyClose());
     	Robot.drivetrain.frontAndCenter();
         if (autonomousCommand != null) autonomousCommand.start();
         autoTimer.start();
@@ -96,6 +100,11 @@ public class Robot extends IterativeRobot {
 
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        
+        if(!autoHasStarted) {
+        	Scheduler.getInstance().add(new GearHolderSafelyClose());
+        	autoHasStarted = true;
+        }
        
         try {
 			bw.write(autoTimer.get() + "," + Robot.shooter.getLeftCurrent() + "," + Robot.shooter.getLeftVelocity() + ":");
@@ -111,11 +120,15 @@ public class Robot extends IterativeRobot {
     public void teleopInit() {
         if (autonomousCommand != null) autonomousCommand.cancel();
         Robot.drivetrain.frontAndCenter();
-        Scheduler.getInstance().add(new GearHolderSafelyClose());
     }
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        
+        if(!teleHasStarted) {
+        	Scheduler.getInstance().add(new GearHolderSafelyClose());
+        	teleHasStarted = true;
+        }
         
         if(Robot.oi.getDriver().getRawButton(5)) {
         	Robot.drivetrain.setDrivetrainSpeed(1);

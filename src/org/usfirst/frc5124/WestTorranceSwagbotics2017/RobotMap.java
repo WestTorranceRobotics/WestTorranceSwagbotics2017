@@ -17,10 +17,11 @@ public class RobotMap {
 	//Agitator
     public static VictorSP agitatorAgitatorMotor;
 	
-	//Gear Holder
+	//Gearage
 	public static DoubleSolenoid gearHolderHolderSolenoid;
 	public static DoubleSolenoid gearHolderPusherSolenoid;
 	public static DoubleSolenoid gearHolderFunnelSolenoid;
+	public static DoubleSolenoid gearHolderBackboardSolenoid;
 	public static DigitalInput gearHolderLimitSwitch;
 	
 	//Fuel Injector
@@ -70,6 +71,9 @@ public class RobotMap {
     	
     	gearHolderFunnelSolenoid = new DoubleSolenoid(4, 5);
     	LiveWindow.addActuator("Gear Holder", "Funnel Solenoid", gearHolderFunnelSolenoid);
+    	
+    	gearHolderBackboardSolenoid = new DoubleSolenoid(0, 1);
+    	LiveWindow.addActuator("Gear Holder", "Backboard Solenoid", gearHolderBackboardSolenoid);
     	
     	gearHolderLimitSwitch = new DigitalInput(5);
     	

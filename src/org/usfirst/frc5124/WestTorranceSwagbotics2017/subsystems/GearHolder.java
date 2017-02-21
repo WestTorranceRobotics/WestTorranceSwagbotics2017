@@ -13,10 +13,12 @@ public class GearHolder extends Subsystem {
     private final DoubleSolenoid holderSolenoid = RobotMap.gearHolderHolderSolenoid;
     private final DoubleSolenoid pusherSolenoid = RobotMap.gearHolderPusherSolenoid;
     private final DoubleSolenoid funnelSolenoid = RobotMap.gearHolderFunnelSolenoid;
+    private final DoubleSolenoid backboardSolenoid = RobotMap.gearHolderBackboardSolenoid;
     private final DigitalInput limitSwitch = RobotMap.gearHolderLimitSwitch;
     
     public boolean switchIsPressed = false;
     public boolean funnelIsForward = false;
+    public boolean backboardIsForward = false;
 
     public void initDefaultCommand() {
     	setDefaultCommand(new GearHolderBraceForImpact());
@@ -48,12 +50,40 @@ public class GearHolder extends Subsystem {
     	funnelIsForward = false;
     }
     
+    public void backBoardBack() {
+    	backboardSolenoid.set(Value.kReverse);
+    	backboardIsForward = false;
+    }
+    
+    public void backBoardForward() {
+    	backboardSolenoid.set(Value.kForward);
+    	backboardIsForward = true;
+    }
+    
     public boolean getLimitSwitch() {
     	return !limitSwitch.get();
     }
     
     public boolean getFunnelForward() {
     	return funnelIsForward;
+    }
+    
+    public boolean getBackboardForward() {
+    	return backboardIsForward;
+    }
+    
+    public void checkPosition() {
+    	if(funnelSolenoid.get() == Value.kForward) {
+    		funnelIsForward = true;
+    	} else {
+    		funnelIsForward = false;
+    	}
+    	
+    	if(backboardSolenoid.get() == Value.kForward) {
+    		backboardIsForward = true;
+    	} else {
+    		backboardIsForward = false;
+    	}
     }
     
 }
