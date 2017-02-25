@@ -148,6 +148,7 @@ public class RobotMap {
     	/////////////////////////
     	
     	drivetrainCompressor = new Compressor(0);
+    	//drivetrainCompressor.setClosedLoopControl(false);
     	
     	drivetrainLeftEncoder = new Encoder(8, 9);
     	drivetrainRightEncoder = new Encoder(6, 7);
