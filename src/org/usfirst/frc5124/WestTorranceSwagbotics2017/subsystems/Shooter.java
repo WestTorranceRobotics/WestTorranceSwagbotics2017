@@ -72,6 +72,12 @@ public class Shooter extends Subsystem {
     	return rightShootermotor.getOutputCurrent();
     }
     
+    public void setBrakeFalse() {
+    	leftShootermotor.enableBrakeMode(false);
+    	centerShootermotor.enableBrakeMode(false);
+    	rightShootermotor.enableBrakeMode(false);
+    }
+    
     
 }
 
