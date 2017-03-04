@@ -40,10 +40,6 @@ public class Shooter extends Subsystem {
     	rightShootermotor.setControlMode(mode);
     }
     
-    public void enableControl() {
-    	
-    }
-    
     public double getLeftVelocity() {
     	return leftShootermotor.getEncVelocity();
     }
