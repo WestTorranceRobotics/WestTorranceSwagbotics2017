@@ -9,40 +9,37 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class AutoTurnWithGyro extends Command {
-	double desire;
-	double position;
-	double power = 0.5;
 	
-    public AutoTurnWithGyro(double wanna) {
+	double target;
+	//double power = 0.5;
+	
+    public AutoTurnWithGyro(double degrees) {
     	requires(Robot.drivetrain);
-    	desire = wanna;
+    	target = degrees;
     }
 
-    // Called just before this Command runs the first time
     protected void initialize() {
-    	position = RobotMap.drivetrainIMU.getAngle();
-    	Math.copySign(power, desire);
-    	desire = position + desire;
-    	
+    	//position = RobotMap.drivetrainIMU.getAngle();
+    	//Math.copySign(power, desire);
+    	//desire = position + desire;
+    	Robot.drivetrain.setSetpoint(target + Robot.drivetrain.getGyro());
+    	Robot.drivetrain.enable();
     }
-
-    // Called repeatedly when this Command is scheduled to run
+    
     protected void execute() {
-    	Robot.drivetrain.tank(power, -power);
     }
 
-    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (Math.abs(desire - (RobotMap.drivetrainIMU.getAngle() - position)) < 5);
+        //return (Math.abs(desire - (RobotMap.drivetrainIMU.getAngle() - position)) < 5);
+    	return Robot.drivetrain.onTarget();
     }
 
-    // Called once after isFinished returns true
     protected void end() {
+    	Robot.drivetrain.disable();
     	Robot.drivetrain.stop();
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

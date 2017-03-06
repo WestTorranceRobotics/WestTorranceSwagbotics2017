@@ -11,7 +11,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousBigShoots;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousTopTier;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.GearHolderSafelyClose;
@@ -92,7 +91,6 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
-    	Robot.drivetrain.frontAndCenter();
         if (autonomousCommand != null) autonomousCommand.start();
         autoTimer.start();
         index = 0;
@@ -119,7 +117,7 @@ public class Robot extends IterativeRobot {
 
     public void teleopInit() {
         if (autonomousCommand != null) autonomousCommand.cancel();
-        Robot.drivetrain.frontAndCenter();
+        drivetrain.disable();
     }
 
     public void teleopPeriodic() {
@@ -136,15 +134,7 @@ public class Robot extends IterativeRobot {
         	Robot.drivetrain.setDrivetrainSpeed(0.5);
         }
         
-       /* if(Robot.gearHolder.getLimitSwitch()) {
-        	oi.vibrateDriver();
-        } else {
-        	oi.stopVibrate();
-        }*/
         
-      //  double hanger = oi.getOperator().getY();
-        
-       // Robot.hanger.setHangerPower(hanger);
         /*
         double power = Math.abs((oi.getOperator().getRawAxis(2) - 1)/-2);
         if (power > .1) {
