@@ -5,20 +5,19 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-
 public class OI {
     
-
 	//joysticks
     public static Joystick driver;
     public Joystick operator;
     
-    //joystickbuttons
+    // Driver joystickbuttons
     public JoystickButton driverButton4;
     public JoystickButton driverButton5;
     public JoystickButton driverButton6;
     public JoystickButton driverButton7;
     
+    //Operator Joystickbuttons
     public JoystickButton operatorButton6;
     public JoystickButton operatorButton7;
     public JoystickButton operatorButton8;
@@ -29,7 +28,6 @@ public class OI {
     public JoystickButton operatorButton13;
     public JoystickButton operatorButton14;
     public JoystickButton operatorButton15;
-    
 
     public OI() {
 
@@ -86,22 +84,6 @@ public class OI {
         return operator;
     }
     
-    public double getLeftYAxis() {
-    	if(Math.abs(driver.getRawAxis(1)) > 0.02) {
-    		return driver.getRawAxis(1);
-    	} else {
-    		return 0;
-    	}
-    }
-    
-    public double getRightXAxis() {
-    	if(Math.abs(driver.getRawAxis(2)) > 0.02) {
-    		return driver.getRawAxis(2);
-    	} else {
-    		return 0;
-    	}
-    }
-    
     public double getLeftYAxisSens() {
     	if(Math.abs(driver.getRawAxis(1)) > 0.02) {
     		return Math.pow(driver.getRawAxis(1), 3);
@@ -117,16 +99,5 @@ public class OI {
     		return 0;
     	}
     }
-    
-    public void vibrateDriver() {
-    	driver.setRumble(GenericHID.RumbleType.kLeftRumble, 0.5);
-   		driver.setRumble(GenericHID.RumbleType.kRightRumble, 1);
-    }
-    	     
-    public void stopVibrate() {
-    	driver.setRumble(GenericHID.RumbleType.kLeftRumble, 0);
-    	driver.setRumble(GenericHID.RumbleType.kRightRumble, 0);
-    }
-   
 }
 
