@@ -28,8 +28,7 @@ public class OI {
     public JoystickButton operatorButton13;
     public JoystickButton operatorButton14;
     public JoystickButton operatorButton15;
-    
-
+       
     public OI() {
 
         //joysticks
@@ -125,5 +124,21 @@ public class OI {
     	driver.setRumble(GenericHID.RumbleType.kRightRumble, 0);
     }
    
+    public boolean getAuto1() {
+    	return getOperator().getRawButton(1);
+    }
+    	
+    public boolean getAuto2() {
+    	return getOperator().getRawButton(2);
+    }
+    
+    public boolean getAuto3() {
+    	return getOperator().getRawButton(3);
+    }
+    
+    public boolean getAuto4() {
+    	return getOperator().getRawButton(4);
+    }
+    
 }
 

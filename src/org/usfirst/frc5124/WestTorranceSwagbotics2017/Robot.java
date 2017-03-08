@@ -51,9 +51,34 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
     	Robot.drivetrain.setDrivetrainSpeed(1);
-        if (autonomousCommand != null) autonomousCommand.start();
+    	
+    	Robot.drivetrain.frontAndCenter();
         
-        Robot.drivetrain.frontAndCenter();
+    	if(oi.getAuto4()) {
+    		if(oi.getAuto3() && oi.getAuto1() && oi.getAuto2()) {
+    			autonomousCommand = null;
+    		} else if(oi.getAuto3() && oi.getAuto1() && !oi.getAuto2()) {
+    			autonomousCommand = null;
+    		} else if(oi.getAuto3() && !oi.getAuto1() && oi.getAuto2()) {
+    			autonomousCommand = null;
+    		} else if(oi.getAuto3() && !oi.getAuto1() && !oi.getAuto2()) {
+    			autonomousCommand = null;
+    		} else if(!oi.getAuto3() && oi.getAuto1() && oi.getAuto2()) {
+    			autonomousCommand = null;
+    		} else if(!oi.getAuto3() && oi.getAuto1() && !oi.getAuto2()) {
+    			autonomousCommand = null;
+    		} else if(!oi.getAuto3() && !oi.getAuto1() && oi.getAuto2()) {
+    			autonomousCommand = null;
+    		} else if(!oi.getAuto3() && !oi.getAuto1() && !oi.getAuto2()) {
+    			autonomousCommand = null;
+    		}
+    	} else {
+    		autonomousCommand = null;
+    	}
+    	
+    	if (autonomousCommand != null) autonomousCommand.start();
+        
+   
     }
 
     public void autonomousPeriodic() {
