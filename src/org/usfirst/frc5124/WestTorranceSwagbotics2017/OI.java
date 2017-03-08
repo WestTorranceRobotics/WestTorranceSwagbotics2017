@@ -20,20 +20,19 @@ public class OI {
     public JoystickButton driverButton6;
     public JoystickButton driverButton7;
     
-    
-    public JoystickButton operatorButton2;
-    public JoystickButton operatorButton2copy;
-    public JoystickButton operatorButton3;
-    public JoystickButton operatorButton4;
-    public JoystickButton operatorButton4copy;
-    public JoystickButton operatorButton5;
-    public JoystickButton operatorButton5copy;
     public JoystickButton operatorButton6;
     public JoystickButton operatorButton7;
     public JoystickButton operatorButton8;
     public JoystickButton operatorButton9;
     public JoystickButton operatorButton10;
+    public JoystickButton operatorButton10copy;
     public JoystickButton operatorButton11;
+    public JoystickButton operatorButton11copy;
+    public JoystickButton operatorButton12;
+    public JoystickButton operatorButton13;
+    public JoystickButton operatorButton13copy;
+    public JoystickButton operatorButton14;
+    public JoystickButton operatorButton15;
     
 
     public OI() {
@@ -42,7 +41,7 @@ public class OI {
     	driver = new Joystick(0);
         operator = new Joystick(1);
         
-        //joystick buttons
+        // driver joystick buttons
         driverButton5 = new JoystickButton(driver, 5);//toggle switch
         driverButton5.whenPressed(new GearHolderBackboardBack());
         
@@ -52,45 +51,44 @@ public class OI {
         driverButton7 = new JoystickButton(driver, 7);
         driverButton7.whileHeld(new ShooterTeleopShoot());
         
-        operatorButton2 = new JoystickButton(operator, 2);//button
-        operatorButton2.whileHeld(new IntakeExhaust());
+        //operator joystick buttons
+        operatorButton6 = new JoystickButton(operator, 6);
+        operatorButton6.whileHeld(new HangerHang());
         
-        operatorButton2copy = new JoystickButton(operator, 2);//button (copy)
-        operatorButton2copy.whileHeld(new FuelInjectorInjectFuel());
+        operatorButton8 = new JoystickButton(operator, 8);
+        operatorButton8.whileHeld(new AgitatorReverse());
         
-        operatorButton3 = new JoystickButton(operator, 3);//button
-        operatorButton3.whileHeld(new HangerHang());
+        operatorButton9 = new JoystickButton(operator, 9);
+        operatorButton9.whileHeld(new AgitatorAgitate());
         
-        operatorButton4 = new JoystickButton(operator, 4);//button
-        operatorButton4.whileHeld(new IntakeIntake());
+        operatorButton10 = new JoystickButton(operator, 10);
+        operatorButton10.whileHeld(new IntakeIntake());
         
-        operatorButton4copy = new JoystickButton(operator, 4);//button(copy)
-        operatorButton4copy.whileHeld(new FuelInjectorExtractFuel());
+        operatorButton10copy = new JoystickButton(operator, 10);
+        operatorButton10copy.whileHeld(new FuelInjectorExtractFuel());
         
-        operatorButton5 = new JoystickButton(operator, 5);//button
-        operatorButton5.whileHeld(new IntakeIntake());
+        operatorButton11 = new JoystickButton(operator, 11);
+        operatorButton11.whileHeld(new IntakeIntake());
         
-        operatorButton5copy = new JoystickButton(operator, 5);//button (copy)
-        operatorButton5copy.whileHeld(new FuelInjectorInjectFuel());
+        operatorButton11copy = new JoystickButton(operator, 11);
+        operatorButton11copy.whileHeld(new FuelInjectorInjectFuel());
         
-        operatorButton6 = new JoystickButton(operator, 6);//button
-        operatorButton6.whenPressed(new GearHolderSafelyOpen());
+        operatorButton12 = new JoystickButton(operator, 12);
+        operatorButton12.whenPressed(new GearHolderFunnelForward());
+        operatorButton12.whenReleased(new GearHolderFunnelBackward());
         
-        operatorButton7 = new JoystickButton(operator, 7); //button
-        operatorButton7.whenPressed(new GearHolderSafelyClose());
+        operatorButton13 = new JoystickButton(operator, 13);
+        operatorButton13.whileHeld(new IntakeExhaust());
         
-        operatorButton8 = new JoystickButton(operator, 8);//switch
-        operatorButton8.whenPressed(new GearHolderFunnelBackward());
+        operatorButton13copy = new JoystickButton(operator, 13);
+        operatorButton13copy.whileHeld(new FuelInjectorExtractFuel());
         
-        operatorButton9 = new JoystickButton(operator, 9);//switch
-        operatorButton9.whenPressed(new GearHolderFunnelForward());
+        operatorButton14 = new JoystickButton(operator, 14);
+        operatorButton14.whenPressed(new GearHolderAutoRelase());
         
-        operatorButton10 = new JoystickButton(operator, 10);//witch shared with operatorbutton11
-        operatorButton10.whileHeld(new AgitatorAgitate());
-        
-        operatorButton11= new JoystickButton(operator, 11); //switch shared with operatorbutton10
-        operatorButton11.whileHeld(new AgitatorReverse());
-        
+        operatorButton15 = new JoystickButton(operator, 15);
+        operatorButton15.whenPressed(new GearHolderFunnelandBackboardForward());
+        operatorButton15.whenReleased(new GearHolderFunnelandBackboardBack());   
     }
 
     public Joystick getDriver() {
