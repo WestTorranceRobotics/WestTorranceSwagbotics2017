@@ -25,12 +25,9 @@ public class OI {
     public JoystickButton operatorButton8;
     public JoystickButton operatorButton9;
     public JoystickButton operatorButton10;
-    public JoystickButton operatorButton10copy;
     public JoystickButton operatorButton11;
-    public JoystickButton operatorButton11copy;
     public JoystickButton operatorButton12;
     public JoystickButton operatorButton13;
-    public JoystickButton operatorButton13copy;
     public JoystickButton operatorButton14;
     public JoystickButton operatorButton15;
     
@@ -62,27 +59,18 @@ public class OI {
         operatorButton9.whileHeld(new AgitatorAgitate());
         
         operatorButton10 = new JoystickButton(operator, 10);
-        operatorButton10.whileHeld(new IntakeIntake());
-        
-        operatorButton10copy = new JoystickButton(operator, 10);
-        operatorButton10copy.whileHeld(new FuelInjectorExtractFuel());
+        operatorButton10.whileHeld(new FuelInjectorIntake());
         
         operatorButton11 = new JoystickButton(operator, 11);
-        operatorButton11.whileHeld(new IntakeIntake());
-        
-        operatorButton11copy = new JoystickButton(operator, 11);
-        operatorButton11copy.whileHeld(new FuelInjectorInjectFuel());
+        operatorButton11.whileHeld(new FuelInjectorConveyorToShooters());
         
         operatorButton12 = new JoystickButton(operator, 12);
         operatorButton12.whenPressed(new GearHolderFunnelForward());
         operatorButton12.whenReleased(new GearHolderFunnelBackward());
         
         operatorButton13 = new JoystickButton(operator, 13);
-        operatorButton13.whileHeld(new IntakeExhaust());
-        
-        operatorButton13copy = new JoystickButton(operator, 13);
-        operatorButton13copy.whileHeld(new FuelInjectorExtractFuel());
-        
+        operatorButton13.whileHeld(new FuelInjectorExhaust());
+                
         operatorButton14 = new JoystickButton(operator, 14);
         operatorButton14.whenPressed(new GearHolderAutoRelase());
         

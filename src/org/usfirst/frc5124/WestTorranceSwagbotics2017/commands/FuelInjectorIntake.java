@@ -7,28 +7,27 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class IntakeInterruptOperation extends Command {
+public class FuelInjectorIntake extends Command {
 
-    public IntakeInterruptOperation(double time) {
-        requires(Robot.intake);
-        setTimeout(time);
+    public FuelInjectorIntake() {
+    	requires(Robot.fuelInjector);
     }
 
     protected void initialize() {
+    	Robot.fuelInjector.intake();
+    	Robot.fuelInjector.extract();
     }
 
     protected void execute() {
     }
 
     protected boolean isFinished() {
-        return isTimedOut();
+        return false;
     }
 
     protected void end() {
-    	Robot.intake.stop();
     }
 
     protected void interrupted() {
-    	end();
     }
 }

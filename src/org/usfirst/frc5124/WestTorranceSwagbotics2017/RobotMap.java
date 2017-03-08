@@ -45,10 +45,8 @@ public class RobotMap {
 	public static DigitalInput gearHolderLimitSwitch;
 	
 	//Fuel Injector
-	public static VictorSP fuelInjectorFuelInjectorMotor;
-
-	//Intake
-	public static VictorSP intakeIntakeMotor;
+	public static VictorSP fuelInjectorConveyorMotor;
+	public static VictorSP fuelInjectorIntakeMotor;
 	
 	//Shooter
 	public static CANTalon shooterLeftShooterMotor;
@@ -104,16 +102,16 @@ public class RobotMap {
     	///FUEL INJECTOR HARDWARE///
     	////////////////////////////
     	
-    	fuelInjectorFuelInjectorMotor = new VictorSP(4);
-    	LiveWindow.addActuator("Fuel Injector", "Fuel Injector Motor", fuelInjectorFuelInjectorMotor);
+    	fuelInjectorConveyorMotor = new VictorSP(4);
+    	LiveWindow.addActuator("Fuel Injector", "Fuel Injector Motor", fuelInjectorConveyorMotor);
     	
     	
     	/////////////////////
     	///INATKE HARDWARE///
     	/////////////////////
     	
-    	intakeIntakeMotor = new VictorSP(5);
-    	LiveWindow.addActuator("Intake", "Intake Motor", intakeIntakeMotor);
+    	fuelInjectorIntakeMotor = new VictorSP(5);
+    	LiveWindow.addActuator("Intake", "Intake Motor", fuelInjectorIntakeMotor);
     	
     	
     	//////////////////////

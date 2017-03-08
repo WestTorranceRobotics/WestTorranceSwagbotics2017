@@ -35,7 +35,6 @@ public class Robot extends IterativeRobot {
     public static Agitator agitator;
     public static GearHolder gearHolder;
     public static FuelInjector fuelInjector;
-    public static Intake intake;
     public static Shooter shooter;
     public static Hanger hanger;
     public static Drivetrain drivetrain;
@@ -47,7 +46,6 @@ public class Robot extends IterativeRobot {
     	agitator = new Agitator();
         gearHolder = new GearHolder();
         fuelInjector = new FuelInjector();
-        intake = new Intake();
         shooter = new Shooter();
         hanger = new Hanger();
         drivetrain = new Drivetrain();
