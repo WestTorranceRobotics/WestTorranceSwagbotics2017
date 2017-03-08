@@ -4,7 +4,6 @@ import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.*;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class OI {
