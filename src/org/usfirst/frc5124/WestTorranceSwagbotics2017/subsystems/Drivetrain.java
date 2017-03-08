@@ -29,7 +29,7 @@ public class Drivetrain extends Subsystem {
     public void setSpeed(double speed) {
     	robotDrive.setMaxOutput(speed);
     }
-    
+       
     public void tank(double left, double right) {
     	robotDrive.tankDrive(left, right);
     }

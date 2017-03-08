@@ -15,9 +15,7 @@ public class OI {
     public Joystick operator;
     
     //joystickbuttons
-    public JoystickButton driverButton4;
-    public JoystickButton driverButton5;
-    public JoystickButton driverButton6;
+    public JoystickButton driverButton2;
     public JoystickButton driverButton7;
     
     public JoystickButton operatorButton6;
@@ -39,11 +37,9 @@ public class OI {
         operator = new Joystick(1);
         
         // driver joystick buttons
-        driverButton5 = new JoystickButton(driver, 5);//toggle switch
-        driverButton5.whenPressed(new GearHolderBackboardBack());
-        
-        driverButton6 = new JoystickButton(driver, 6);//toggle switch
-        driverButton6.whenPressed(new GearHolderBackboardForward());
+               
+        driverButton2 = new JoystickButton(driver, 2);
+        driverButton2.whenPressed(new DrivetrainReverseFront());
         
         driverButton7 = new JoystickButton(driver, 7);
         driverButton7.whileHeld(new ShooterTeleopShoot());

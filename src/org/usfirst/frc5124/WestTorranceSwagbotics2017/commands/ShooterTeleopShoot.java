@@ -1,13 +1,9 @@
 package org.usfirst.frc5124.WestTorranceSwagbotics2017.commands;
 
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.Robot;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
 public class ShooterTeleopShoot extends Command {
 
     public ShooterTeleopShoot() {
@@ -16,10 +12,16 @@ public class ShooterTeleopShoot extends Command {
 
     protected void initialize() {
     	Robot.shooter.setControlMode(2);
-    	Robot.shooter.setAllShooters(Robot.shooter.getShootingSpeed());
+    	Robot.shooter.setLeftShooter(Robot.shooter.getShootingSpeedLeft());
+    	Robot.shooter.setCenterShooter(Robot.shooter.getShootingSpeedCenter());
+    	Robot.shooter.setRightShooter(Robot.shooter.getShootingSpeedRight());
+    	
     }
 
     protected void execute() {
+    	Robot.shooter.setLeftShooter(Robot.shooter.getShootingSpeedLeft());
+    	Robot.shooter.setCenterShooter(Robot.shooter.getShootingSpeedCenter());
+    	Robot.shooter.setRightShooter(Robot.shooter.getShootingSpeedRight());
     }
 
     protected boolean isFinished() {
@@ -29,7 +31,9 @@ public class ShooterTeleopShoot extends Command {
     protected void end() {
     	Robot.shooter.setControlMode(0);
     	Robot.shooter.setBrakeFalse();
-    	Robot.shooter.setAllShooters(0);
+        Robot.shooter.setLeftShooter(0);
+        Robot.shooter.setCenterShooter(0);
+    	Robot.shooter.setRightShooter(0);
     }
 
     protected void interrupted() {

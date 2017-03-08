@@ -100,11 +100,6 @@ public class RobotMap {
     	fuelInjectorConveyorMotor = new VictorSP(4);
     	LiveWindow.addActuator("Fuel Injector", "Fuel Injector Motor", fuelInjectorConveyorMotor);
     	
-    	
-    	/////////////////////
-    	///INATKE HARDWARE///
-    	/////////////////////
-    	
     	fuelInjectorIntakeMotor = new VictorSP(5);
     	LiveWindow.addActuator("Intake", "Intake Motor", fuelInjectorIntakeMotor);
     	

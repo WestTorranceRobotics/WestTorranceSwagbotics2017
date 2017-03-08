@@ -21,6 +21,8 @@ public class Robot extends IterativeRobot {
     public static Drivetrain drivetrain;
     public static GyroPIDHandler gyroPIDHandler;
     public static EncoderPIDHandler encoderPIDHandler;
+    public static boolean button6IsPressed;
+    public static boolean button8IsPressed;
 
     public void robotInit() {
     	
@@ -50,6 +52,8 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
     	Robot.drivetrain.setDrivetrainSpeed(1);
         if (autonomousCommand != null) autonomousCommand.start();
+        
+        Robot.drivetrain.frontAndCenter();
     }
 
     public void autonomousPeriodic() {
@@ -75,9 +79,31 @@ public class Robot extends IterativeRobot {
         	drivetrain.slowTurn();
         }
         
+        if(oi.getDriver().getRawButton(6) && !button6IsPressed) {
+        	button6IsPressed = true;
+        	shooter.shootingSpeedLeft -= 200;
+        	shooter.shootingSpeedCenter -= 200;
+        	shooter.shootingSpeedLeft -= 200;
+        } else if(oi.getDriver().getRawButton(6)) {
+        	button6IsPressed = false;
+        }
+        
+        if(oi.getDriver().getRawButton(8) && !button8IsPressed) {
+        	button8IsPressed = true;
+        	shooter.shootingSpeedLeft += 200;
+        	shooter.shootingSpeedCenter += 200;
+        	shooter.shootingSpeedLeft += 200;
+        } else if(oi.getDriver().getRawButton(8)) {
+        	button8IsPressed = false;
+        }
+        
         Timer.delay(0.005);
+        
+        Robot.drivetrain.frontAndCenter();
+        
+        Robot.drivetrain.slowTurn();       
     }
-
+    
     public void testPeriodic() {
         LiveWindow.run();
     }
