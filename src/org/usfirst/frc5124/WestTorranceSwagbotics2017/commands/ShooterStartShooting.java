@@ -11,7 +11,9 @@ public class ShooterStartShooting extends Command {
 
     protected void initialize() {
     	Robot.shooter.setControlMode(2);
-    	Robot.shooter.setAllShooters(Robot.shooter.getShootingSpeed());
+    	Robot.shooter.setLeftShooter(Robot.shooter.getShootingSpeedLeft());
+    	Robot.shooter.setCenterShooter(Robot.shooter.getShootingSpeedCenter());
+    	Robot.shooter.setRightShooter(Robot.shooter.getShootingSpeedRight());
     }
 
     protected void execute() {

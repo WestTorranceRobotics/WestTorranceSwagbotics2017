@@ -10,37 +10,36 @@ public class OI {
 	//joysticks
     public static Joystick driver;
     public Joystick operator;
+ 
+   //joystickbuttons
     
-    // Driver joystickbuttons
-    public JoystickButton driverButton4;
-    public JoystickButton driverButton5;
-    public JoystickButton driverButton6;
-    public JoystickButton driverButton7;
+   // Driver joystickbuttons
+   public JoystickButton driverButton2;
+   public JoystickButton driverButton7;
     
-    //Operator Joystickbuttons
-    public JoystickButton operatorButton6;
-    public JoystickButton operatorButton7;
-    public JoystickButton operatorButton8;
-    public JoystickButton operatorButton9;
-    public JoystickButton operatorButton10;
-    public JoystickButton operatorButton11;
-    public JoystickButton operatorButton12;
-    public JoystickButton operatorButton13;
-    public JoystickButton operatorButton14;
-    public JoystickButton operatorButton15;
+   //Operator Joystickbuttons
+   public JoystickButton operatorButton6;
+   public JoystickButton operatorButton7;
+   public JoystickButton operatorButton8;
+   public JoystickButton operatorButton9;
+   public JoystickButton operatorButton10;
+   public JoystickButton operatorButton11;
+   public JoystickButton operatorButton12;
+   public JoystickButton operatorButton13;
+   public JoystickButton operatorButton14;
+   public JoystickButton operatorButton15;
 
-    public OI() {
+  
+   public OI() {
 
         //joysticks
-    	driver = new Joystick(0);
+    	  driver = new Joystick(0);
         operator = new Joystick(1);
         
         // driver joystick buttons
-        driverButton5 = new JoystickButton(driver, 5);//toggle switch
-        driverButton5.whenPressed(new GearHolderBackboardBack());
-        
-        driverButton6 = new JoystickButton(driver, 6);//toggle switch
-        driverButton6.whenPressed(new GearHolderBackboardForward());
+               
+        driverButton2 = new JoystickButton(driver, 2);
+        driverButton2.whenPressed(new DrivetrainReverseFront());
         
         driverButton7 = new JoystickButton(driver, 7);
         driverButton7.whileHeld(new ShooterTeleopShoot());
@@ -98,6 +97,22 @@ public class OI {
     	} else {
     		return 0;
     	}
+    }
+
+    public boolean getAuto1() {
+    	return getOperator().getRawButton(1);
+    }
+    	
+    public boolean getAuto2() {
+    	return getOperator().getRawButton(2);
+    }
+    
+    public boolean getAuto3() {
+    	return getOperator().getRawButton(3);
+    }
+    
+    public boolean getAuto4() {
+    	return getOperator().getRawButton(4);
     }
 }
 
