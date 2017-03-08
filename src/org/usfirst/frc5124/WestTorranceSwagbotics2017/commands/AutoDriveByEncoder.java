@@ -10,15 +10,16 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutoDriveByEncoder extends Command {
 	
 	int distance = 0;
-	double power = 0.45;
+	double power = 0;
 
-    public AutoDriveByEncoder(int inches) {
+    public AutoDriveByEncoder(int inches, double power) {
         requires(Robot.drivetrain);
-        distance = (int) (inches * 76.3943726841);
+        distance = inches;
+        this.power = power;
     }
 
     protected void initialize() {
-    	Robot.drivetrain.resetEncoders();
+    	Robot.encoderPIDHandler.resetEncoders();
     	power = Math.copySign(power, distance);
     }
 
@@ -27,7 +28,7 @@ public class AutoDriveByEncoder extends Command {
     }
 
     protected boolean isFinished() {
-        return (Math.abs(Robot.drivetrain.getLeft()) >= Math.abs(distance));
+        return (Math.abs(Robot.encoderPIDHandler.getLeft()) >= Math.abs(distance));
     }
 
     protected void end() {

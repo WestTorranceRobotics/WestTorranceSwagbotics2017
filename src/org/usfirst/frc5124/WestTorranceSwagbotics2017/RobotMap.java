@@ -1,16 +1,13 @@
 package org.usfirst.frc5124.WestTorranceSwagbotics2017;
 
-import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
-import edu.wpi.first.wpilibj.ADXL362;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.VictorSP;
-import edu.wpi.first.wpilibj.interfaces.Accelerometer.Range;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.Encoder;
 
@@ -62,8 +59,6 @@ public class RobotMap {
 	public static Compressor drivetrainCompressor;
 	public static Encoder drivetrainLeftEncoder;
 	public static Encoder drivetrainRightEncoder;
-	public static ADIS16448_IMU drivetrainIMU;
-	public static ADXL362 drivetrainAccelerometer; 
 	public static ADXRS450_Gyro drivetrainGyro;
     public static VictorSP drivetrainLeft1;
     public static VictorSP drivetrainLeft2;
@@ -174,12 +169,8 @@ public class RobotMap {
     	drivetrainLeftEncoder = new Encoder(8, 9);
     	drivetrainRightEncoder = new Encoder(6, 7);
     	
-    	drivetrainIMU = new ADIS16448_IMU();
-    	
     	drivetrainGyro = new ADXRS450_Gyro();
         LiveWindow.addSensor("Gyro", "Gyro", drivetrainGyro);
-        
-        drivetrainAccelerometer = new ADXL362(Range.k2G);
     
         drivetrainLeft1 = new VictorSP(0);
         LiveWindow.addActuator("Drivetrain", "Left 1", drivetrainLeft1);

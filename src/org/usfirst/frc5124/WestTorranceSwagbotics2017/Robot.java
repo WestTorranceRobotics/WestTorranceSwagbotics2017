@@ -6,28 +6,9 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousBigShoots;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousTopTier;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.GearHolderSafelyClose;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.ShooterStartShooting;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.subsystems.*;
 
 public class Robot extends IterativeRobot {
-	
-	public int index = 0;
-	public Timer autoTimer = new Timer();
-	
-	public boolean autoHasStarted = false;
-	public boolean teleHasStarted = false;
-	
-	File f;
-	BufferedWriter bw;
-	FileWriter fw;
 
     Command autonomousCommand;
 
@@ -39,6 +20,8 @@ public class Robot extends IterativeRobot {
     public static Shooter shooter;
     public static Hanger hanger;
     public static Drivetrain drivetrain;
+    public static GyroPIDHandler gyroPIDHandler;
+    public static EncoderPIDHandler encoderPIDHandler;
 
     public void robotInit() {
     	
@@ -51,39 +34,15 @@ public class Robot extends IterativeRobot {
         shooter = new Shooter();
         hanger = new Hanger();
         drivetrain = new Drivetrain();
+        gyroPIDHandler = new GyroPIDHandler();
+        encoderPIDHandler = new EncoderPIDHandler();
         
         oi = new OI();
         
-        //autonomousCommand = new AutonomousTestDrive();
-        autonomousCommand = new AutonomousBigShoots();
-        //autonomousCommand = new ShooterStartShooting();
-        
         CameraServer.getInstance().startAutomaticCapture();
-        
-        try{ 
-        	
-        	f = new File("/home/lvuser/Output.txt");
-        	
-        	if(!f.exists()) {
-        		f.createNewFile();
-        	}
-        	
-        	fw = new FileWriter(f);
-        	
-        } catch (IOException e) {
-        	e.printStackTrace();
-        }
-        
-        bw = new BufferedWriter(fw);
-        
     }
 
     public void disabledInit(){
-    	autoTimer.stop();
-    	autoTimer.reset();
-    	Robot.gearHolder.checkPosition();
-    	teleHasStarted = false;
-    	autoHasStarted = false;
     }
 
     public void disabledPeriodic() {
@@ -91,60 +50,32 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
+    	Robot.drivetrain.setDrivetrainSpeed(1);
         if (autonomousCommand != null) autonomousCommand.start();
-        autoTimer.start();
-        index = 0;
     }
 
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
-        
-        if(!autoHasStarted) {
-        	Scheduler.getInstance().add(new GearHolderSafelyClose());
-        	autoHasStarted = true;
-        }
-       
-        try {
-			bw.write(autoTimer.get() + "," + Robot.shooter.getLeftCurrent() + "," + Robot.shooter.getLeftVelocity() + ":");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-        	
-        
-        
         Timer.delay(0.005);
     }
 
     public void teleopInit() {
+    	Robot.gyroPIDHandler.disable();
+    	Robot.encoderPIDHandler.disable();
+    	Robot.drivetrain.resetAllOutputs();
         if (autonomousCommand != null) autonomousCommand.cancel();
-        drivetrain.disable();
     }
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         
-        if(!teleHasStarted) {
-        	Scheduler.getInstance().add(new GearHolderSafelyClose());
-        	teleHasStarted = true;
-        }
-        
-        if(Robot.oi.getDriver().getRawButton(5)) {
-        	Robot.drivetrain.setDrivetrainSpeed(1);
+        if(oi.getDriver().getRawButton(5)) {
+        	drivetrain.setSpeed(1);
+        	drivetrain.fastTurn();
         } else {
-        	Robot.drivetrain.setDrivetrainSpeed(0.5);
+        	drivetrain.setSpeed(0.65);
+        	drivetrain.slowTurn();
         }
-        
-        
-        /*
-        double power = Math.abs((oi.getOperator().getRawAxis(2) - 1)/-2);
-        if (power > .1) {
-        	shooter.setAllShooters(-power);
-        	SmartDashboard.putNumber("pr", power);
-        }
-        else {
-        	shooter.setAllShooters(0);
-        	SmartDashboard.putNumber("pr", power);
-        }*/
         
         Timer.delay(0.005);
     }

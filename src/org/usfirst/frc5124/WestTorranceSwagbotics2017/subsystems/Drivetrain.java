@@ -1,45 +1,22 @@
 package org.usfirst.frc5124.WestTorranceSwagbotics2017.subsystems;
+
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.RobotMap;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.*;
-
-import com.analog.adis16448.frc.ADIS16448_IMU;
-
-import edu.wpi.first.wpilibj.ADXL362;
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.RobotDrive.MotorType;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Drivetrain extends PIDSubsystem {
+public class Drivetrain extends Subsystem {
 
 	private final RobotDrive robotDrive = RobotMap.drivetrainRobotDrive;
-    private final Encoder leftEncoder = RobotMap.drivetrainLeftEncoder;
-    private final Encoder rightEncoder = RobotMap.drivetrainRightEncoder;
-    private ADIS16448_IMU imu = RobotMap.drivetrainIMU;
-    private ADXRS450_Gyro gyro = RobotMap.drivetrainGyro;
-    private ADXL362 accelerometer = RobotMap.drivetrainAccelerometer;
+	
+	public double direction = 1;
+    public double turnSpeed = 0.75;
+    
+    public double gyroOutput = 0;
+    public double encoderOutput = 0;
     
     public Drivetrain() {
-    	super(0.2 , 0.02, 0);
-    	getPIDController().setContinuous(false);
-    	getPIDController().setAbsoluteTolerance(1);
-    	getPIDController().setOutputRange(-0.7, 0.7);
 	}
-    
-    public void resetEncoders() {
-    	leftEncoder.reset();
-    	rightEncoder.reset();
-    }
-    
-    public int getLeft() {
-    	return leftEncoder.get();
-    }
-    
-    public int getRight() {
-    	return leftEncoder.get();
-    }
     
     public void setDrivetrainSpeed(double speed) {
     	robotDrive.setMaxOutput(speed);
@@ -47,6 +24,10 @@ public class Drivetrain extends PIDSubsystem {
 
     public void initDefaultCommand() {
         setDefaultCommand(new JoystickPuppetry());
+    }
+    
+    public void setSpeed(double speed) {
+    	robotDrive.setMaxOutput(speed);
     }
     
     public void tank(double left, double right) {
@@ -60,29 +41,59 @@ public class Drivetrain extends PIDSubsystem {
     public void stop() {
     	tank(0, 0);
     }
-
-	@Override
-	protected double returnPIDInput() {
-		return gyro.getAngle();
-	}
-
-	@Override
-	protected void usePIDOutput(double output) {
-		robotDrive.arcadeDrive(0, output);
-	}
-	
-	public void calibrateIMU() {
-		imu.calibrate();
-	}
-	
-	public void calibrateGyro() {
-		gyro.calibrate();
-	}
-	
-	public double getGyro() {
-		return gyro.getAngle();
-	}
-	
     
+    public double getDirection() {
+		return direction;
+	}
+	
+	public void reverseFront() {
+		direction = Math.copySign(1, -direction);
+	}
+	
+	public void frontAndCenter() {
+		direction = 1;
+	}
+    
+	public void slowTurn() {
+		turnSpeed = 0.75;
+	}
+	
+	public void fastTurn() {
+		turnSpeed = 0.8;
+	}
+	
+	public double getTurnSpeed() {
+		return turnSpeed;
+	}
+	
+	public void getEncoderOutput(double encoderOutput) {
+		this.encoderOutput = encoderOutput;
+	}
+	
+	public void getGyroOutput(double gyroOutput) {
+		this.gyroOutput = gyroOutput;
+	}
+	
+	public void getAllOutputs(double encoderOutput, double gyroOutput) {
+		getEncoderOutput(encoderOutput);
+		getGyroOutput(gyroOutput);
+	}
+	
+	public void resetGyroOutput() {
+		gyroOutput = 0;
+	}
+	
+	public void resetEncoderOutput() {
+		encoderOutput = 0;
+	}
+	
+	public void resetAllOutputs() {
+		resetEncoderOutput();
+		resetGyroOutput();
+	}
+	
+	public void setPIDOutputs() {
+		robotDrive.arcadeDrive(encoderOutput, gyroOutput);
+	}
 }
 
