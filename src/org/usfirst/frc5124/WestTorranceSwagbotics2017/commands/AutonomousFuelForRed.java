@@ -8,16 +8,15 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutonomousFuelForRed extends CommandGroup {
 
     public AutonomousFuelForRed() {
-        //move up 1/2 the distance it takes to reach the base line starting from center of wall
-    	addSequential(new AutoDriveByEncoder(46));
-    	//Turn towards tank
-    	addSequential(new AutoTurnWithGyro(90));
-    	//move towards tank
-    	addSequential(new AutoDriveByEncoder(18));
-    	//Turn to face tank head on
-    	addSequential(new AutoTurnWithGyro(45));
-    	//addSequential(new AutoShoot());   
-    	addSequential(new AutoShoot(5));
-
+    	//move up ~2/3 or so the distance it takes to reach the base line starting from right next to the boiler
+    	addSequential(new AutoDriveByEncoder(60));
+    	//Turn towards boiler
+    	addSequential(new AutoTurnWithGyro(-20));
+    	//move towards boiler
+    	addSequential(new AutoDriveByEncoder(63));
+    	//addSequential(new AutoTrashDrive(4, -1));
+    	//turn on conveyor and shooters for rest of auto
+    	addParallel(new FuelInjectorConveyorToShooters());
+    	addSequential(new ShooterStartShooting());
     }
 }
