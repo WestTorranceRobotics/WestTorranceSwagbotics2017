@@ -10,16 +10,15 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DrivetrainReverseFront extends Command {
 
     public DrivetrainReverseFront() {
-        requires(Robot.drivetrain);
+    	requires(Robot.drivetrain);
     }
 
     protected void initialize() {
     	Robot.drivetrain.stop();
-    	Robot.drivetrain.switcheroo();
+    	Robot.drivetrain.reverseFront();
     }
 
     protected void execute() {
-    	
     }
 
     protected boolean isFinished() {

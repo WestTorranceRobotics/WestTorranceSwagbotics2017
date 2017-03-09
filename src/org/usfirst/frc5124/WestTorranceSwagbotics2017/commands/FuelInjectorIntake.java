@@ -7,17 +7,18 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class IntakeMoveToShooter extends Command {
+public class FuelInjectorIntake extends Command {
 
-    public IntakeMoveToShooter() {
-        requires(Robot.intake);
+    public FuelInjectorIntake() {
+    	requires(Robot.fuelInjector);
     }
 
     protected void initialize() {
+    	Robot.fuelInjector.intake();
+    	Robot.fuelInjector.extract();
     }
 
     protected void execute() {
-    	Robot.intake.intakeSlow();
     }
 
     protected boolean isFinished() {
@@ -25,10 +26,8 @@ public class IntakeMoveToShooter extends Command {
     }
 
     protected void end() {
-    	Robot.intake.stop();
     }
 
     protected void interrupted() {
-    	end();
     }
 }

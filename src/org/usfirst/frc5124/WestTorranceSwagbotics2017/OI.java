@@ -4,93 +4,75 @@ import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.*;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 
 public class OI {
     
-
 	//joysticks
     public static Joystick driver;
     public Joystick operator;
+ 
+   //joystickbuttons
     
-    //joystickbuttons
-    public JoystickButton driverButton4;
-    public JoystickButton driverButton5;
-    public JoystickButton driverButton6;
-    public JoystickButton driverButton7;
+   // Driver joystickbuttons
+   public JoystickButton driverButton2;
+   public JoystickButton driverButton7;
     
-    
-    public JoystickButton operatorButton2;
-    public JoystickButton operatorButton2copy;
-    public JoystickButton operatorButton3;
-    public JoystickButton operatorButton4;
-    public JoystickButton operatorButton4copy;
-    public JoystickButton operatorButton5;
-    public JoystickButton operatorButton5copy;
-    public JoystickButton operatorButton6;
-    public JoystickButton operatorButton7;
-    public JoystickButton operatorButton8;
-    public JoystickButton operatorButton9;
-    public JoystickButton operatorButton10;
-    public JoystickButton operatorButton11;
-    
+   //Operator Joystickbuttons
+   public JoystickButton operatorButton6;
+   public JoystickButton operatorButton7;
+   public JoystickButton operatorButton8;
+   public JoystickButton operatorButton9;
+   public JoystickButton operatorButton10;
+   public JoystickButton operatorButton11;
+   public JoystickButton operatorButton12;
+   public JoystickButton operatorButton13;
+   public JoystickButton operatorButton14;
+   public JoystickButton operatorButton15;
 
-    public OI() {
+  
+   public OI() {
 
         //joysticks
-    	driver = new Joystick(0);
+    	  driver = new Joystick(0);
         operator = new Joystick(1);
         
-        //joystick buttons
-        driverButton5 = new JoystickButton(driver, 5);//toggle switch
-        driverButton5.whenPressed(new GearHolderBackboardBack());
-        
-        driverButton6 = new JoystickButton(driver, 6);//toggle switch
-        driverButton6.whenPressed(new GearHolderBackboardForward());
+        // driver joystick buttons
+               
+        driverButton2 = new JoystickButton(driver, 2);
+        driverButton2.whenPressed(new DrivetrainReverseFront());
         
         driverButton7 = new JoystickButton(driver, 7);
         driverButton7.whileHeld(new ShooterTeleopShoot());
         
-        operatorButton2 = new JoystickButton(operator, 2);//button
-        operatorButton2.whileHeld(new IntakeExhaust());
+        //operator joystick buttons
+        operatorButton6 = new JoystickButton(operator, 6);
+        operatorButton6.whileHeld(new HangerHang());
         
-        operatorButton2copy = new JoystickButton(operator, 2);//button (copy)
-        operatorButton2copy.whileHeld(new FuelInjectorInjectFuel());
+        operatorButton8 = new JoystickButton(operator, 8);
+        operatorButton8.whileHeld(new AgitatorReverse());
         
-        operatorButton3 = new JoystickButton(operator, 3);//button
-        operatorButton3.whileHeld(new HangerHang());
+        operatorButton9 = new JoystickButton(operator, 9);
+        operatorButton9.whileHeld(new AgitatorAgitate());
         
-        operatorButton4 = new JoystickButton(operator, 4);//button
-        operatorButton4.whileHeld(new IntakeIntake());
+        operatorButton10 = new JoystickButton(operator, 10);
+        operatorButton10.whileHeld(new FuelInjectorIntake());
         
-        operatorButton4copy = new JoystickButton(operator, 4);//button(copy)
-        operatorButton4copy.whileHeld(new FuelInjectorExtractFuel());
+        operatorButton11 = new JoystickButton(operator, 11);
+        operatorButton11.whileHeld(new FuelInjectorConveyorToShooters());
         
-        operatorButton5 = new JoystickButton(operator, 5);//button
-        operatorButton5.whileHeld(new IntakeIntake());
+        operatorButton12 = new JoystickButton(operator, 12);
+        operatorButton12.whenPressed(new GearHolderFunnelForward());
+        operatorButton12.whenReleased(new GearHolderFunnelBackward());
         
-        operatorButton5copy = new JoystickButton(operator, 5);//button (copy)
-        operatorButton5copy.whileHeld(new FuelInjectorInjectFuel());
+        operatorButton13 = new JoystickButton(operator, 13);
+        operatorButton13.whileHeld(new FuelInjectorExhaust());
+                
+        operatorButton14 = new JoystickButton(operator, 14);
+        operatorButton14.whenPressed(new GearHolderAutoRelase());
         
-        operatorButton6 = new JoystickButton(operator, 6);//button
-        operatorButton6.whenPressed(new GearHolderSafelyOpen());
-        
-        operatorButton7 = new JoystickButton(operator, 7); //button
-        operatorButton7.whenPressed(new GearHolderSafelyClose());
-        
-        operatorButton8 = new JoystickButton(operator, 8);//switch
-        operatorButton8.whenPressed(new GearHolderFunnelBackward());
-        
-        operatorButton9 = new JoystickButton(operator, 9);//switch
-        operatorButton9.whenPressed(new GearHolderFunnelForward());
-        
-        operatorButton10 = new JoystickButton(operator, 10);//witch shared with operatorbutton11
-        operatorButton10.whileHeld(new AgitatorAgitate());
-        
-        operatorButton11= new JoystickButton(operator, 11); //switch shared with operatorbutton10
-        operatorButton11.whileHeld(new AgitatorReverse());
-        
+        operatorButton15 = new JoystickButton(operator, 15);
+        operatorButton15.whenPressed(new GearHolderFunnelandBackboardForward());
+        operatorButton15.whenReleased(new GearHolderFunnelandBackboardBack());   
     }
 
     public Joystick getDriver() {
@@ -99,22 +81,6 @@ public class OI {
 
     public Joystick getOperator() {
         return operator;
-    }
-    
-    public double getLeftYAxis() {
-    	if(Math.abs(driver.getRawAxis(1)) > 0.02) {
-    		return driver.getRawAxis(1);
-    	} else {
-    		return 0;
-    	}
-    }
-    
-    public double getRightXAxis() {
-    	if(Math.abs(driver.getRawAxis(2)) > 0.02) {
-    		return driver.getRawAxis(2);
-    	} else {
-    		return 0;
-    	}
     }
     
     public double getLeftYAxisSens() {
@@ -132,16 +98,21 @@ public class OI {
     		return 0;
     	}
     }
+
+    public boolean getAuto1() {
+    	return getOperator().getRawButton(1);
+    }
+    	
+    public boolean getAuto2() {
+    	return getOperator().getRawButton(2);
+    }
     
-    public void vibrateDriver() {
-    	driver.setRumble(GenericHID.RumbleType.kLeftRumble, 0.5);
-   		driver.setRumble(GenericHID.RumbleType.kRightRumble, 1);
+    public boolean getAuto3() {
+    	return getOperator().getRawButton(3);
     }
-    	     
-    public void stopVibrate() {
-    	driver.setRumble(GenericHID.RumbleType.kLeftRumble, 0);
-    	driver.setRumble(GenericHID.RumbleType.kRightRumble, 0);
+    
+    public boolean getAuto4() {
+    	return getOperator().getRawButton(4);
     }
-   
 }
 

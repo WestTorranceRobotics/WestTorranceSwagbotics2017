@@ -7,21 +7,36 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class FuelInjector extends Subsystem {
 
-    private final VictorSP fuelInjectorMotor = RobotMap.fuelInjectorFuelInjectorMotor;
-
+    private final VictorSP conveyorMotor = RobotMap.fuelInjectorConveyorMotor;
+    
+    private final VictorSP intakeMotor = RobotMap.fuelInjectorIntakeMotor;
+    
     public void initDefaultCommand() {
     }
     
     public void inject() {
-    	fuelInjectorMotor.set(0.5);
+    	conveyorMotor.set(0.5);
     }
     
     public void extract() {
-    	fuelInjectorMotor.set(-1);
+    	conveyorMotor.set(-1);
     }
     
     public void stop() {
-    	fuelInjectorMotor.set(0);
+    	conveyorMotor.set(0);
+    	intakeMotor.set(0);
+    }
+        
+    public void intake() {
+    	intakeMotor.set(-1);
     }
     
+    public void exhaust() {
+    	intakeMotor.set(1);
+    }
+        
+    public void intakeSlow() {
+    	intakeMotor.set(-0.5);
+    }
 }
+

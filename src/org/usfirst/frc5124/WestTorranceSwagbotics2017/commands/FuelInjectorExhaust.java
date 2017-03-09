@@ -7,17 +7,18 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class IntakeExhaust extends Command {
+public class FuelInjectorExhaust extends Command {
 
-    public IntakeExhaust() {
-        requires(Robot.intake);
+    public FuelInjectorExhaust() {
+    	requires(Robot.fuelInjector);
     }
 
     protected void initialize() {
+    	Robot.fuelInjector.exhaust();
+    	Robot.fuelInjector.extract();
     }
 
     protected void execute() {
-    	Robot.intake.exhaust();
     }
 
     protected boolean isFinished() {
@@ -25,10 +26,8 @@ public class IntakeExhaust extends Command {
     }
 
     protected void end() {
-    	Robot.intake.stop();
     }
 
     protected void interrupted() {
-    	Robot.intake.stop();
     }
 }

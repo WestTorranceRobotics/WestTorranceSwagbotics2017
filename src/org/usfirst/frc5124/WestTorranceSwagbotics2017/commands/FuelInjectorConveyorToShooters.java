@@ -7,22 +7,22 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DrivetrainIdle extends Command {
+public class FuelInjectorConveyorToShooters extends Command {
 
-    public DrivetrainIdle() {
-        requires(Robot.drivetrain);
-        setTimeout(0.5);
+    public FuelInjectorConveyorToShooters() {
+    	requires(Robot.fuelInjector);
     }
 
     protected void initialize() {
+    	Robot.fuelInjector.intake();
+    	Robot.fuelInjector.inject();
     }
 
     protected void execute() {
-    	Robot.drivetrain.stop();
     }
 
     protected boolean isFinished() {
-        return isTimedOut();
+        return false;
     }
 
     protected void end() {

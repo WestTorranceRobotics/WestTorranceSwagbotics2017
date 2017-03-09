@@ -7,12 +7,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Shooter extends Subsystem {
 
-    private final CANTalon leftShootermotor = RobotMap.shooterLeftShooterMotor;
-    private final CANTalon centerShootermotor = RobotMap.shooterCenterShooterMotor;
-    private final CANTalon rightShootermotor = RobotMap.shooterRightShooterMotor;
+    private CANTalon leftShootermotor = RobotMap.shooterLeftShooterMotor;
+    private CANTalon centerShootermotor = RobotMap.shooterCenterShooterMotor;
+    private CANTalon rightShootermotor = RobotMap.shooterRightShooterMotor;
     
-    public static final int shootingSpeed = -17400;
-
+	public int shootingSpeedLeft = -16200;
+	public int shootingSpeedCenter = -16600;
+	public int shootingSpeedRight = -16600;
+	
     public void initDefaultCommand() {
     }
     
@@ -27,13 +29,7 @@ public class Shooter extends Subsystem {
     public void setRightShooter(double speed) {
     	rightShootermotor.set(speed);
     }
-    
-    public void setAllShooters(double speed) {
-    	setLeftShooter(speed);
-    	setCenterShooter(speed);
-    	setRightShooter(speed);
-    }
-    
+        
     public void setControlMode(int mode) {
     	leftShootermotor.setControlMode(mode);
     	centerShootermotor.setControlMode(mode);
@@ -52,8 +48,16 @@ public class Shooter extends Subsystem {
     	return rightShootermotor.getEncVelocity();
     }
     
-    public int getShootingSpeed() {
-    	return shootingSpeed;
+    public int getShootingSpeedLeft() {
+    	return shootingSpeedLeft;
+    }
+    
+    public int getShootingSpeedCenter(){
+    	return shootingSpeedCenter;
+    }
+    
+    public int getShootingSpeedRight(){
+    	return shootingSpeedRight;
     }
     
     public double getLeftCurrent() {

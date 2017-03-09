@@ -6,27 +6,9 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousTopTier;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.GearHolderSafelyClose;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.ShooterStartShooting;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.subsystems.*;
 
 public class Robot extends IterativeRobot {
-	
-	public int index = 0;
-	public Timer autoTimer = new Timer();
-	
-	public boolean autoHasStarted = false;
-	public boolean teleHasStarted = false;
-	
-	File f;
-	BufferedWriter bw;
-	FileWriter fw;
 
     Command autonomousCommand;
 
@@ -34,10 +16,13 @@ public class Robot extends IterativeRobot {
     public static Agitator agitator;
     public static GearHolder gearHolder;
     public static FuelInjector fuelInjector;
-    public static Intake intake;
     public static Shooter shooter;
     public static Hanger hanger;
     public static Drivetrain drivetrain;
+    public static GyroPIDHandler gyroPIDHandler;
+    public static EncoderPIDHandler encoderPIDHandler;
+    public static boolean button6IsPressed;
+    public static boolean button8IsPressed;
 
     public void robotInit() {
     	
@@ -46,42 +31,18 @@ public class Robot extends IterativeRobot {
     	agitator = new Agitator();
         gearHolder = new GearHolder();
         fuelInjector = new FuelInjector();
-        intake = new Intake();
         shooter = new Shooter();
         hanger = new Hanger();
         drivetrain = new Drivetrain();
+        gyroPIDHandler = new GyroPIDHandler();
+        encoderPIDHandler = new EncoderPIDHandler();
         
         oi = new OI();
         
-        //autonomousCommand = new AutonomousTestDrive();
-        //autonomousCommand = new ShooterStartShooting();
-        
         CameraServer.getInstance().startAutomaticCapture();
-        
-        try{ 
-        	
-        	f = new File("/home/lvuser/Output.txt");
-        	
-        	if(!f.exists()) {
-        		f.createNewFile();
-        	}
-        	
-        	fw = new FileWriter(f);
-        	
-        } catch (IOException e) {
-        	e.printStackTrace();
-        }
-        
-        bw = new BufferedWriter(fw);
-        
     }
 
     public void disabledInit(){
-    	autoTimer.stop();
-    	autoTimer.reset();
-    	Robot.gearHolder.checkPosition();
-    	teleHasStarted = false;
-    	autoHasStarted = false;
     }
 
     public void disabledPeriodic() {
@@ -89,73 +50,85 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
+    	Robot.drivetrain.setDrivetrainSpeed(1);
+    	
     	Robot.drivetrain.frontAndCenter();
-        if (autonomousCommand != null) autonomousCommand.start();
-        autoTimer.start();
-        index = 0;
+        
+    	if(oi.getAuto4()) {
+    		if(oi.getAuto3() && oi.getAuto1() && oi.getAuto2()) {
+    			autonomousCommand = null;
+    		} else if(oi.getAuto3() && oi.getAuto1() && !oi.getAuto2()) {
+    			autonomousCommand = null;
+    		} else if(oi.getAuto3() && !oi.getAuto1() && oi.getAuto2()) {
+    			autonomousCommand = null;
+    		} else if(oi.getAuto3() && !oi.getAuto1() && !oi.getAuto2()) {
+    			autonomousCommand = null;
+    		} else if(!oi.getAuto3() && oi.getAuto1() && oi.getAuto2()) {
+    			autonomousCommand = null;
+    		} else if(!oi.getAuto3() && oi.getAuto1() && !oi.getAuto2()) {
+    			autonomousCommand = null;
+    		} else if(!oi.getAuto3() && !oi.getAuto1() && oi.getAuto2()) {
+    			autonomousCommand = null;
+    		} else if(!oi.getAuto3() && !oi.getAuto1() && !oi.getAuto2()) {
+    			autonomousCommand = null;
+    		}
+    	} else {
+    		autonomousCommand = null;
+    	}
+    	
+    	if (autonomousCommand != null) autonomousCommand.start();
+        
+   
     }
 
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
-        
-        if(!autoHasStarted) {
-        	Scheduler.getInstance().add(new GearHolderSafelyClose());
-        	autoHasStarted = true;
-        }
-       
-        try {
-			bw.write(autoTimer.get() + "," + Robot.shooter.getLeftCurrent() + "," + Robot.shooter.getLeftVelocity() + ":");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-        	
-        
-        
         Timer.delay(0.005);
     }
 
     public void teleopInit() {
+    	Robot.gyroPIDHandler.disable();
+    	Robot.encoderPIDHandler.disable();
+    	Robot.drivetrain.resetAllOutputs();
         if (autonomousCommand != null) autonomousCommand.cancel();
-        Robot.drivetrain.frontAndCenter();
     }
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         
-        if(!teleHasStarted) {
-        	Scheduler.getInstance().add(new GearHolderSafelyClose());
-        	teleHasStarted = true;
-        }
-        
-        if(Robot.oi.getDriver().getRawButton(5)) {
-        	Robot.drivetrain.setDrivetrainSpeed(1);
+        if(oi.getDriver().getRawButton(5)) {
+        	drivetrain.setSpeed(1);
+        	drivetrain.fastTurn();
         } else {
-        	Robot.drivetrain.setDrivetrainSpeed(0.5);
+        	drivetrain.setSpeed(0.65);
+        	drivetrain.slowTurn();
         }
         
-       /* if(Robot.gearHolder.getLimitSwitch()) {
-        	oi.vibrateDriver();
-        } else {
-        	oi.stopVibrate();
-        }*/
-        
-      //  double hanger = oi.getOperator().getY();
-        
-       // Robot.hanger.setHangerPower(hanger);
-        /*
-        double power = Math.abs((oi.getOperator().getRawAxis(2) - 1)/-2);
-        if (power > .1) {
-        	shooter.setAllShooters(-power);
-        	SmartDashboard.putNumber("pr", power);
+        if(oi.getDriver().getRawButton(6) && !button6IsPressed) {
+        	button6IsPressed = true;
+        	shooter.shootingSpeedLeft -= 200;
+        	shooter.shootingSpeedCenter -= 200;
+        	shooter.shootingSpeedLeft -= 200;
+        } else if(oi.getDriver().getRawButton(6)) {
+        	button6IsPressed = false;
         }
-        else {
-        	shooter.setAllShooters(0);
-        	SmartDashboard.putNumber("pr", power);
-        }*/
+        
+        if(oi.getDriver().getRawButton(8) && !button8IsPressed) {
+        	button8IsPressed = true;
+        	shooter.shootingSpeedLeft += 200;
+        	shooter.shootingSpeedCenter += 200;
+        	shooter.shootingSpeedLeft += 200;
+        } else if(oi.getDriver().getRawButton(8)) {
+        	button8IsPressed = false;
+        }
         
         Timer.delay(0.005);
+        
+        Robot.drivetrain.frontAndCenter();
+        
+        Robot.drivetrain.slowTurn();       
     }
-
+    
     public void testPeriodic() {
         LiveWindow.run();
     }
