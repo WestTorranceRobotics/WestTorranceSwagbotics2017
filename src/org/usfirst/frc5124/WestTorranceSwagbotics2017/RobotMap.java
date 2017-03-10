@@ -1,5 +1,6 @@
 package org.usfirst.frc5124.WestTorranceSwagbotics2017;
 
+import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -58,6 +59,7 @@ public class RobotMap {
 	public static Encoder drivetrainLeftEncoder;
 	public static Encoder drivetrainRightEncoder;
 	public static ADXRS450_Gyro drivetrainGyro;
+	public static ADIS16448_IMU drivetrainIMU;
     public static VictorSP drivetrainLeft1;
     public static VictorSP drivetrainLeft2;
     public static VictorSP drivetrainRight1;
@@ -71,7 +73,7 @@ public class RobotMap {
     	///////////////////////
     	
     	agitatorAgitatorMotor = new VictorSP(6);
-    	LiveWindow.addActuator("Agitator", "Agitator Motor", agitatorAgitatorMotor);
+    	//LiveWindow.addActuator("Agitator", "Agitator Motor", agitatorAgitatorMotor);
     	
     	
     	//////////////////////////
@@ -79,16 +81,16 @@ public class RobotMap {
     	//////////////////////////
     	
     	gearHolderHolderSolenoid = new DoubleSolenoid(2, 7);
-    	LiveWindow.addActuator("Gear Holder", "Holder Solenoid", gearHolderHolderSolenoid);
+    	//LiveWindow.addActuator("Gear Holder", "Holder Solenoid", gearHolderHolderSolenoid);
     	
     	gearHolderPusherSolenoid = new DoubleSolenoid(3, 6);
-    	LiveWindow.addActuator("Gear Holder", "Pusher Solenoid", gearHolderPusherSolenoid);
+    	//LiveWindow.addActuator("Gear Holder", "Pusher Solenoid", gearHolderPusherSolenoid);
     	
     	gearHolderFunnelSolenoid = new DoubleSolenoid(4, 5);
-    	LiveWindow.addActuator("Gear Holder", "Funnel Solenoid", gearHolderFunnelSolenoid);
+    	//LiveWindow.addActuator("Gear Holder", "Funnel Solenoid", gearHolderFunnelSolenoid);
     	
     	gearHolderBackboardSolenoid = new DoubleSolenoid(0, 1);
-    	LiveWindow.addActuator("Gear Holder", "Backboard Solenoid", gearHolderBackboardSolenoid);
+    	//LiveWindow.addActuator("Gear Holder", "Backboard Solenoid", gearHolderBackboardSolenoid);
     	
     	gearHolderLimitSwitch = new DigitalInput(5);
     	
@@ -98,10 +100,10 @@ public class RobotMap {
     	////////////////////////////
     	
     	fuelInjectorConveyorMotor = new VictorSP(4);
-    	LiveWindow.addActuator("Fuel Injector", "Fuel Injector Motor", fuelInjectorConveyorMotor);
+    	//LiveWindow.addActuator("Fuel Injector", "Fuel Injector Motor", fuelInjectorConveyorMotor);
     	
     	fuelInjectorIntakeMotor = new VictorSP(5);
-    	LiveWindow.addActuator("Intake", "Intake Motor", fuelInjectorIntakeMotor);
+    	//LiveWindow.addActuator("Intake", "Intake Motor", fuelInjectorIntakeMotor);
     	
     	
     	//////////////////////
@@ -118,7 +120,7 @@ public class RobotMap {
     	shooterLeftShooterMotor.setAllowableClosedLoopErr(50);
     	shooterLeftShooterMotor.setControlMode(0);
     	shooterLeftShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-    	LiveWindow.addActuator("Shooter", "Left Shooter", shooterLeftShooterMotor);
+    	//LiveWindow.addActuator("Shooter", "Left Shooter", shooterLeftShooterMotor);
     	
     	shooterCenterShooterMotor = new CANTalon(4);
     	shooterCenterShooterMotor.enableBrakeMode(false);
@@ -130,7 +132,7 @@ public class RobotMap {
     	shooterCenterShooterMotor.setAllowableClosedLoopErr(50);
     	shooterCenterShooterMotor.setControlMode(0);
     	shooterCenterShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-    	LiveWindow.addActuator("Shooter", "Center Shooter", shooterCenterShooterMotor);
+    	//LiveWindow.addActuator("Shooter", "Center Shooter", shooterCenterShooterMotor);
     	
     	shooterRightShooterMotor = new CANTalon(5);
     	shooterRightShooterMotor.enableBrakeMode(false);
@@ -142,7 +144,7 @@ public class RobotMap {
     	shooterRightShooterMotor.setAllowableClosedLoopErr(50);
     	shooterRightShooterMotor.setControlMode(0);
     	shooterRightShooterMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-    	LiveWindow.addActuator("Shooter", "Right Shooter", shooterRightShooterMotor);
+    	//LiveWindow.addActuator("Shooter", "Right Shooter", shooterRightShooterMotor);
     	
     	
     	/////////////////////
@@ -150,7 +152,7 @@ public class RobotMap {
     	/////////////////////
     	
     	hangerHangerMotor = new CANTalon(6);
-    	LiveWindow.addActuator("Hanger", "Hanger Motor", hangerHangerMotor);
+    	//LiveWindow.addActuator("Hanger", "Hanger Motor", hangerHangerMotor);
     	
     	
     	/////////////////////////
@@ -160,22 +162,30 @@ public class RobotMap {
     	drivetrainCompressor = new Compressor(0);
     	
     	drivetrainLeftEncoder = new Encoder(8, 9);
+    	drivetrainLeftEncoder.setDistancePerPulse(0.0522509771309771);
+    	LiveWindow.addSensor("Left", "Left", drivetrainLeftEncoder);
+    	
     	drivetrainRightEncoder = new Encoder(6, 7);
+    	drivetrainRightEncoder.setDistancePerPulse(0.0522509771309771);
+    	LiveWindow.addSensor("Right", "Right", drivetrainRightEncoder);
     	
     	drivetrainGyro = new ADXRS450_Gyro();
-        LiveWindow.addSensor("Gyro", "Gyro", drivetrainGyro);
+        //LiveWindow.addSensor("Gyro", "Gyro", drivetrainGyro);
+        
+        drivetrainIMU = new ADIS16448_IMU();
+        LiveWindow.addSensor("IMU", "IMU", drivetrainIMU);
     
         drivetrainLeft1 = new VictorSP(0);
-        LiveWindow.addActuator("Drivetrain", "Left 1", drivetrainLeft1);
+        //LiveWindow.addActuator("Drivetrain", "Left 1", drivetrainLeft1);
         
         drivetrainLeft2 = new VictorSP(1);
-        LiveWindow.addActuator("Drivetrain", "Left 2", drivetrainLeft2);
+        //LiveWindow.addActuator("Drivetrain", "Left 2", drivetrainLeft2);
         
         drivetrainRight1 = new VictorSP(3);
-        LiveWindow.addActuator("Drivetrain", "Right 1", drivetrainRight1);
+        //LiveWindow.addActuator("Drivetrain", "Right 1", drivetrainRight1);
         
         drivetrainRight2 = new VictorSP(2);
-        LiveWindow.addActuator("Drivetrain", "Right 2", drivetrainRight2);
+        //LiveWindow.addActuator("Drivetrain", "Right 2", drivetrainRight2);
         
         drivetrainRobotDrive = new RobotDrive(drivetrainLeft1, drivetrainLeft2,
               drivetrainRight1, drivetrainRight2);

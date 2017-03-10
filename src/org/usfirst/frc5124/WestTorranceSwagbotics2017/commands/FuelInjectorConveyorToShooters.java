@@ -26,8 +26,10 @@ public class FuelInjectorConveyorToShooters extends Command {
     }
 
     protected void end() {
+    	Robot.fuelInjector.stop();
     }
 
     protected void interrupted() {
+    	end();
     }
 }

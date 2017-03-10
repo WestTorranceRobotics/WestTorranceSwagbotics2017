@@ -11,6 +11,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousFuelForBlue;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousFuelForRed;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousGearBasicStraight;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousGearForBlueLeft;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousGearForBlueRight;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousGearForRedLeft;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousGearForRedRight;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousPassBaseLine;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.GearHolderSafelyClose;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.subsystems.*;
 
@@ -57,21 +62,21 @@ public class Robot extends IterativeRobot {
         
         if(oi.getAuto4()) {
     		if(oi.getAuto3() && oi.getAuto1() && oi.getAuto2()) {
-    			SmartDashboard.putString("Auto", "Fuel Auto Red");
+    			SmartDashboard.putString("Auto", "Base Line Red");
     		} else if(oi.getAuto3() && oi.getAuto1() && !oi.getAuto2()) {
-    			SmartDashboard.putString("Auto", "Gear Auto Red");
+    			SmartDashboard.putString("Auto", "Gear Left Red");
     		} else if(oi.getAuto3() && !oi.getAuto1() && oi.getAuto2()) {
-    			SmartDashboard.putString("Auto", "Null");
+    			SmartDashboard.putString("Auto", "Gear Right Red");
     		} else if(oi.getAuto3() && !oi.getAuto1() && !oi.getAuto2()) {
-    			SmartDashboard.putString("Auto", "Null");
+    			SmartDashboard.putString("Auto", "Gear Straight Red");
     		} else if(!oi.getAuto3() && oi.getAuto1() && oi.getAuto2()) {
-    			SmartDashboard.putString("Auto", "Fuel Auto Blue");
+    			SmartDashboard.putString("Auto", "Base Line Blue");
     		} else if(!oi.getAuto3() && oi.getAuto1() && !oi.getAuto2()) {
-    			SmartDashboard.putString("Auto", "Gear Auto Blue");
+    			SmartDashboard.putString("Auto", "Gear Left BLue");
     		} else if(!oi.getAuto3() && !oi.getAuto1() && oi.getAuto2()) {
-    			SmartDashboard.putString("Auto", "Null");
+    			SmartDashboard.putString("Auto", "Gear Right Blue");
     		} else if(!oi.getAuto3() && !oi.getAuto1() && !oi.getAuto2()) {
-    			SmartDashboard.putString("Auto", "Null");
+    			SmartDashboard.putString("Auto", "Gear Straight Blue");
     		}
     	} else {
     		SmartDashboard.putString("Auto", "Null");
@@ -82,24 +87,26 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
     	drivetrain.setDrivetrainSpeed(1);
     	drivetrain.frontAndCenter();
+    	
+    	encoderPIDHandler.resetEncoders();
         
     	if(oi.getAuto4()) {
     		if(oi.getAuto3() && oi.getAuto1() && oi.getAuto2()) {
-    			autonomousCommand = new AutonomousFuelForRed();
+    			autonomousCommand = new AutonomousPassBaseLine();
     		} else if(oi.getAuto3() && oi.getAuto1() && !oi.getAuto2()) {
-    			autonomousCommand = new AutonomousGearBasicStraight();
+    			autonomousCommand = new AutonomousGearForRedLeft();
     		} else if(oi.getAuto3() && !oi.getAuto1() && oi.getAuto2()) {
-    			autonomousCommand = null;
+    			autonomousCommand = new AutonomousGearForRedRight();
     		} else if(oi.getAuto3() && !oi.getAuto1() && !oi.getAuto2()) {
-    			autonomousCommand = null;
-    		} else if(!oi.getAuto3() && oi.getAuto1() && oi.getAuto2()) {
-    			autonomousCommand = new AutonomousFuelForBlue();
-    		} else if(!oi.getAuto3() && oi.getAuto1() && !oi.getAuto2()) {
     			autonomousCommand = new AutonomousGearBasicStraight();
+    		} else if(!oi.getAuto3() && oi.getAuto1() && oi.getAuto2()) {
+    			autonomousCommand = new AutonomousPassBaseLine();
+    		} else if(!oi.getAuto3() && oi.getAuto1() && !oi.getAuto2()) {
+    			autonomousCommand = new AutonomousGearForBlueLeft();
     		} else if(!oi.getAuto3() && !oi.getAuto1() && oi.getAuto2()) {
-    			autonomousCommand = null;
+    			autonomousCommand = new AutonomousGearForBlueRight();
     		} else if(!oi.getAuto3() && !oi.getAuto1() && !oi.getAuto2()) {
-    			autonomousCommand = null;
+    			autonomousCommand = new AutonomousGearBasicStraight();
     		}
     	} else {
     		autonomousCommand = null;

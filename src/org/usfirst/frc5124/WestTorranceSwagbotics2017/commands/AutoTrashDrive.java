@@ -5,12 +5,9 @@ import org.usfirst.frc5124.WestTorranceSwagbotics2017.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
 public class AutoTrashDrive extends Command {
 	
-	double power = -0.5;
+	double power = -0.6;
 
     public AutoTrashDrive(double time, int direction) {
     	setTimeout(time);

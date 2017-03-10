@@ -2,12 +2,16 @@ package org.usfirst.frc5124.WestTorranceSwagbotics2017.subsystems;
 
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.Robot;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.RobotMap;
+
+import com.analog.adis16448.frc.ADIS16448_IMU;
+
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 public class GyroPIDHandler extends PIDSubsystem {
 	
 	private ADXRS450_Gyro gyro = RobotMap.drivetrainGyro;
+	private ADIS16448_IMU imu = RobotMap.drivetrainIMU;
 
     public GyroPIDHandler() {
     	super(0.05, 0.000001, 0.11);
@@ -20,11 +24,15 @@ public class GyroPIDHandler extends PIDSubsystem {
     }
 
     protected double returnPIDInput() {
-        return gyro.getAngle();
+        return imu.getAngle();
     }
     
     public double getGyro() {
     	return gyro.getAngle();
+    }
+    
+    public double getIMU() {
+    	return imu.getAngle();
     }
 
     protected void usePIDOutput(double output) {
