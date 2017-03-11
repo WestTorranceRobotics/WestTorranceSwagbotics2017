@@ -15,7 +15,7 @@ public class AutoTurnWithGyro extends Command {
 
     protected void initialize() {
     	Robot.drivetrain.resetAllOutputs();
-    	Robot.gyroPIDHandler.setSetpoint(degrees + Robot.gyroPIDHandler.getIMU());
+    	Robot.gyroPIDHandler.setSetpoint(degrees + Robot.gyroPIDHandler.getGyro());
     	Robot.gyroPIDHandler.enable();
     }
     

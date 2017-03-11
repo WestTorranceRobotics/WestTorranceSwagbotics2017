@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 public class GyroPIDHandler extends PIDSubsystem {
 	
 	private ADXRS450_Gyro gyro = RobotMap.drivetrainGyro;
-	private ADIS16448_IMU imu = RobotMap.drivetrainIMU;
+	//private ADIS16448_IMU imu = RobotMap.drivetrainIMU;
 
     public GyroPIDHandler() {
     	super(0.05, 0.000001, 0.11);
@@ -24,16 +24,12 @@ public class GyroPIDHandler extends PIDSubsystem {
     }
 
     protected double returnPIDInput() {
-        return imu.getAngle();
+        return gyro.getAngle();
     }
     
     public double getGyro() {
     	return gyro.getAngle();
-    }
-    
-    public double getIMU() {
-    	return imu.getAngle();
-    }
+    } 
 
     protected void usePIDOutput(double output) {
     	Robot.drivetrain.getGyroOutput(output);

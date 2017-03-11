@@ -8,6 +8,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutonomousPassBaseLine extends CommandGroup {
 
     public AutonomousPassBaseLine() {
-        addSequential(new AutoTrashDrive(3, 1));
+        addSequential(new AutoTrashDrive(5, -1));
     }
 }

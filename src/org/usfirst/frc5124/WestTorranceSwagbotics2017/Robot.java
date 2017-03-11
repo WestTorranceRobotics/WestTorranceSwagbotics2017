@@ -22,6 +22,7 @@ import org.usfirst.frc5124.WestTorranceSwagbotics2017.subsystems.*;
 public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
+    Command gearClose;
 
     public static OI oi;
     public static Agitator agitator;
@@ -48,7 +49,7 @@ public class Robot extends IterativeRobot {
         drivetrain = new Drivetrain();
         gyroPIDHandler = new GyroPIDHandler();
         encoderPIDHandler = new EncoderPIDHandler();
-        
+        gearClose = new GearHolderSafelyClose();
         oi = new OI();
         
        //CameraServer.getInstance().startAutomaticCapture();
@@ -126,6 +127,7 @@ public class Robot extends IterativeRobot {
     	Robot.encoderPIDHandler.disable();
     	Robot.drivetrain.resetAllOutputs();
         if (autonomousCommand != null) autonomousCommand.cancel();
+        gearClose.start();
     }
 
     public void teleopPeriodic() {

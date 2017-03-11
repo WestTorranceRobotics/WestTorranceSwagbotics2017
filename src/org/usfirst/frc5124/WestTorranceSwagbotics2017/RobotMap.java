@@ -59,7 +59,7 @@ public class RobotMap {
 	public static Encoder drivetrainLeftEncoder;
 	public static Encoder drivetrainRightEncoder;
 	public static ADXRS450_Gyro drivetrainGyro;
-	public static ADIS16448_IMU drivetrainIMU;
+	//public static ADIS16448_IMU drivetrainIMU;
     public static VictorSP drivetrainLeft1;
     public static VictorSP drivetrainLeft2;
     public static VictorSP drivetrainRight1;
@@ -172,8 +172,8 @@ public class RobotMap {
     	drivetrainGyro = new ADXRS450_Gyro();
         //LiveWindow.addSensor("Gyro", "Gyro", drivetrainGyro);
         
-        drivetrainIMU = new ADIS16448_IMU();
-        LiveWindow.addSensor("IMU", "IMU", drivetrainIMU);
+        //drivetrainIMU = new ADIS16448_IMU();
+        //LiveWindow.addSensor("IMU", "IMU", drivetrainIMU);
     
         drivetrainLeft1 = new VictorSP(0);
         //LiveWindow.addActuator("Drivetrain", "Left 1", drivetrainLeft1);
