@@ -114,5 +114,9 @@ public class OI {
     public boolean getAuto4() {
     	return getOperator().getRawButton(4);
     }
+    
+    public boolean getAuto7() {
+    	return getOperator().getRawButton(7);
+    }
 }
 

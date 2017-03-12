@@ -15,7 +15,7 @@ public class AutoKamikazeGear extends Command {
     }
 
     protected void execute() {
-    	Robot.drivetrain.tank(0.45, 0.45);
+    	Robot.drivetrain.tank(0.5, 0.5);
     }
 
     protected boolean isFinished() {

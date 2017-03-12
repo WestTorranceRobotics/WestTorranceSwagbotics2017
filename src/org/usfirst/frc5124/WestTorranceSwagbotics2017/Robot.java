@@ -52,7 +52,7 @@ public class Robot extends IterativeRobot {
         gearClose = new GearHolderSafelyClose();
         oi = new OI();
         
-       //CameraServer.getInstance().startAutomaticCapture();
+       CameraServer.getInstance().startAutomaticCapture();
     }
 
     public void disabledInit(){
@@ -136,9 +136,14 @@ public class Robot extends IterativeRobot {
         if(oi.getDriver().getRawButton(5)) {
         	drivetrain.setSpeed(1);
         	drivetrain.fastTurn();
+        	drivetrain.compressorOff();
+        } else if(oi.getDriver().getRawButton(8)) {
+        	drivetrain.setSpeed(0.45);
+        	drivetrain.slowTurn();
         } else {
         	drivetrain.setSpeed(0.65);
         	drivetrain.slowTurn();
+        	drivetrain.compressorOn();
         }
         
         if(oi.getDriver().getRawButton(6) && !button6IsPressed) {
@@ -149,7 +154,7 @@ public class Robot extends IterativeRobot {
         } else if(oi.getDriver().getRawButton(6)) {
         	button6IsPressed = false;
         }
-        
+        /*
         if(oi.getDriver().getRawButton(8) && !button8IsPressed) {
         	button8IsPressed = true;
         	shooter.shootingSpeedLeft += 200;
@@ -158,6 +163,10 @@ public class Robot extends IterativeRobot {
         } else if(oi.getDriver().getRawButton(8)) {
         	button8IsPressed = false;
         }
+        */
+        
+       
+        
         
         if(oi.getDriver().getRawButton(3) && !button3IsPressed) {
         	button3IsPressed = true;

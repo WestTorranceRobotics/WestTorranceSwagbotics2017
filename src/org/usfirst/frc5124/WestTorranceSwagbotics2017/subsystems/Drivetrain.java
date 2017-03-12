@@ -1,13 +1,17 @@
 package org.usfirst.frc5124.WestTorranceSwagbotics2017.subsystems;
 
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.Robot;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.RobotMap;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.*;
+
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Drivetrain extends Subsystem {
 
 	private final RobotDrive robotDrive = RobotMap.drivetrainRobotDrive;
+	private final Compressor compressor = RobotMap.drivetrainCompressor;
 	
 	public double direction = 1;
     public double turnSpeed = 0.75;
@@ -17,6 +21,16 @@ public class Drivetrain extends Subsystem {
     
     public Drivetrain() {
 	}
+    
+    public void compressorOff() {
+    	compressor.setClosedLoopControl(false);
+    	compressor.stop();
+    }
+    
+    public void compressorOn() {
+    	compressor.setClosedLoopControl(true);
+    	compressor.start();
+    }
     
     public void setDrivetrainSpeed(double speed) {
     	robotDrive.setMaxOutput(speed);
@@ -35,7 +49,21 @@ public class Drivetrain extends Subsystem {
     }
     
     public void robonaughtDrive(double power, double turn) {
-    	robotDrive.arcadeDrive(power, turn);
+    	if(!Robot.oi.getAuto7()) {
+    		if(!Robot.gearHolder.getLimitSwitch()) {
+    			robotDrive.arcadeDrive(power, turn);
+    		} else {
+    			if(power > 0) {
+    				robotDrive.arcadeDrive(0, turn);
+    			} else {
+    			robotDrive.arcadeDrive(power, turn);
+    			}
+    		}
+    	} else {
+    		robotDrive.arcadeDrive(power, turn);
+    	}
+    	//robotDrive.arcadeDrive(power, turn);
+    	
     }
     
     public void stop() {
