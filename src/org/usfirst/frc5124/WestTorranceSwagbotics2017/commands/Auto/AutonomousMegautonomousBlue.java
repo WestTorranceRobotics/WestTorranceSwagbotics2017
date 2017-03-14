@@ -5,15 +5,19 @@ import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.GearHolde
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.GearHolderSafelyOpen;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.ShooterStartShooting;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.Wait;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class AutonomousMegautonomousRed extends CommandGroup {
+/**
+ *
+ */
+public class AutonomousMegautonomousBlue extends CommandGroup {
 
-    public AutonomousMegautonomousRed() {
+    public AutonomousMegautonomousBlue() {
     	//drive to just short of base line
         addSequential(new AutoDriveByEncoder(76, 0.7));
         //turn perpendicular to peg
-        addSequential(new AutoTurnWithGyro(-60));
+        addSequential(new AutoTurnWithGyro(60));
         //drive to peg fast
         addSequential(new AutoDriveByEncoder(63, 0.6));
         //finish driving to peg slow
@@ -27,11 +31,11 @@ public class AutonomousMegautonomousRed extends CommandGroup {
         //good place to close this up
         addParallel(new GearHolderSafelyClose());
         //turn perpendicular to alliance wall
-        addSequential(new AutoTurnWithGyro(60));
+        addSequential(new AutoTurnWithGyro(-60));
         //drive to key boundary
         addSequential(new AutoDriveByEncoder(-35, 0.7));
         //turn the long way perpendicular to boiler so shooters are in back
-        addSequential(new AutoTurnWithGyro(135));
+        addSequential(new AutoTurnWithGyro(-135));
         //drive to boiler
         addSequential(new AutoDriveByEncoder(50, 0.6));
         //shoot
