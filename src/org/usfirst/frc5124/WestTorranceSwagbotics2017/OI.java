@@ -1,6 +1,20 @@
 package org.usfirst.frc5124.WestTorranceSwagbotics2017;
 
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.*;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.AgitatorAgitate;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.AgitatorReverse;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.DrivetrainReverseFront;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.FuelInjectorConveyorToShooters;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.FuelInjectorExhaust;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.FuelInjectorIntake;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.GearHolderAutoRelase;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.GearHolderFunnelBackward;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.GearHolderFunnelForward;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.GearHolderFunnelandBackboardBack;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.GearHolderFunnelandBackboardForward;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.HangerHang;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.ShooterTeleopShoot;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;

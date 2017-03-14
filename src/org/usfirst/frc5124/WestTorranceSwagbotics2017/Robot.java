@@ -8,15 +8,15 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousFuelForBlue;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousFuelForRed;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousGearBasicStraight;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousGearForBlueLeft;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousGearForBlueRight;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousGearForRedLeft;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousGearForRedRight;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousPassBaseLine;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.GearHolderSafelyClose;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Auto.AutonomousFuelForBlue;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Auto.AutonomousFuelForRed;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Auto.AutonomousGearBasicStraight;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Auto.AutonomousGearForBlueLeft;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Auto.AutonomousGearForBlueRight;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Auto.AutonomousGearForRedLeft;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Auto.AutonomousGearForRedRight;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Auto.AutonomousPassBaseLine;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.GearHolderSafelyClose;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.subsystems.*;
 
 public class Robot extends IterativeRobot {

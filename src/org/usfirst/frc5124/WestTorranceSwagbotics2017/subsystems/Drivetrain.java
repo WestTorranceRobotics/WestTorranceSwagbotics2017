@@ -3,6 +3,7 @@ package org.usfirst.frc5124.WestTorranceSwagbotics2017.subsystems;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.Robot;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.RobotMap;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.*;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.JoystickPuppetry;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.RobotDrive;
