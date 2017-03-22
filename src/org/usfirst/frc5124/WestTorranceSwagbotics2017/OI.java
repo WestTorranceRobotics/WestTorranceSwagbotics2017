@@ -46,6 +46,7 @@ public class OI {
         //operator joystick buttons
         operatorButton6 = new JoystickButton(operator, 6);
         operatorButton6.whileHeld(new HangerHang());
+        operatorButton6.whenPressed(new GearHolderCloseAndRaise());
         
         operatorButton8 = new JoystickButton(operator, 8);
         operatorButton8.whileHeld(new AgitatorReverse());
