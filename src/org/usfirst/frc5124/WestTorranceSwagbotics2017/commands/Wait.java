@@ -2,9 +2,6 @@ package org.usfirst.frc5124.WestTorranceSwagbotics2017.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
 public class Wait extends Command {
 
     public Wait(double waitTime) {

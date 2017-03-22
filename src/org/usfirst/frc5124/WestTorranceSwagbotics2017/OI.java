@@ -1,7 +1,6 @@
 package org.usfirst.frc5124.WestTorranceSwagbotics2017;
 
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.*;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 

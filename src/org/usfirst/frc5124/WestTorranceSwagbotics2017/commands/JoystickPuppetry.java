@@ -1,12 +1,8 @@
 package org.usfirst.frc5124.WestTorranceSwagbotics2017.commands;
 
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
 public class JoystickPuppetry extends Command {
 
     public JoystickPuppetry() {
@@ -17,7 +13,6 @@ public class JoystickPuppetry extends Command {
     }
 
     protected void execute() {
-    	//Robot.drivetrain.tank(Robot.oi.getLeftSensitivity(.7), Robot.oi.getRightSensitvity(.7));
     	Robot.drivetrain.robonaughtDrive(Robot.oi.getLeftYAxisSens(), Robot.oi.getRightXAxisSens());
     }
 

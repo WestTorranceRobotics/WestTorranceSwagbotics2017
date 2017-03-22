@@ -4,7 +4,6 @@ import org.usfirst.frc5124.WestTorranceSwagbotics2017.RobotMap;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-
 public class FuelInjector extends Subsystem {
 
     private final VictorSP conveyorMotor = RobotMap.fuelInjectorConveyorMotor;
