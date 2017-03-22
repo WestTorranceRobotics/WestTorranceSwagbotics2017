@@ -1,21 +1,7 @@
 package org.usfirst.frc5124.WestTorranceSwagbotics2017;
 
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.*;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.AgitatorAgitate;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.AgitatorReverse;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.DrivetrainReverseFront;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.FuelInjectorConveyorToShooters;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.FuelInjectorExhaust;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.FuelInjectorIntake;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.GearHolderAutoRelase;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.GearHolderFunnelBackward;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.GearHolderFunnelForward;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.GearHolderFunnelandBackboardBack;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.GearHolderFunnelandBackboardForward;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.HangerHang;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.Default.ShooterTeleopShoot;
 
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -75,20 +61,19 @@ public class OI {
         operatorButton11.whileHeld(new FuelInjectorConveyorToShooters());
         
         operatorButton12 = new JoystickButton(operator, 12);
-        operatorButton12.whenPressed(new GearHolderFunnelForward());
-        operatorButton12.whenReleased(new GearHolderFunnelBackward());
+        operatorButton12.whenPressed(new GearHolderCloseAndRaise());
         
         operatorButton13 = new JoystickButton(operator, 13);
         operatorButton13.whileHeld(new FuelInjectorExhaust());
-                
+        
         operatorButton14 = new JoystickButton(operator, 14);
-        operatorButton14.whenPressed(new GearHolderAutoRelase());
+        operatorButton14.whenPressed(new GearHolderCloseGearHolder());
         
         operatorButton15 = new JoystickButton(operator, 15);
-        operatorButton15.whenPressed(new GearHolderFunnelandBackboardForward());
-        operatorButton15.whenReleased(new GearHolderFunnelandBackboardBack());   
-    }
+        operatorButton15.whenPressed(new GearHolderOpenAndLower());
 
+    }
+        
     public Joystick getDriver() {
         return driver;
     }
