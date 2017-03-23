@@ -6,22 +6,22 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AgitatorAgitate extends Command {
 
     public AgitatorAgitate() {
-        requires(Robot.agitator);
+        requires(Robot.agitator);				/* Uses the Agitator subsystem */
     }
 
     protected void initialize() {
     }
 
     protected void execute() {
-    	Robot.agitator.agitate();
+    	Robot.agitator.agitate();				/* Run agitator */
     }
 
     protected boolean isFinished() {
-        return false;
+        return false;							/* Is a WhileHeld command, so scheduler will handle this */
     }
 
     protected void end() {
-    	Robot.agitator.stop();
+    	Robot.agitator.stop();					/* Stop Agitator */
     }
 
     protected void interrupted() {

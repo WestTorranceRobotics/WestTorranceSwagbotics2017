@@ -6,22 +6,22 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AgitatorReverse extends Command {
 
     public AgitatorReverse() {
-        requires(Robot.agitator);
+        requires(Robot.agitator);				/* Uses the agitator subsystem */
     }
 
     protected void initialize() {
     }
 
     protected void execute() {
-    	Robot.agitator.reverse();
+    	Robot.agitator.reverse();				/* Run the agitator */	
     }
 
     protected boolean isFinished() {
-        return false;
+        return false;							/* Scheduler will handle this */
     }
 
     protected void end() {
-    	Robot.agitator.stop();
+    	Robot.agitator.stop();					/* Stop the agitator */
     }
 
     protected void interrupted() {
