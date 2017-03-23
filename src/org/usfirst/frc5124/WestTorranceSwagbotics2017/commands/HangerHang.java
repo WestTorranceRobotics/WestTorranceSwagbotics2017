@@ -17,7 +17,6 @@ public class HangerHang extends Command {
     }
 
     protected boolean isFinished() {
-        //return Robot.hanger.getCurrentLoad() > 20 || Robot.oi.getOperator().getRawButton(3);
     	return false;
     }
 

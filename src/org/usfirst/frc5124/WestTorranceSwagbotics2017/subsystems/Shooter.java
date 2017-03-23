@@ -2,7 +2,6 @@ package org.usfirst.frc5124.WestTorranceSwagbotics2017.subsystems;
 
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.RobotMap;
 import com.ctre.CANTalon;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Shooter extends Subsystem {

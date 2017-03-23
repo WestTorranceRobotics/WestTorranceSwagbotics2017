@@ -3,14 +3,14 @@ package org.usfirst.frc5124.WestTorranceSwagbotics2017.commands;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class GearHolderFunnelForward extends Command {
+public class GearHolderForkliftUp extends Command {
 
-    public GearHolderFunnelForward() {
+    public GearHolderForkliftUp() {
         requires(Robot.gearHolder);
     }
-    
+
     protected void initialize() {
-    	Robot.gearHolder.funnelForward();
+    	Robot.gearHolder.forkliftUp();
     }
 
     protected void execute() {

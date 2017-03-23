@@ -1,20 +1,16 @@
 package org.usfirst.frc5124.WestTorranceSwagbotics2017.commands;
 
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
-public class GearHolderOpen extends Command {
+public class GearHolderOpenGearHolder extends Command {
 
-    public GearHolderOpen() {
+    public GearHolderOpenGearHolder() {
     	requires(Robot.gearHolder);
     }
 
     protected void initialize() {
-    	Robot.gearHolder.holderLetItGo();
+    	Robot.gearHolder.holderOpen();
     }
 
     protected void execute() {

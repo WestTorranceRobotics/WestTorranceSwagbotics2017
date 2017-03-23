@@ -3,14 +3,14 @@ package org.usfirst.frc5124.WestTorranceSwagbotics2017.commands;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class GearHolderFunnelBackward extends Command {
+public class FuelInjectorStopAuto extends Command {
 
-    public GearHolderFunnelBackward() {
-        requires(Robot.gearHolder);
+    public FuelInjectorStopAuto() {
+    	requires(Robot.fuelInjector);
     }
 
     protected void initialize() {
-    	Robot.gearHolder.funnelBackward();
+    	Robot.fuelInjector.stop();
     }
 
     protected void execute() {

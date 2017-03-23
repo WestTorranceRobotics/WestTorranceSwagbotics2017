@@ -1,20 +1,17 @@
 package org.usfirst.frc5124.WestTorranceSwagbotics2017.commands;
 
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
- */
-public class GearHolderRectractPusher extends Command {
+public class FuelInjectorConveyorToShootersAuto extends Command {
 
-    public GearHolderRectractPusher() {
-        requires(Robot.gearHolder);
+    public FuelInjectorConveyorToShootersAuto() {
+    	requires(Robot.fuelInjector);
     }
 
     protected void initialize() {
-    	Robot.gearHolder.pusherRetract();
+    	Robot.fuelInjector.intake();
+    	Robot.fuelInjector.inject();
     }
 
     protected void execute() {

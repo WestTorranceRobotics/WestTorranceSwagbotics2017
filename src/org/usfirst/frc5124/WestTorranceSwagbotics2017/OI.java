@@ -1,7 +1,6 @@
 package org.usfirst.frc5124.WestTorranceSwagbotics2017;
 
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.*;
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -47,6 +46,7 @@ public class OI {
         //operator joystick buttons
         operatorButton6 = new JoystickButton(operator, 6);
         operatorButton6.whileHeld(new HangerHang());
+        operatorButton6.whenPressed(new GearHolderCloseAndRaise());
         
         operatorButton8 = new JoystickButton(operator, 8);
         operatorButton8.whileHeld(new AgitatorReverse());
@@ -61,20 +61,19 @@ public class OI {
         operatorButton11.whileHeld(new FuelInjectorConveyorToShooters());
         
         operatorButton12 = new JoystickButton(operator, 12);
-        operatorButton12.whenPressed(new GearHolderFunnelForward());
-        operatorButton12.whenReleased(new GearHolderFunnelBackward());
+        operatorButton12.whenPressed(new GearHolderCloseAndRaise());
         
         operatorButton13 = new JoystickButton(operator, 13);
         operatorButton13.whileHeld(new FuelInjectorExhaust());
-                
+        
         operatorButton14 = new JoystickButton(operator, 14);
-        operatorButton14.whenPressed(new GearHolderAutoRelase());
+        operatorButton14.whenPressed(new GearHolderCloseGearHolder());
         
         operatorButton15 = new JoystickButton(operator, 15);
-        operatorButton15.whenPressed(new GearHolderFunnelandBackboardForward());
-        operatorButton15.whenReleased(new GearHolderFunnelandBackboardBack());   
-    }
+        operatorButton15.whenPressed(new GearHolderOpenAndLower());
 
+    }
+        
     public Joystick getDriver() {
         return driver;
     }

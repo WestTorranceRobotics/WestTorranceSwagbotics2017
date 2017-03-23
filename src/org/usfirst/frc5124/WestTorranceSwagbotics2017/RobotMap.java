@@ -1,11 +1,9 @@
 package org.usfirst.frc5124.WestTorranceSwagbotics2017;
 
-import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.VictorSP;
@@ -35,13 +33,10 @@ public class RobotMap {
 	//Agitator
     public static VictorSP agitatorAgitatorMotor;
 	
-	//Gearage
+	//Gear Holder
 	public static DoubleSolenoid gearHolderHolderSolenoid;
-	public static DoubleSolenoid gearHolderPusherSolenoid;
-	public static DoubleSolenoid gearHolderFunnelSolenoid;
-	public static DoubleSolenoid gearHolderBackboardSolenoid;
-	public static DigitalInput gearHolderLimitSwitch;
-	
+	public static DoubleSolenoid gearHolderForkliftSolenoid;
+    
 	//Fuel Injector
 	public static VictorSP fuelInjectorConveyorMotor;
 	public static VictorSP fuelInjectorIntakeMotor;
@@ -83,16 +78,8 @@ public class RobotMap {
     	gearHolderHolderSolenoid = new DoubleSolenoid(2, 7);
     	//LiveWindow.addActuator("Gear Holder", "Holder Solenoid", gearHolderHolderSolenoid);
     	
-    	gearHolderPusherSolenoid = new DoubleSolenoid(3, 6);
+    	gearHolderForkliftSolenoid = new DoubleSolenoid(3, 6);
     	//LiveWindow.addActuator("Gear Holder", "Pusher Solenoid", gearHolderPusherSolenoid);
-    	
-    	gearHolderFunnelSolenoid = new DoubleSolenoid(4, 5);
-    	//LiveWindow.addActuator("Gear Holder", "Funnel Solenoid", gearHolderFunnelSolenoid);
-    	
-    	gearHolderBackboardSolenoid = new DoubleSolenoid(0, 1);
-    	//LiveWindow.addActuator("Gear Holder", "Backboard Solenoid", gearHolderBackboardSolenoid);
-    	
-    	gearHolderLimitSwitch = new DigitalInput(5);
     	
     	
     	////////////////////////////
