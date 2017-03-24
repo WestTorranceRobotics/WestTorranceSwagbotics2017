@@ -7,15 +7,15 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class GearHolder extends Subsystem {
 	
-	private final DoubleSolenoid holderSolenoid = RobotMap.gearHolderHolderSolenoid;
+	private final DoubleSolenoid holderSolenoid = RobotMap.gearHolderHolderSolenoid;			/* Two solenoid valves */
 	private final DoubleSolenoid forkliftSolenoid = RobotMap.gearHolderForkliftSolenoid;
 	
     public void initDefaultCommand() {
     }
     
-    public void holderOpen() {
-    	holderSolenoid.set(Value.kForward);
-    }
+    public void holderOpen() {																	/* Same sentiment as written in the Fuel Injector Subsystem */
+    	holderSolenoid.set(Value.kForward);														/* Each method sets a solenoid valve to be open in one direction */
+    }																							/* or the other */
     
     public void holderClose() {
     	holderSolenoid.set(Value.kReverse);

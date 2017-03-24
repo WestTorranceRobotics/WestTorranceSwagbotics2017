@@ -6,11 +6,11 @@ import edu.wpi.first.wpilibj.command.Command;
 public class FuelInjectorConveyorToShootersAuto extends Command {
 
     public FuelInjectorConveyorToShootersAuto() {
-    	requires(Robot.fuelInjector);
+    	requires(Robot.fuelInjector);				/* This is the same as the regular one, except it immediately ends so it can be used in command groups */
     }
 
     protected void initialize() {
-    	Robot.fuelInjector.intake();
+    	Robot.fuelInjector.intake();						
     	Robot.fuelInjector.inject();
     }
 

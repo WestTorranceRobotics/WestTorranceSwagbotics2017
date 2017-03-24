@@ -6,11 +6,11 @@ import edu.wpi.first.wpilibj.command.Command;
 public class FuelInjectorExhaust extends Command {
 
     public FuelInjectorExhaust() {
-    	requires(Robot.fuelInjector);
+    	requires(Robot.fuelInjector);				/* Uses the fuel injector subsystem */
     }
 
     protected void initialize() {
-    	Robot.fuelInjector.exhaust();
+    	Robot.fuelInjector.exhaust();				/* Outtake and extract so balls go to the floor */
     	Robot.fuelInjector.extract();
     }
 
@@ -18,11 +18,11 @@ public class FuelInjectorExhaust extends Command {
     }
 
     protected boolean isFinished() {
-        return false;
+        return false;								/* While held, so the scheduler will handle this */
     }
 
     protected void end() {
-    	Robot.fuelInjector.stop();
+    	Robot.fuelInjector.stop();					/* Stop */
     }
 
     protected void interrupted() {

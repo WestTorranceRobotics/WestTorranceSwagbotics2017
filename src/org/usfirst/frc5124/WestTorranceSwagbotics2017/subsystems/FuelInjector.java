@@ -6,16 +6,15 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class FuelInjector extends Subsystem {
 
-    private final VictorSP conveyorMotor = RobotMap.fuelInjectorConveyorMotor;
-    
+    private final VictorSP conveyorMotor = RobotMap.fuelInjectorConveyorMotor;  	/* Two motors boi */
     private final VictorSP intakeMotor = RobotMap.fuelInjectorIntakeMotor;
     
     public void initDefaultCommand() {
     }
     
-    public void inject() {
-    	conveyorMotor.set(0.5);
-    }
+    public void inject() {															/* I'm not going to explain each of these at this point. I've been doing this */
+    	conveyorMotor.set(0.5);														/* for a few hours now and this is getting annoying. Each method just sets a */
+    }																				/* power to a motor */
     
     public void extract() {
     	conveyorMotor.set(-1);

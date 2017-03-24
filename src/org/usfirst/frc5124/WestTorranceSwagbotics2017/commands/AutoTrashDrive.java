@@ -9,24 +9,24 @@ public class AutoTrashDrive extends Command {
 	double power;
     
     public AutoTrashDrive(double power, double time) {
-    	setTimeout(time);
-        requires(Robot.drivetrain);
-    	this.power = power;
+    	setTimeout(time);													/* Pass the timeout */
+        requires(Robot.drivetrain);											/* Uses drivetrain */
+    	this.power = power;													/* Pass the power to global power */
     }
 
     protected void initialize() {
     }
 
     protected void execute() {
-    	RobotMap.drivetrainRobotDrive.arcadeDrive(power, 0);
+    	RobotMap.drivetrainRobotDrive.arcadeDrive(power, 0);				/* Go */
     }
 
     protected boolean isFinished() {
-        return isTimedOut();
+        return isTimedOut();												/* Stop after the set amount off time */
     }
 
     protected void end() {
-    	Robot.drivetrain.stop();
+    	Robot.drivetrain.stop();											/* Stop the drive train */
     }
 
     protected void interrupted() {

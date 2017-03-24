@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ShooterStopShooting extends Command {
 
     public ShooterStopShooting() {
-        requires(Robot.shooter);
+        requires(Robot.shooter);														/* Uses the shooter subsystem */
     }
 
     protected void initialize() {
@@ -21,10 +21,11 @@ public class ShooterStopShooting extends Command {
     }
 
     protected void end() {
-    	Robot.shooter.setLeftShooter(0);
-    	Robot.shooter.setCenterShooter(0);
+    	Robot.shooter.setControlMode(0);												/* set shooters to volatge control */
+    	Robot.shooter.setBrakeFalse();													/* set to coast mode */
+        Robot.shooter.setLeftShooter(0);												/* set all shooters to 0% power */
+        Robot.shooter.setCenterShooter(0);
     	Robot.shooter.setRightShooter(0);
-    	org.usfirst.frc5124.WestTorranceSwagbotics2017.RobotMap.shooterLeftShooterMotor.enableBrakeMode(false);    	
     }
 
     protected void interrupted() {

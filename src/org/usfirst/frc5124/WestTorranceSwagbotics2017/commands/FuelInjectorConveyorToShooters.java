@@ -6,11 +6,11 @@ import edu.wpi.first.wpilibj.command.Command;
 public class FuelInjectorConveyorToShooters extends Command {
 
     public FuelInjectorConveyorToShooters() {
-    	requires(Robot.fuelInjector);
+    	requires(Robot.fuelInjector);				/* Uses the fuel injector subsystem */
     }
 
     protected void initialize() {
-    	Robot.fuelInjector.intake();
+    	Robot.fuelInjector.intake();				/* Intake and inject so balls go to shooter */
     	Robot.fuelInjector.inject();
     }
 
@@ -18,11 +18,11 @@ public class FuelInjectorConveyorToShooters extends Command {
     }
 
     protected boolean isFinished() {
-        return false;
+        return false;								/* Let the scheduler handle this, since its a while held command */
     }
 
     protected void end() {
-    	Robot.fuelInjector.stop();
+    	Robot.fuelInjector.stop();					/* Stop the motors */
     }
 
     protected void interrupted() {

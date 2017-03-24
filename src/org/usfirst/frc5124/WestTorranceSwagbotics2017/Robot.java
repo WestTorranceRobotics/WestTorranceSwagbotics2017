@@ -166,14 +166,14 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
         
         if(oi.getDriver().getRawButton(5)) {											/* Check the fifth button on first driver, go fast if its pressed and stop */
-        	drivetrain.setSpeed(1);														/* compressing to save battery so the robot doesn't die. Not necessarily */
+        	drivetrain.setDrivetrainSpeed(1);														/* compressing to save battery so the robot doesn't die. Not necessarily */
         	drivetrain.fastTurn();														/* needed, we just had battery problems this year becuase we went sanic fast */
         	drivetrain.compressorOff();													/* Go slow if 4th button is pressed */
         } else if(oi.getDriver().getRawButton(8)) {
-        	drivetrain.setSpeed(0.45);
+        	drivetrain.setDrivetrainSpeed(0.45);
         	drivetrain.slowTurn();
         } else {
-        	drivetrain.setSpeed(0.65);
+        	drivetrain.setDrivetrainSpeed(0.65);
         	drivetrain.slowTurn();
         	drivetrain.compressorOn();
         }

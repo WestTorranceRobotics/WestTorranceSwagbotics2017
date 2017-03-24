@@ -6,22 +6,22 @@ import edu.wpi.first.wpilibj.command.Command;
 public class HangerHangReverse extends Command {
 
     public HangerHangReverse() {
-        requires(Robot.hanger);
+        requires(Robot.hanger);					/* Uses the Hanger Subsystem */
     }
 
     protected void initialize() {
     }
 
     protected void execute() {
-    	Robot.hanger.setHangerPower(1);
+    	Robot.hanger.setHangerPower(1);			/* Run the hanger in reverse */
     }
 
     protected boolean isFinished() {
-    	return false;
+    	return false;							/* While held, scheduler will handle this */
     }
 
     protected void end() {
-    	Robot.hanger.stop();
+    	Robot.hanger.stop();					/* Stop the hanger */
     }
 
     protected void interrupted() {

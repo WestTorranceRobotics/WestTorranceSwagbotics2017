@@ -6,18 +6,18 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Shooter extends Subsystem {
 
-    private CANTalon leftShootermotor = RobotMap.shooterLeftShooterMotor;
+    private CANTalon leftShootermotor = RobotMap.shooterLeftShooterMotor;			/* the shooter motors */
     private CANTalon centerShootermotor = RobotMap.shooterCenterShooterMotor;
     private CANTalon rightShootermotor = RobotMap.shooterRightShooterMotor;
     
-	public int shootingSpeedLeft = -16200;
+	public int shootingSpeedLeft = -16200;											/* Each shooter's velocity setpoint */
 	public int shootingSpeedCenter = -16600;
 	public int shootingSpeedRight = -16600;
 	
     public void initDefaultCommand() {
     }
     
-    public void setLeftShooter(double speed) {
+    public void setLeftShooter(double speed) {										/* these next three methods set their respective motor's speed or setpoint */
     	leftShootermotor.set(speed);
     }
     
@@ -29,13 +29,13 @@ public class Shooter extends Subsystem {
     	rightShootermotor.set(speed);
     }
         
-    public void setControlMode(int mode) {
+    public void setControlMode(int mode) {											/* set the control mode of all three mtotors */
     	leftShootermotor.setControlMode(mode);
     	centerShootermotor.setControlMode(mode);
     	rightShootermotor.setControlMode(mode);
     }
     
-    public double getLeftVelocity() {
+    public double getLeftVelocity() {												/* The next three methods are getters for their respective motor's velocity */
     	return leftShootermotor.getEncVelocity();
     }
     
@@ -47,7 +47,7 @@ public class Shooter extends Subsystem {
     	return rightShootermotor.getEncVelocity();
     }
     
-    public int getShootingSpeedLeft() {
+    public int getShootingSpeedLeft() {												/* The next three methods are getters for the respective motor's velocity setpoint */
     	return shootingSpeedLeft;
     }
     
@@ -59,9 +59,9 @@ public class Shooter extends Subsystem {
     	return shootingSpeedRight;
     }
     
-    public double getLeftCurrent() {
-    	return leftShootermotor.getOutputCurrent();
-    }
+    public double getLeftCurrent() {												/* These three methods are getters for the respective motor's current load */
+    	return leftShootermotor.getOutputCurrent();									/* was going to use to make graphs to tune PID but couldn't get writing */
+    }																				/* numbers to text files to work so it was all for naught */
     
     public double getCenterCurrent() {
     	return centerShootermotor.getOutputCurrent();
@@ -71,7 +71,7 @@ public class Shooter extends Subsystem {
     	return rightShootermotor.getOutputCurrent();
     }
     
-    public void setBrakeFalse() {
+    public void setBrakeFalse() {													/* Set each motor to coast mode */
     	leftShootermotor.enableBrakeMode(false);
     	centerShootermotor.enableBrakeMode(false);
     	rightShootermotor.enableBrakeMode(false);

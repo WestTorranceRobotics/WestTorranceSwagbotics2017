@@ -8,26 +8,26 @@ public class AutoDriveByPID extends Command {
 	public double distance = 0;
 
     public AutoDriveByPID(double distance) {
-        requires(Robot.drivetrain);
-        this.distance = distance;
+        requires(Robot.drivetrain);																	/* Uses the drivetrain */		
+        this.distance = distance;																	/* Pass distance to global distance (inches) */
     }
     
     protected void initialize() {
-    	Robot.drivetrain.resetAllOutputs();
-    	Robot.encoderPIDHandler.setSetpoint(Robot.encoderPIDHandler.getLeft() + distance);
-    	Robot.encoderPIDHandler.enable();
+    	Robot.drivetrain.resetAllOutputs();															/* Reset PID outputs */
+    	Robot.encoderPIDHandler.setSetpoint(Robot.encoderPIDHandler.getLeft() + distance);			/* Set the setpoint to where we are + where we wanna go */				
+    	Robot.encoderPIDHandler.enable();															/* Enable the PID */
     }
 
     protected void execute() {
-    	Robot.drivetrain.setPIDOutputs();
+    	Robot.drivetrain.setPIDOutputs();															/* Use the PID outputs to set motor powers to the drivetrain */
     }
 
     protected boolean isFinished() {
-        return Robot.encoderPIDHandler.onTarget();
+        return Robot.encoderPIDHandler.onTarget();													/* Stop when we're there */
     }
 
     protected void end() {
-    	Robot.encoderPIDHandler.disable();
+    	Robot.encoderPIDHandler.disable();															/* Turn off PID, stop the drivetrain, and reset PID outputs */
     	Robot.drivetrain.stop();
     	Robot.drivetrain.resetAllOutputs();
     }
