@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutonomousGearForRedLeft extends CommandGroup {
 
     public AutonomousGearForRedLeft() {
-    	//move up beginning from center of wall
     	addSequential(new AutoDriveByEncoder(90, 0.5));
     	addSequential(new AutoTurnWithGyro(30));
     	addSequential(new AutoDriveByEncoder(35, 0.5));

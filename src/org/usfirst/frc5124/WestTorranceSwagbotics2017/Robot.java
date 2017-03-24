@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousFuelForBlue;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousFuelForRed;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousGearBasicStraight;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousGearForBlueLeft;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousGearForBlueRight;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousGearForRedLeft;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousGearForRedRight;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousPassBaseLine;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.subsystems.*;
 
@@ -50,7 +50,7 @@ public class Robot extends IterativeRobot {
         oi = new OI();
         
        CameraServer.getInstance().startAutomaticCapture();								/* Start usb camera on RoboRio */
-       
+       //adding good juju
        /*                                      
                                                   ___  ____    _________  ____  ___ 
                                                  / _ \/ __ \  / ___/ __ \/ __ \/ _ \
@@ -81,10 +81,67 @@ public class Robot extends IterativeRobot {
   			  	                            / _ )/  _/ ___/  / __/ _ \/ __/ _ \  
  		   	                               / _  |/ // (_ /  _\ \/ ___/ _// // /  
 		  	                              /____/___/\___/  /___/_/  /___/____/  
+		  	                               
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%@@@@@@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  %%%%%%%%%%%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    %%%%%%%%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      %%%%%%%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%%%%%%%%    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       %%%%%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%%%%       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%         %%%%%@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%          %%%@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%/          (%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%          %%%@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%            #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*          %@@@@@@@@@@@@@@@@@@@@@@@@@%%%%,            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%          %@@@@@@@@@@@@@@@@@@@@@@@@%%%             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%          @@@@@@@@@@@@@@@@@@@@@@@@%             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%         @@@@@@@@@@@@@@@@@@@@@@%           /%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%        ,@@@@@@@@@@@@@@@,,,,           %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     ,,,,,,,,,,,,,,,,,,,        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%@@@@@    ,,,,,,,,,,,,,,,*@     @@@@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%@@@@@@@@%@@@@@@@@@@@@@@@@@.@@@@@@@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  @@@@@@@@@@@@@@@@@@@@@@@  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   .&&&&&,@@@@@@@@@&&&&&&&   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   &&     &&       &&      &   (%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   &&    @@ &&&&&&&&& /@    &&   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#   #&    .@ &&      &  @    &&   ,%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     ,&&   &&&        &&(  &    .%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                %%%%%%%%%%%%%****%%%%%%%%**%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                             %%%%%%%%%%%%%%*****%%%%%******%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                        %%%%%%%%%**%%%%%%****************%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#,..,/#%%%%%%%%%%%%%%%%%#************************%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%**********%%%%%%%%%%(****%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%((((((((%%%((((%%%(((((#((%((((((((((((((((((%(((((((,,,,/((***%%%%%%%%%%%%**********%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      %%%    (%%      %%%                  %%%              **%%%%%%%%(***%********%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   ,%%%%%%%%%%    %%********%%%%%%%***%%%%%****%%%%*****%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% /%%%%%%%%%%%%%%  %%*******%%%%%%%%%***%%****%%%%%%%,..%%%%%%,%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     %%%    (%%    (%%%%%%%%%%     %%%%%%%%%%%    *%%%,    %%*(%/(%%%%%%%%%...........%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     %%%    (%%    (%%%%%%%%%%     %%%%%%%%%%%             ***%%%**(%%#.......**.,**...%%(%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     %%%    (%%    (%%%%%%%%%%     %%%%%%%%%%%            %%%%**%%*****....%****.,**%%.....%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     %%%    (%%    (%%%%%%%%%%     %%%%%%%%%%%    **%%,   %%%***%%%%%%**..******.***%%%(.(%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     %%%    (%%    (%%%%%%%%%%     %%%%%%%%%%*    ***%,   ,%%***%%%%.....%*....,./.....%...*%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     %%%    (%%    (%%%%%%%%%%     %%%%%%%%%%*    ****.   ,%%**%%%%%....,****%%,%.%%%%%%....,%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     %%%    (%%    (%%%%%%%%%%     %%%%%%%%%%%    %%**    ,%(**%%%%%%%%..****..%%..%%%%/.%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                   /%%%%%%%%%%     %%%%%%%%%%%    %%%*     ****%%%****,...*,.***%%..%%....%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                  %%%%%%%%%%/      %%%%%%%%%     %%(*     **********,......***%%%%........%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%(              #%%%%%%%%%%          %%%%%.      %%**       %%*******%%%%%.........,%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#%%%%%%%%%******%%%%#...%%%...(%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%/#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		  	                               
+		  	                               
+		  	                               
         */
     }
 
-    public void disabledInit(){															/* Run once before the robot is disabled */
+    public void disabledInit(){															/* Runs once before the robot is disabled */
     }
 
     public void disabledPeriodic() {													/* Run iteratively when the robot is diabled */
@@ -94,21 +151,21 @@ public class Robot extends IterativeRobot {
         
         if(oi.getAuto4()) {																/* Check if this switch is on before checking the other ones */
     		if(oi.getAuto3() && oi.getAuto1() && oi.getAuto2()) {						/* This giant monstrosity just checks all possible combinations */
-    			SmartDashboard.putString("Auto", "Base Line Red");						/* of the switches for setting different autos on the fly by the */
+    			SmartDashboard.putString("Auto", "Base Line");							/* of the switches for setting different autos on the fly by the */
     		} else if(oi.getAuto3() && oi.getAuto1() && !oi.getAuto2()) {				/* drivertstation. It is nested becuase if the 4th switch is not flipped */
-    			SmartDashboard.putString("Auto", "Gear Left Red");						/* auto is not run so it is set to null. Note that this only displays */
+    			SmartDashboard.putString("Auto", "Gear Left");							/* auto is not run so it is set to null. Note that this only displays */
     		} else if(oi.getAuto3() && !oi.getAuto1() && oi.getAuto2()) {				/* the state to the SmartDashboard, and doesn't actually set the state */
-    			SmartDashboard.putString("Auto", "Gear Right Red");						/* of autonomousCammand */
+    			SmartDashboard.putString("Auto", "Gear Right");							/* of autonomousCammand */
     		} else if(oi.getAuto3() && !oi.getAuto1() && !oi.getAuto2()) {
-    			SmartDashboard.putString("Auto", "Gear Straight Red");
+    			SmartDashboard.putString("Auto", "Gear Straight");
     		} else if(!oi.getAuto3() && oi.getAuto1() && oi.getAuto2()) {
-    			SmartDashboard.putString("Auto", "Base Line Blue");
+    			SmartDashboard.putString("Auto", "Fuel For Blue");
     		} else if(!oi.getAuto3() && oi.getAuto1() && !oi.getAuto2()) {
-    			SmartDashboard.putString("Auto", "Gear Left BLue");
+    			SmartDashboard.putString("Auto", "Fuel For Red");
     		} else if(!oi.getAuto3() && !oi.getAuto1() && oi.getAuto2()) {
-    			SmartDashboard.putString("Auto", "Gear Right Blue");
+    			SmartDashboard.putString("Auto", "Null");
     		} else if(!oi.getAuto3() && !oi.getAuto1() && !oi.getAuto2()) {
-    			SmartDashboard.putString("Auto", "Gear Straight Blue");
+    			SmartDashboard.putString("Auto", "Null");
     		}
     	} else {
     		SmartDashboard.putString("Auto", "Null");
@@ -128,17 +185,17 @@ public class Robot extends IterativeRobot {
     		} else if(oi.getAuto3() && oi.getAuto1() && !oi.getAuto2()) {				/* during auto will not effect the command running during auto */
     			autonomousCommand = new AutonomousGearForRedLeft();						/* This also means that if needed, these switches could be used */
     		} else if(oi.getAuto3() && !oi.getAuto1() && oi.getAuto2()) {				/* to run commands during teleop. */
-    			autonomousCommand = new AutonomousGearForRedRight();
+    			autonomousCommand = new AutonomousGearForBlueRight();
     		} else if(oi.getAuto3() && !oi.getAuto1() && !oi.getAuto2()) {
     			autonomousCommand = new AutonomousGearBasicStraight();
     		} else if(!oi.getAuto3() && oi.getAuto1() && oi.getAuto2()) {
-    			autonomousCommand = new AutonomousPassBaseLine();
+    			autonomousCommand = new AutonomousFuelForBlue();
     		} else if(!oi.getAuto3() && oi.getAuto1() && !oi.getAuto2()) {
-    			autonomousCommand = new AutonomousGearForBlueLeft();
+    			autonomousCommand = new AutonomousFuelForRed();
     		} else if(!oi.getAuto3() && !oi.getAuto1() && oi.getAuto2()) {
-    			autonomousCommand = new AutonomousGearForBlueRight();
+    			autonomousCommand = null;
     		} else if(!oi.getAuto3() && !oi.getAuto1() && !oi.getAuto2()) {
-    			autonomousCommand = new AutonomousGearBasicStraight();
+    			autonomousCommand = null;
     		}
     	} else {
     		autonomousCommand = null;
@@ -166,7 +223,7 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
         
         if(oi.getDriver().getRawButton(5)) {											/* Check the fifth button on first driver, go fast if its pressed and stop */
-        	drivetrain.setDrivetrainSpeed(1);														/* compressing to save battery so the robot doesn't die. Not necessarily */
+        	drivetrain.setDrivetrainSpeed(1);											/* compressing to save battery so the robot doesn't die. Not necessarily */
         	drivetrain.fastTurn();														/* needed, we just had battery problems this year becuase we went sanic fast */
         	drivetrain.compressorOff();													/* Go slow if 4th button is pressed */
         } else if(oi.getDriver().getRawButton(8)) {
@@ -184,15 +241,15 @@ public class Robot extends IterativeRobot {
         	shooter.shootingSpeedLeft -= 200;											/* set point. */
         	shooter.shootingSpeedCenter -= 200;
         	shooter.shootingSpeedRight -= 200;
-        } else if((oi.getDriver().getPOV(0) == 0) && !povDownIsPressed) {
-        	povDownIsPressed = true;
-        	povUpIsPressed = false;
-        	shooter.shootingSpeedLeft += 200;
-        	shooter.shootingSpeedCenter += 200;
-        	shooter.shootingSpeedRight += 200;
-        } else if(oi.getDriver().getRawButton(8)) {
-        	povUpIsPressed = false;
-        	povDownIsPressed = false;
+        } else if((oi.getDriver().getPOV(0) == 180) && !povDownIsPressed) {				/* These if conditionals use a method for checking when a button is pressed. */
+        	povDownIsPressed = true;													/* They use a boolean alongside the actual state of the button */
+        	povUpIsPressed = false;														/* The boolean is used to "de-bounce" the button, which means to stop */
+        	shooter.shootingSpeedLeft += 200;											/* it from rapidly pressing the button multiple times even though */
+        	shooter.shootingSpeedCenter += 200;											/* the button was only pressed once. This happens because even */
+        	shooter.shootingSpeedRight += 200;											/* though a driver thinks they press a button quickly, the press */
+        } else if(oi.getDriver().getPOV(0) == -1) {										/* is registered over multiple loops, so the boolean prevents the */
+        	povUpIsPressed = false;														/* conditional from being true more than once over the course of */
+        	povDownIsPressed = false;													/* a single button press, and is reset when the button is released */
         }
         
         if(oi.getDriver().getRawButton(3) && !button3IsPressed) {						/* Reset to the default shooting speeds by resetting the velocity set points */
