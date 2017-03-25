@@ -1,10 +1,9 @@
 package org.usfirst.frc5124.WestTorranceSwagbotics2017;
 
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.GearHolderCloseAndRaise;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.GearHolderOpenAndLower;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class OI {
 	
@@ -76,11 +75,12 @@ public class OI {
         operatorButton13.whileHeld(new FuelInjectorExhaust());					/* When button is held, outtake balls out of robot */
         
         operatorButton14 = new JoystickButton(operator, 14);					/* 14th button on second driver */
-        operatorButton14.whenPressed(new GearHolderForkliftUp());				/* When button is first pressed, raise gear holder to stay inside size constraints */
+        operatorButton14.whenPressed(new GearHolderCloseAndRaise());				/* When button is first pressed, raise gear holder to stay inside size constraints */
         operatorButton14.whileHeld(new HangerHang());							/* While button is held, run hanger */
         
         operatorButton15 = new JoystickButton(operator, 15);					/* 15th button on second driver */
         operatorButton15.whenPressed(new GearHolderOpenGearHolder());			/* When button is first pressed, let go of gear */
+        
 
     }
         

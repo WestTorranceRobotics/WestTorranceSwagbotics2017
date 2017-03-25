@@ -14,7 +14,7 @@ public class Drivetrain extends Subsystem {
 	public double direction = 1;													/* Direction multiplier for the reversing of the front */
     public double turnSpeed = 0.75;													/* percentage speed to turn at */
     
-    public double gyroOutput = 0;													/* PID outputs for the cascading(?) PID subsytems. Essentially, the outputs*/
+    public double gyroOutput = 0;													/* PID outputs for the cascading PID subsytems. Essentially, the outputs*/
     public double encoderOutput = 0;												/* of the two PID handlers are passed to these variables and then set to */
     																				/* drivetrain out puts so that they can both be run at the same time or */
     public Drivetrain() {															/* Independently of each other */

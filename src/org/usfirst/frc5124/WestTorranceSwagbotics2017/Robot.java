@@ -1,5 +1,6 @@
 package org.usfirst.frc5124.WestTorranceSwagbotics2017;
 
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Timer;
@@ -7,6 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutoStopAuto;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousFuelForBlue;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousFuelForRed;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousGearBasicStraight;
@@ -17,8 +19,12 @@ import org.usfirst.frc5124.WestTorranceSwagbotics2017.subsystems.*;
 
 public class Robot extends IterativeRobot {
 
-    Command autonomousCommand;															/* command run in auto */	
+    Command autonomousCommand;															/* command run in auto */	   
+    Command stopAuto;
 
+    UsbCamera cameraOne;
+    UsbCamera cameraTwo;
+    
     public static OI oi;																/* Declaration of all subsystem objects */ 
     public static Agitator agitator;
     public static GearHolder gearHolder;
@@ -49,7 +55,18 @@ public class Robot extends IterativeRobot {
         
         oi = new OI();
         
-       CameraServer.getInstance().startAutomaticCapture();								/* Start usb camera on RoboRio */
+       cameraOne = CameraServer.getInstance().startAutomaticCapture(0);								/* Start usb camera on RoboRio */
+       cameraOne.setFPS(15);
+       cameraOne.setResolution(320, 240);
+       
+       cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
+       cameraTwo.setFPS(15);
+       cameraTwo.setResolution(320, 240);
+       
+       stopAuto = new AutoStopAuto();
+       
+       gyroPIDHandler.calibrate();
+       
        //adding good juju
        /*                                      
                                                   ___  ____    _________  ____  ___ 
@@ -116,9 +133,9 @@ public class Robot extends IterativeRobot {
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%**********%%%%%%%%%%(****%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%((((((((%%%((((%%%(((((#((%((((((((((((((((((%(((((((,,,,/((***%%%%%%%%%%%%**********%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%      %%%    (%%      %%%                  %%%              **%%%%%%%%(***%********%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   ,%%%%%%%%%%    %%********%%%%%%%***%%%%%****%%%%*****%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   ,%%%%%%%%%%    %%********%%%%%%%***%%%%%****%%%%*****%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% /%%%%%%%%%%%%%%  %%*******%%%%%%%%%***%%****%%%%%%%,..%%%%%%,%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     %%%    (%%    (%%%%%%%%%%     %%%%%%%%%%%    *%%%,    %%*(%/(%%%%%%%%%...........%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     %%%    (%%    (%%%%%%%%%%     %%%%%%%%%%%    *%%%,    %%*(%/(%%%%%%%%%...........%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     %%%    (%%    (%%%%%%%%%%     %%%%%%%%%%%             ***%%%**(%%#.......**.,**...%%(%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     %%%    (%%    (%%%%%%%%%%     %%%%%%%%%%%            %%%%**%%*****....%****.,**%%.....%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     %%%    (%%    (%%%%%%%%%%     %%%%%%%%%%%    **%%,   %%%***%%%%%%**..******.***%%%(.(%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -136,7 +153,36 @@ public class Robot extends IterativeRobot {
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		  	                               
-		  	                               
+		  	                  				____                                   __  ___      
+  										   / __/__  ___  ___  ___ ___  _______ ___/ / / _ )__ __
+ 										  _\ \/ _ \/ _ \/ _ \(_-</ _ \/ __/ -_) _  / / _  / // /
+										 /___/ .__/\___/_//_/___/\___/_/  \__/\_,_/ /____/\_, / 
+   											/_/                                          /___/                                                                                                     
+		  	                                                                                                                    
+                                 `.                                                                                                                                                                     
+                              .+/.                                                                                                                                                                      
+               `-:::--`    `/yo`                                                                                                                                                                        
+          `/syso+/::/+osyssmo`                                                                                                                                                                          
+        -yy/`          :hNsyy-                                    
+      .hs`           /dMs`  .sh.                           -dMMMMMMMMMMMMMMMMMMN/     :ymMMMMMMMMMMMMMMMMMh`     sMMMMMMMMMMMMMMMMy`   /NMMMMMMN+    -mMMMMMMm      +NMMMN+    /ymMMMMMMMMMMMMMMMMMh    
+     /d-           /mMh.      -m:                         oMMMMMMMmssssMMMMMMMMN:   -dMMMMMMMhsssdMMMMMMMMh`   :mMMMMMMMyssssssss/   .hMMMMMMMh.    sMMMMMMMMM/   .hMMMMh.   -mMMMMMMMhsssmMMMMMMMMy    
+    :m`          :dMm:         .m:                      -mMMMMMMMy```-hMMMMMMMh.   oMMMMMMMm:   /NMMMMMMN+    yMMMMMMM              +NMMMMMMN+    :mMMMMMMMMMMd  +NMMMN/    sMMMMMMMm-       
+   `m:         .yMMo            /m                     sMMMMMMMMMMMMMMMMMMMms-   -mMMMMMMMs`  .hMMMMMMMh.   :mMMMMMMMMMMMMMMMm:   .hMMMMMMMh.    sMMMMMMMMMMMMM+dMMMMh.   :mMMMMMMMo        
+   :m         +NMd-              N-                  -mMMMMMMMyyyymMMMMMMMm     sMMMMMMMm:   +NMMMMMMN/    yMMMMMMMdyyyyyyyyo`   +NMMMMMMN/    :mMMMMs.MMMMMMMMMMMMN/    yMMMMMMMd-  ooMMMMMMMMMN::      
+   /d       .dMMs                m:                 sMMMMMMMm-   +NMMMMMMN/   -mMMMMMMMs`  .hMMMMMMMh`   /NMMMMMMMo            .dMMMMMMMy`    yMMMMm-  yMMMMMMMMMMy`   :mMMMMMMMo   -dMMMMMMMy--`       
+   -N`     /NMN:         /-     `N.               :mMMMMMMMMNmmmNMMMMMMMs`   :MMMMMMMMMNmmNMMMMMMMm/    yMMMMMMMMNmmmmmmm+    +NMMMMMMN/    :NMMMMo    .MMMMMMMMN/    /MMMMMMMMMNmmNMMMMMMMd:           
+    ho    sMMd.           yms:` sy               /ddddddddddddddddddhs/`     `sdddddddddddddddhyo-     hdddddddddddddddh:   `sdddddddy`    +ddddh-      sddddddy`     `sdddddddddddddddhyo-             
+    `m/ `hMMh`             yMMMdM+-`~                                                                                                                                                                    
+     `hsdMMy                sMMMMMMMmhyo+:-.~                                                                                                                                                           
+      `mMMh                `omMMMMMMMMMMNNNNmmdhyso+//:-.                                                                                                                                               
+      hMMmyy+-`        `-+ys: .-..```                                                                                                                                                                   
+     /MMM-  -+ssssssssss+-                                                                                                                                                                              
+     mMMd        `.                                                                                                                                                                                     
+    .MMMm`    .+s:                                                                                                                                                                                      
+    `NMMMNhyhmh:                                                                                                                                                                                        
+     :dMMMmy/`                                                                                                                                                                                          
+        `                                                                                                
+               
 		  	                               
         */
     }
@@ -144,7 +190,7 @@ public class Robot extends IterativeRobot {
     public void disabledInit(){															/* Runs once before the robot is disabled */
     }
 
-    public void disabledPeriodic() {													/* Run iteratively when the robot is diabled */
+    public void disabledPeriodic() {													/* Run iteratively when the robot is disabled */
         
     	Scheduler.getInstance().run();													/* This is at the start of every mode. The scheduler is the man behind the */
         																				/* curtain that runs commands off buttons and default commands */
@@ -176,6 +222,7 @@ public class Robot extends IterativeRobot {
     	
     	drivetrain.setDrivetrainSpeed(1);												/* Sets max output of the drivetrain to 100% */
     	drivetrain.frontAndCenter();													/* Sets the normal front of the robot */
+    	drivetrain.fastTurn();
     	
     	encoderPIDHandler.resetEncoders();												/* Reset the Encoders */
         
@@ -215,8 +262,10 @@ public class Robot extends IterativeRobot {
     	Robot.gyroPIDHandler.disable();													/* Stop any PID loops from auto and reset the PID outputs*/
     	Robot.encoderPIDHandler.disable();
     	Robot.drivetrain.resetAllOutputs();
+    	Robot.encoderPIDHandler.resetEncoders();
     	
         if (autonomousCommand != null) autonomousCommand.cancel();						/* Stop the auto command, can be removed if you don't want to stop auto */ 				
+        //stopAuto.start();
     }
 
     public void teleopPeriodic() {

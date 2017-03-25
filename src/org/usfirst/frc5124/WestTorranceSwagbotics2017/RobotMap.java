@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.Encoder;
 
 public class RobotMap {
@@ -80,11 +81,11 @@ public class RobotMap {
     	///GEAR HOLDER HARDWARE///
     	//////////////////////////
     	
-    	gearHolderHolderSolenoid = new DoubleSolenoid(0, 2, 7);											/* Double Solenoid On PCM 0 (CAN ID) on ports 2 and 7 */			
-    	//LiveWindow.addActuator("Gear Holder", "Holder Solenoid", gearHolderHolderSolenoid);
+    	gearHolderHolderSolenoid = new DoubleSolenoid(0, 3, 6);											/* Double Solenoid On PCM 0 (CAN ID) on ports 2 and 7 */			
+    	LiveWindow.addActuator("Gear Holder", "Holder Solenoid", gearHolderHolderSolenoid);
     	
-    	gearHolderForkliftSolenoid = new DoubleSolenoid(0, 3, 6);										/* Double Solenoid On PCM 0 (CAN ID) on ports 3 and 6 */
-    	//LiveWindow.addActuator("Gear Holder", "Pusher Solenoid", gearHolderPusherSolenoid);
+    	gearHolderForkliftSolenoid = new DoubleSolenoid(0, 2, 7);										/* Double Solenoid On PCM 0 (CAN ID) on ports 3 and 6 */
+    	LiveWindow.addActuator("Gear Holder", "Forklift Solenoid", gearHolderForkliftSolenoid);
     	
     	
     	////////////////////////////
@@ -154,12 +155,12 @@ public class RobotMap {
     	drivetrainCompressor = new Compressor(0);														/* Compressor on PCM 0, not needed for it to run */
     	
     	drivetrainLeftEncoder = new Encoder(8, 9);														/* Left  encoder on DIO ports 8 and 9 */
-    	drivetrainLeftEncoder.setDistancePerPulse(0.0522509771309771);									/* Set the distance per encoder tick so it returns inches */
-    	//LiveWindow.addSensor("Left", "Left", drivetrainLeftEncoder);
+    	drivetrainLeftEncoder.setDistancePerPulse(0.0526990913949759);									/* Set the distance per encoder tick so it returns inches */
+    	LiveWindow.addSensor("Left", "Left", drivetrainLeftEncoder);
     	
     	drivetrainRightEncoder = new Encoder(6, 7);														/* Right encoder on DIO ports 6 and 7 */
-    	drivetrainRightEncoder.setDistancePerPulse(0.0522509771309771);									/* Set the distance per encoder tick so it returns inches */
-    	//LiveWindow.addSensor("Right", "Right", drivetrainRightEncoder);
+    	drivetrainRightEncoder.setDistancePerPulse(0.0526990913949759);									/* Set the distance per encoder tick so it returns inches */
+    	LiveWindow.addSensor("Right", "Right", drivetrainRightEncoder);
     	
     	drivetrainGyro = new ADXRS450_Gyro();															/* Gyro plugged in the default SPI port (there's only one) */
         //LiveWindow.addSensor("Gyro", "Gyro", drivetrainGyro);

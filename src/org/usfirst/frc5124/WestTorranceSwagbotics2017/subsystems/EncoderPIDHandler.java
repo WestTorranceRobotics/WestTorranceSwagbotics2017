@@ -30,7 +30,7 @@ public class EncoderPIDHandler extends PIDSubsystem {
     	Robot.drivetrain.getEncoderOutput(output);				/* subsystem to be used later when the setPIDOutputs() method is called */
     }
     
-    public void resetEncoders() {								/* resets encoders */
+    public void resetEncoders() {								/* resets encoders to 0 */
     	leftEncoder.reset();
     	rightEncoder.reset();
     }
