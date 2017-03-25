@@ -81,6 +81,8 @@ public class OI {
         operatorButton15 = new JoystickButton(operator, 15);					/* 15th button on second driver */
         operatorButton15.whenPressed(new GearHolderOpenGearHolder());			/* When button is first pressed, let go of gear */
         
+        SmartDashboard.putData("Go 3", new AutoDriveByPID(36));
+        SmartDashboard.putData("Go 3 no pid", new AutoDriveByEncoder(36, 0.6));
 
     }
         

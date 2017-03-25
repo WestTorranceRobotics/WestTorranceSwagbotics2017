@@ -265,7 +265,7 @@ public class Robot extends IterativeRobot {
     	Robot.encoderPIDHandler.resetEncoders();
     	
         if (autonomousCommand != null) autonomousCommand.cancel();						/* Stop the auto command, can be removed if you don't want to stop auto */ 				
-        //stopAuto.start();
+        stopAuto.start();
     }
 
     public void teleopPeriodic() {

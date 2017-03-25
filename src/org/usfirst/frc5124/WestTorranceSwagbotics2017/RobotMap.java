@@ -153,6 +153,7 @@ public class RobotMap {
     	/////////////////////////
     	
     	drivetrainCompressor = new Compressor(0);														/* Compressor on PCM 0, not needed for it to run */
+    	drivetrainCompressor.setClosedLoopControl(false);
     	
     	drivetrainLeftEncoder = new Encoder(8, 9);														/* Left  encoder on DIO ports 8 and 9 */
     	drivetrainLeftEncoder.setDistancePerPulse(0.0526990913949759);									/* Set the distance per encoder tick so it returns inches */

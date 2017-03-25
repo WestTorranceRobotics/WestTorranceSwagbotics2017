@@ -23,7 +23,8 @@ public class AutoDriveByPID extends Command {
     }
 
     protected boolean isFinished() {
-        return Robot.encoderPIDHandler.onTarget();													/* Stop when we're there */
+        //return Robot.encoderPIDHandler.onTarget();	
+    	return false;/* Stop when we're there */
     }
 
     protected void end() {
