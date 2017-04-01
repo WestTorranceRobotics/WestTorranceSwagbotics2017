@@ -6,13 +6,14 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutonomousGearForBlueLeft extends CommandGroup {
 
     public AutonomousGearForBlueLeft() {
-    	addSequential(new AutoDriveByEncoder(92, 0.5));
-    	addSequential(new AutoTurnWithGyro(30));
-    	addSequential(new AutoDriveByEncoder(35, 0.5));
-    	addSequential(new AutoTrashDrive(0.6, 3));
-    	addSequential(new AutoTrashDrive(-0.5, 0.75));
+    	//addSequential(new AutoDriveByEncoder(92, 0.5));
+    	addSequential(new AutoDriveByPID(90));
+    	addSequential(new AutoTurnWithGyro(60));
+    	//addSequential(new AutoDriveByEncoder(35, 0.5));
+    	addSequential(new AutoDriveByPID(35));
+    	addSequential(new AutoTrashDrive(0.6, 0.5));
     	addSequential(new GearHolderOpenAndLower());
-    	addSequential(new Wait(1.5));
-    	addSequential(new AutoTrashDrive(-0.5, 1));
+    	addSequential(new Wait(0.6));
+    	addSequential(new AutoTrashDrive(-0.5, 1.5));
     }
 }

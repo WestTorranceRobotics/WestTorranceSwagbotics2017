@@ -3,7 +3,6 @@ package org.usfirst.frc5124.WestTorranceSwagbotics2017;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class OI {
 	
@@ -42,8 +41,6 @@ public class OI {
         ///DRIVER BUTTONS///
         ////////////////////       
         
-        driverButton2 = new JoystickButton(driver, 2);							/* 2nd button on first driver */
-        driverButton2.whenPressed(new DrivetrainReverseFront());				/* When button is first pressed flip drivetrain front */
        
         driverButton7 = new JoystickButton(driver, 7);							/* 7th button on first driver */
         driverButton7.whileHeld(new ShooterTeleopShoot());						/* While button is held, run shooters on PID loop */
@@ -81,8 +78,8 @@ public class OI {
         operatorButton15 = new JoystickButton(operator, 15);					/* 15th button on second driver */
         operatorButton15.whenPressed(new GearHolderOpenGearHolder());			/* When button is first pressed, let go of gear */
         
-        SmartDashboard.putData("Go 3", new AutoDriveByPID(36));
-        SmartDashboard.putData("Go 3 no pid", new AutoDriveByEncoder(36, 0.6));
+     
+        
 
     }
         

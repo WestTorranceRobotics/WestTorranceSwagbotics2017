@@ -104,5 +104,9 @@ public class Drivetrain extends Subsystem {
 	public void setPIDOutputs() {													/* Pass the PID outputs into the arcade drive function to use to drive the robot */
 		robotDrive.arcadeDrive(encoderOutput, gyroOutput);
 	}
+	
+	public void driveStraightPlease(double power) {
+		robotDrive.arcadeDrive(power, gyroOutput);
+	}
 }
 

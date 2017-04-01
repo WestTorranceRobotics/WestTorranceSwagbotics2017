@@ -1,6 +1,5 @@
 package org.usfirst.frc5124.WestTorranceSwagbotics2017;
 
-import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Timer;
@@ -8,23 +7,22 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutnomousTrashGear;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutoStopAuto;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousFuelForBlue;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousFuelForRed;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousGearBasicStraight;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousGearForBlueRight;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousGearForRedLeft;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousLeftGearTrash;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousPassBaseLine;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousTrashBlueBoiler;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousTrashRedBoiler;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.GearHolderCloseAndRaise;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.subsystems.*;
 
 public class Robot extends IterativeRobot {
 
     Command autonomousCommand;															/* command run in auto */	   
     Command stopAuto;
+    Command upboi;
 
-    UsbCamera cameraOne;
-    UsbCamera cameraTwo;
-    
     public static OI oi;																/* Declaration of all subsystem objects */ 
     public static Agitator agitator;
     public static GearHolder gearHolder;
@@ -36,8 +34,8 @@ public class Robot extends IterativeRobot {
     public static EncoderPIDHandler encoderPIDHandler;
     
     public static boolean button3IsPressed;												/* Booleans used for toggling during teleop */
-    public static boolean povUpIsPressed;
-    public static boolean povDownIsPressed;
+    public static boolean button2IsPressed;
+    public static boolean button4IsPressed;
 
     public void robotInit() {															/* Run once when code is first started */
     																					/* (e.g. robot turns on or after deploying code) */ 
@@ -54,16 +52,11 @@ public class Robot extends IterativeRobot {
         encoderPIDHandler = new EncoderPIDHandler();
         
         oi = new OI();
-        
-       cameraOne = CameraServer.getInstance().startAutomaticCapture(0);								/* Start usb camera on RoboRio */
-       cameraOne.setFPS(15);
-       cameraOne.setResolution(320, 240);
-       
-       cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
-       cameraTwo.setFPS(15);
-       cameraTwo.setResolution(320, 240);
        
        stopAuto = new AutoStopAuto();
+       upboi = new GearHolderCloseAndRaise();
+       
+       CameraServer.getInstance().startAutomaticCapture();
        
        gyroPIDHandler.calibrate();
        
@@ -171,7 +164,7 @@ public class Robot extends IterativeRobot {
    :m         +NMd-              N-                  -mMMMMMMMyyyymMMMMMMMm     sMMMMMMMm:   +NMMMMMMN/    yMMMMMMMdyyyyyyyyo`   +NMMMMMMN/    :mMMMMs.MMMMMMMMMMMMN/    yMMMMMMMd-  ooMMMMMMMMMN::      
    /d       .dMMs                m:                 sMMMMMMMm-   +NMMMMMMN/   -mMMMMMMMs`  .hMMMMMMMh`   /NMMMMMMMo            .dMMMMMMMy`    yMMMMm-  yMMMMMMMMMMy`   :mMMMMMMMo   -dMMMMMMMy--`       
    -N`     /NMN:         /-     `N.               :mMMMMMMMMNmmmNMMMMMMMs`   :MMMMMMMMMNmmNMMMMMMMm/    yMMMMMMMMNmmmmmmm+    +NMMMMMMN/    :NMMMMo    .MMMMMMMMN/    /MMMMMMMMMNmmNMMMMMMMd:           
-    ho    sMMd.           yms:` sy               /ddddddddddddddddddhs/`     `sdddddddddddddddhyo-     hdddddddddddddddh:   `sdddddddy`    +ddddh-      sddddddy`     `sdddddddddddddddhyo-             
+    ho    sMMd.           yms:` sy               /ddddddddddddddddddhs/`     `sdddddddddddddddhyo-     hdddddddddddddddh:    sdddddddy`    +ddddh-      sddddddy`     `sdddddddddddddddhyo-             
     `m/ `hMMh`             yMMMdM+-`~                                                                                                                                                                    
      `hsdMMy                sMMMMMMMmhyo+:-.~                                                                                                                                                           
       `mMMh                `omMMMMMMMMMMNNNNmmdhyso+//:-.                                                                                                                                               
@@ -197,24 +190,24 @@ public class Robot extends IterativeRobot {
         
         if(oi.getAuto4()) {																/* Check if this switch is on before checking the other ones */
     		if(oi.getAuto3() && oi.getAuto1() && oi.getAuto2()) {						/* This giant monstrosity just checks all possible combinations */
-    			SmartDashboard.putString("Auto", "Base Line");							/* of the switches for setting different autos on the fly by the */
+    			SmartDashboard.putString("Auto is", "Base Line");							/* of the switches for setting different autos on the fly by the */
     		} else if(oi.getAuto3() && oi.getAuto1() && !oi.getAuto2()) {				/* drivertstation. It is nested becuase if the 4th switch is not flipped */
-    			SmartDashboard.putString("Auto", "Gear Left");							/* auto is not run so it is set to null. Note that this only displays */
+    			SmartDashboard.putString("Auto is", "Gear Left");							/* auto is not run so it is set to null. Note that this only displays */
     		} else if(oi.getAuto3() && !oi.getAuto1() && oi.getAuto2()) {				/* the state to the SmartDashboard, and doesn't actually set the state */
-    			SmartDashboard.putString("Auto", "Gear Right");							/* of autonomousCammand */
+    			SmartDashboard.putString("Auto is", "DONT RUN Gear Right");							/* of autonomousCammand */
     		} else if(oi.getAuto3() && !oi.getAuto1() && !oi.getAuto2()) {
-    			SmartDashboard.putString("Auto", "Gear Straight");
+    			SmartDashboard.putString("Auto is", "Gear Straight");
     		} else if(!oi.getAuto3() && oi.getAuto1() && oi.getAuto2()) {
-    			SmartDashboard.putString("Auto", "Fuel For Blue");
+    			SmartDashboard.putString("Auto is", "Fuel For Blue");
     		} else if(!oi.getAuto3() && oi.getAuto1() && !oi.getAuto2()) {
-    			SmartDashboard.putString("Auto", "Fuel For Red");
+    			SmartDashboard.putString("Auto is", "Fuel For Red");
     		} else if(!oi.getAuto3() && !oi.getAuto1() && oi.getAuto2()) {
-    			SmartDashboard.putString("Auto", "Null");
+    			SmartDashboard.putString("Auto is", "Null");
     		} else if(!oi.getAuto3() && !oi.getAuto1() && !oi.getAuto2()) {
-    			SmartDashboard.putString("Auto", "Null");
+    			SmartDashboard.putString("Auto is", "Null");
     		}
     	} else {
-    		SmartDashboard.putString("Auto", "Null");
+    		SmartDashboard.putString("Auto is", "Null");
     	}    
     }
 
@@ -232,13 +225,13 @@ public class Robot extends IterativeRobot {
     		} else if(oi.getAuto3() && oi.getAuto1() && !oi.getAuto2()) {				/* during auto will not effect the command running during auto */
     			autonomousCommand = new AutonomousGearForRedLeft();						/* This also means that if needed, these switches could be used */
     		} else if(oi.getAuto3() && !oi.getAuto1() && oi.getAuto2()) {				/* to run commands during teleop. */
-    			autonomousCommand = new AutonomousGearForBlueRight();
+    			autonomousCommand = new AutonomousLeftGearTrash();
     		} else if(oi.getAuto3() && !oi.getAuto1() && !oi.getAuto2()) {
-    			autonomousCommand = new AutonomousGearBasicStraight();
+    			autonomousCommand = new AutnomousTrashGear();
     		} else if(!oi.getAuto3() && oi.getAuto1() && oi.getAuto2()) {
-    			autonomousCommand = new AutonomousFuelForBlue();
+    			autonomousCommand = new AutonomousTrashBlueBoiler();
     		} else if(!oi.getAuto3() && oi.getAuto1() && !oi.getAuto2()) {
-    			autonomousCommand = new AutonomousFuelForRed();
+    			autonomousCommand = new AutonomousTrashRedBoiler();
     		} else if(!oi.getAuto3() && !oi.getAuto1() && oi.getAuto2()) {
     			autonomousCommand = null;
     		} else if(!oi.getAuto3() && !oi.getAuto1() && !oi.getAuto2()) {
@@ -247,6 +240,7 @@ public class Robot extends IterativeRobot {
     	} else {
     		autonomousCommand = null;
     	}
+    	
     	
     	if (autonomousCommand != null) autonomousCommand.start();						/* Run the auto command if it isn't null */
    
@@ -258,7 +252,6 @@ public class Robot extends IterativeRobot {
     }
 
     public void teleopInit() {															/* Runs once right before teleop starts */
-    	
     	Robot.gyroPIDHandler.disable();													/* Stop any PID loops from auto and reset the PID outputs*/
     	Robot.encoderPIDHandler.disable();
     	Robot.drivetrain.resetAllOutputs();
@@ -284,21 +277,23 @@ public class Robot extends IterativeRobot {
         	drivetrain.compressorOn();
         }
         
-        if((oi.getDriver().getPOV(0) == 0) && !povUpIsPressed) {						/* Check the POV on first driver (D-Pad). It is measured in degrees */	
-        	povUpIsPressed = true;														/* so 0 is up and 180 is down. Speed up the shooters when up is pressed */
-        	povDownIsPressed = false;													/* and slow it when down is pressed. This is done by changing the velocity */
-        	shooter.shootingSpeedLeft -= 200;											/* set point. */
-        	shooter.shootingSpeedCenter -= 200;
-        	shooter.shootingSpeedRight -= 200;
-        } else if((oi.getDriver().getPOV(0) == 180) && !povDownIsPressed) {				/* These if conditionals use a method for checking when a button is pressed. */
-        	povDownIsPressed = true;													/* They use a boolean alongside the actual state of the button */
-        	povUpIsPressed = false;														/* The boolean is used to "de-bounce" the button, which means to stop */
-        	shooter.shootingSpeedLeft += 200;											/* it from rapidly pressing the button multiple times even though */
-        	shooter.shootingSpeedCenter += 200;											/* the button was only pressed once. This happens because even */
-        	shooter.shootingSpeedRight += 200;											/* though a driver thinks they press a button quickly, the press */
-        } else if(oi.getDriver().getPOV(0) == -1) {										/* is registered over multiple loops, so the boolean prevents the */
-        	povUpIsPressed = false;														/* conditional from being true more than once over the course of */
-        	povDownIsPressed = false;													/* a single button press, and is reset when the button is released */
+        if((oi.getDriver().getRawButton(4)) && !button4IsPressed) {						/* Check the POV on first driver (D-Pad). It is measured in degrees */	
+        	button4IsPressed = true;														/* and slow it when down is pressed. This is done by changing the velocity */
+        	shooter.shootingSpeedLeft -= 400;											/* set point. */
+        	shooter.shootingSpeedCenter -= 400;
+        	shooter.shootingSpeedRight -= 400;											//TODO change these comments
+        } else if(!oi.getDriver().getRawButton(4)) {
+        	button4IsPressed = false;
+        }
+        
+        
+        if(oi.getDriver().getRawButton(2) && !button2IsPressed) {				/* These if conditionals use a method for checking when a button is pressed. */
+        	button2IsPressed = true;													/* They use a boolean alongside the actual state of the button */
+        	shooter.shootingSpeedLeft += 400;											/* it from rapidly pressing the button multiple times even though */
+        	shooter.shootingSpeedCenter += 400;											/* the button was only pressed once. This happens because even */
+        	shooter.shootingSpeedRight += 400;											/* though a driver thinks they press a button quickly, the press */
+        } else if(!oi.getDriver().getRawButton(2)) {										/* is registered over multiple loops, so the boolean prevents the */
+        	button2IsPressed = false;														/* conditional from being true more than once over the course of */
         }
         
         if(oi.getDriver().getRawButton(3) && !button3IsPressed) {						/* Reset to the default shooting speeds by resetting the velocity set points */
@@ -310,10 +305,14 @@ public class Robot extends IterativeRobot {
         	button3IsPressed = false;
         }
         
+        SmartDashboard.putNumber("l", encoderPIDHandler.getLeft());
+        SmartDashboard.putNumber("r", encoderPIDHandler.getRight());
+        
         Timer.delay(0.005);																/* Wait for motors to update or something? Maybe not needed */       
     }
     
     public void testPeriodic() {														/* Runs iteratively during the test period. Doesn't happen during matches */
         LiveWindow.run();																/* Runs the livewindow */
+        
     }
 }

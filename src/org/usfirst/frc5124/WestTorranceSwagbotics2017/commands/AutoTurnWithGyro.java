@@ -13,6 +13,7 @@ public class AutoTurnWithGyro extends Command {
     }
 
     protected void initialize() {
+    	Robot.gyroPIDHandler.getPIDController().setPID(0.1, 0.05, 0.56);
     	Robot.drivetrain.resetAllOutputs();													/* Reset PID outputs */
     	Robot.gyroPIDHandler.setSetpoint(degrees + Robot.gyroPIDHandler.getGyro());			/* Set the setpoint to where we are + where we wanna go */
     	Robot.gyroPIDHandler.enable();														/* Enable the PID loop */

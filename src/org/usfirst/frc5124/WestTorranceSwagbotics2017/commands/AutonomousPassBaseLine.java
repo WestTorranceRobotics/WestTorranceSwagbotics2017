@@ -5,6 +5,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutonomousPassBaseLine extends CommandGroup {
 
     public AutonomousPassBaseLine() {
-        addSequential(new AutoTrashDrive(0.6, 4));
+        addSequential(new AutoDriveStraightTrash(0.6, 3));
     }
 }
