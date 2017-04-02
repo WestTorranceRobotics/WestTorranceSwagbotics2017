@@ -6,21 +6,17 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutonomousFuelForBlue extends CommandGroup {
 
     public AutonomousFuelForBlue() {
-    	//move up ~2/3 or so the distance it takes to reach the base line starting from right next to the boiler
-    	//addSequential(new AutoDriveByEncoder(100, -0.6));
-    	addSequential(new AutoDriveByPID(-100));
-    	addSequential(new Wait(1));
-    	//addSequential(new AutoDriveByEncoder(50, 0.6));
-    	addSequential(new AutoDriveByPID(50));
-    	//Turn towards boiler
-    	addSequential(new AutoTurnWithGyro(45));
-    	//move towards boiler
-    	//addSequential(new AutoDriveByEncoder(40, 0.6));
-    	addSequential(new AutoDriveByPID(40));
-    	addSequential(new AutoTrashDrive(0.6, 1.5));
-    	//turn on conveyor and shooters for rest of auto
-    	addSequential(new AgitatorAutoAgitate());
-    	addSequential(new FuelInjectorConveyorToShootersAuto());
+    	addSequential(new AutoDriveByPID(-100));						/* Drive to the base line by PID */
+    	addSequential(new Wait(1));										/* Wait so refs count it and gimme those 5 points */	
+    	
+    	addSequential(new AutoDriveByPID(50));							/* Drive back to the turn point by PID */					
+    	addSequential(new AutoTurnWithGyro(45));						/* Tune to be perpendicular to the boiler */
+    	
+    	addSequential(new AutoDriveByPID(40));							/* Drive to the boiler */
+    	addSequential(new AutoTrashDrive(0.6, 1.5));					/* make sure we slam the boiler wall and are straight */
+    	
+    	addSequential(new AgitatorAutoAgitate());						/* Turn on everything associated with shooting */
+    	addSequential(new FuelInjectorConveyorToShootersAuto());		/* Agitator, Conveyor, and Shooters */
     	addSequential(new ShooterStartShooting());
     }
 }

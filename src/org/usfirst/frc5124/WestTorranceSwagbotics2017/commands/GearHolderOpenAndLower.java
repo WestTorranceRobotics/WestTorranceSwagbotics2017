@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class GearHolderOpenAndLower extends CommandGroup {
 
     public GearHolderOpenAndLower() {
-    	addSequential(new GearHolderForkliftDown());
-    	addSequential(new GearHolderOpenGearHolder());
+    	addSequential(new GearHolderForkliftDown());		/* Move gear mech down */
+    	addSequential(new GearHolderOpenGearHolder());		/* Release the gear */
     }
 }

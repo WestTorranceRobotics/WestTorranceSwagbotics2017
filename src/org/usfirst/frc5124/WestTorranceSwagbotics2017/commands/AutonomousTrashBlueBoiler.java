@@ -2,17 +2,17 @@ package org.usfirst.frc5124.WestTorranceSwagbotics2017.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-/**
- *
- */
 public class AutonomousTrashBlueBoiler extends CommandGroup {
 
     public AutonomousTrashBlueBoiler() {
-    	addSequential(new AutoDriveStraightTrash(-0.5, 1.3102913555));
-    	addSequential(new AutoTurnWithGyro(45));
-    	addSequential(new AutoDriveStraightTrash(0.6, 2));
-    	addSequential(new AgitatorAutoAgitate());
-    	addSequential(new FuelInjectorConveyorToShootersAuto());
+    	addSequential(new AutoDriveStraightTrash(-0.5, 1.3102913555));		/* Drive to the turn point. The time to drive is my phone number */
+    																		/* because we never tested it. There it is if you need to conatct me */
+    	addSequential(new AutoTurnWithGyro(45));							/* Turn to be perpendicular to the boiler */
+    	
+    	addSequential(new AutoDriveStraightTrash(0.6, 2));					/* Drive to the boiler and smash it to be straight */
+    	
+    	addSequential(new AgitatorAutoAgitate());							/* Turn on everything associated with shooting */
+    	addSequential(new FuelInjectorConveyorToShootersAuto());			/* Agitator, Conveyor, and Shooters */
     	addSequential(new ShooterStartShooting());
     }
 }

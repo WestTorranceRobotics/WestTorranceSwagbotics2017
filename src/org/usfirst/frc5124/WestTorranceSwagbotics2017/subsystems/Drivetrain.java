@@ -44,7 +44,6 @@ public class Drivetrain extends Subsystem {
     
     public void robonaughtDrive(double power, double turn) {						/* arcade drive, used for split arcade drive in our case */
     	robotDrive.arcadeDrive(power, turn);
-    	
     }
     
     public void stop() {															/* Stop the drivetrain */
@@ -88,7 +87,7 @@ public class Drivetrain extends Subsystem {
 		getGyroOutput(gyroOutput);
 	}
 	
-	public void resetGyroOutput() {													/* Reset Gyro PID output to 0 */
+	public void resetGyroOutput() {													/* Reset gyro PID output to 0 */
 		gyroOutput = 0;
 	}
 	
@@ -102,11 +101,11 @@ public class Drivetrain extends Subsystem {
 	}
 	
 	public void setPIDOutputs() {													/* Pass the PID outputs into the arcade drive function to use to drive the robot */
-		robotDrive.arcadeDrive(encoderOutput, gyroOutput);
+		robotDrive.arcadeDrive(encoderOutput, gyroOutput);							
 	}
 	
-	public void driveStraightPlease(double power) {
-		robotDrive.arcadeDrive(power, gyroOutput);
-	}
+	public void driveStraightPlease(double power) {									/* Drive using a power, but use the gyro PID output for the turn value */
+		robotDrive.arcadeDrive(power, gyroOutput);									/* This is used exclusively for driving straight with a motor power */
+	}																				/* in the AutoDriveStraightTrash Command */
 }
 

@@ -3,7 +3,7 @@ package org.usfirst.frc5124.WestTorranceSwagbotics2017.commands;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class AutoDriveByEncoder extends Command {
+public class AutoDriveByEncoder extends Command { 				/* This command is useless now, since PID has been tuned */
 	
 	int distance = 0;											
 	double power = 0;
@@ -20,7 +20,7 @@ public class AutoDriveByEncoder extends Command {
     }
 
     protected void execute() {
-    	Robot.drivetrain.tank(power, power);					/* Drive */
+    	Robot.drivetrain.tank(power, power);					/* Drive using the given power */
     }
 
     protected boolean isFinished() {

@@ -5,8 +5,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoStopAuto extends CommandGroup {
 
     public AutoStopAuto() {
-        addSequential(new ShooterStopShooting());
-        addSequential(new FuelInjectorStopAuto());
+        addSequential(new ShooterStopShooting());			/* Turn off everything associated with shooting */
+        addSequential(new FuelInjectorStopAuto());			/* Agitator, Conveyor, and Shooters */
         addSequential(new AgitatorStop());
     }
 }

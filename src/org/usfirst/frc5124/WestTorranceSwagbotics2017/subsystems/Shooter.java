@@ -6,11 +6,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Shooter extends Subsystem {
 
-    private CANTalon leftShootermotor = RobotMap.shooterLeftShooterMotor;			/* the shooter motors */
+    private CANTalon leftShootermotor = RobotMap.shooterLeftShooterMotor;			/* The shooter motors */
     private CANTalon centerShootermotor = RobotMap.shooterCenterShooterMotor;
     private CANTalon rightShootermotor = RobotMap.shooterRightShooterMotor;
     
-	public int shootingSpeedLeft = -16200;											/* Each shooter's velocity setpoint */
+	public int shootingSpeedLeft = -16200;											/* Each shooter's default velocity setpoint */
 	public int shootingSpeedCenter = -16600;
 	public int shootingSpeedRight = -16600;
 	

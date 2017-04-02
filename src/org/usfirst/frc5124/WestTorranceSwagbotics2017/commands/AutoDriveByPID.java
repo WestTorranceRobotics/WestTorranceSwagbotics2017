@@ -10,12 +10,6 @@ public class AutoDriveByPID extends Command {
     public AutoDriveByPID(double distance) {
         requires(Robot.drivetrain);																	/* Uses the drivetrain */		
         this.distance = distance;																	/* Pass distance to global distance (inches) */
-        //setTimeout(50);
-    }
-    
-    public AutoDriveByPID(double distance, double emergencyTimeout) {
-    	this(distance);
-    	//setTimeout(emergencyTimeout);
     }
     
     protected void initialize() {
@@ -29,7 +23,7 @@ public class AutoDriveByPID extends Command {
     }
 
     protected boolean isFinished() {
-        return Robot.encoderPIDHandler.onTarget();/* || isTimedOut();*/											/* Stop when we're there */
+        return Robot.encoderPIDHandler.onTarget();													/* Stop when we're there */
     }
 
     protected void end() {

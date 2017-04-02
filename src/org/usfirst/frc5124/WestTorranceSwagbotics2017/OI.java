@@ -40,7 +40,6 @@ public class OI {
         ////////////////////
         ///DRIVER BUTTONS///
         ////////////////////       
-        
        
         driverButton7 = new JoystickButton(driver, 7);							/* 7th button on first driver */
         driverButton7.whileHeld(new ShooterTeleopShoot());						/* While button is held, run shooters on PID loop */
@@ -78,9 +77,6 @@ public class OI {
         operatorButton15 = new JoystickButton(operator, 15);					/* 15th button on second driver */
         operatorButton15.whenPressed(new GearHolderOpenGearHolder());			/* When button is first pressed, let go of gear */
         
-     
-        
-
     }
         
     public Joystick getDriver() {												/* Return the first driver */

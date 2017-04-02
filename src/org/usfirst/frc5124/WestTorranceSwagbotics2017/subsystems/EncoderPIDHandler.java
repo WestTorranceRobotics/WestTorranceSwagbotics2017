@@ -19,6 +19,8 @@ public class EncoderPIDHandler extends PIDSubsystem {
     }															/* I don't know because thats probably longer than most commands for going a distance will ever be */
     															/* but then again, it was never used so it doesn't matter in the end. Output range just caps the outputs */
     															/* the PID loop will output */
+    															/* UPDATE: I tuned it at LA Regional, works very nice */
+    															/* UPDTAE 2: Encoders broke, end my life honestly */
     public void initDefaultCommand() {
     }
 
