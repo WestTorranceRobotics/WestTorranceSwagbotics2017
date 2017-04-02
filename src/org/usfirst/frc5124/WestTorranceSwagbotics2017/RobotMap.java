@@ -157,7 +157,12 @@ public class RobotMap {
     	
     	drivetrainLeftEncoder = new Encoder(8, 9);														/* Left  encoder on DIO ports 8 and 9 */
     	drivetrainLeftEncoder.setDistancePerPulse(0.0526990913949759);									/* Set the distance per encoder tick so it returns inches */
-    	LiveWindow.addSensor("Left", "Left", drivetrainLeftEncoder);
+    	LiveWindow.addSensor("Left", "Left", drivetrainLeftEncoder);									/* this number is derived from taking a distance the robot */
+    																									/* Was pushed, and dividing it by the number of encoder */
+    																									/* ticks the encoder read over that distance, thus */
+    																									/* distance per pulse (pulse is the same as tick) */
+    																									/* This number means there are 0.0526990913949759 inches */
+    																									/* per encoder tick */
     	
     	drivetrainRightEncoder = new Encoder(6, 7);														/* Right encoder on DIO ports 6 and 7 */
     	drivetrainRightEncoder.setDistancePerPulse(0.0526990913949759);									/* Set the distance per encoder tick so it returns inches */
