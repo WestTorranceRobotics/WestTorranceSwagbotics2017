@@ -71,7 +71,7 @@ public class OI {
         operatorButton13.whileHeld(new FuelInjectorExhaust());					/* When button is held, outtake balls out of robot */
         
         operatorButton14 = new JoystickButton(operator, 14);					/* 14th button on second driver */
-        operatorButton14.whenPressed(new GearHolderCloseAndRaise());				/* When button is first pressed, raise gear holder to stay inside size constraints */
+        operatorButton14.whenPressed(new GearHolderCloseAndRaise());			/* When button is first pressed, raise gear holder to stay inside size constraints */
         operatorButton14.whileHeld(new HangerHang());							/* While button is held, run hanger */
         
         operatorButton15 = new JoystickButton(operator, 15);					/* 15th button on second driver */

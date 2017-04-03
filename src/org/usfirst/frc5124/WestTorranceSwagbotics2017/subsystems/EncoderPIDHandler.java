@@ -7,20 +7,16 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 public class EncoderPIDHandler extends PIDSubsystem {
 
-	private final Encoder leftEncoder = RobotMap.drivetrainLeftEncoder;			/* Two drivetrain encoders */
+	private final Encoder leftEncoder = RobotMap.drivetrainLeftEncoder;			
     private final Encoder rightEncoder = RobotMap.drivetrainRightEncoder;
 	
-    public EncoderPIDHandler() {								/* Never actually got the time to tune this so it was never used. May this be a reminder that */
-    	super(.12, 0.005, 1.3);									/* engineers are the slowest people on this planet and will never finish the robot in time so that useful */
-    	getPIDController().setContinuous(false);				/* auto code can be written before the robot is in an actual plastic bag so that auto is never ready for */
-    	getPIDController().setAbsoluteTolerance(2);			    /* competition. May this code be forever in our hearts and always be remembered. RIP in pieces */
-    	getPIDController().setOutputRange(-0.85, 0.85);			/* super(double, double, double) sets the PID gains, absolute tolerance is how far way the sensor can */
-    															/* be from the target and the loop will say that it is good enough. It is set to 50 inches. Why it is */
-    }															/* I don't know because thats probably longer than most commands for going a distance will ever be */
-    															/* but then again, it was never used so it doesn't matter in the end. Output range just caps the outputs */
-    															/* the PID loop will output */
-    															/* UPDATE: I tuned it at LA Regional, works very nice */
-    															/* UPDTAE 2: Encoders broke, end my life honestly */
+    public EncoderPIDHandler() {								
+    	super(.12, 0.005, 1.3);									/* super(double, double, double) sets the PID gains, absolute tolerance is how far way the sensor can */
+    	getPIDController().setContinuous(false);				/* be from the target and the loop will say that it is good enough. It is set to 2 inches, becuase  */
+    	getPIDController().setAbsoluteTolerance(2);			    /* thats is accurate enough for any auto im writing. Output range just caps the outputs*/
+    	getPIDController().setOutputRange(-0.85, 0.85);			/* the PID loop will output. I capped it becuase I was just a little afraid of full speed */
+    }															/* but there's really no real point in not allowing it the full range of values (-1, 1) */
+    															
     public void initDefaultCommand() {
     }
 
@@ -28,7 +24,7 @@ public class EncoderPIDHandler extends PIDSubsystem {
         return leftEncoder.getDistance();
     }
 
-    protected void usePIDOutput(double output) {				/* Normal use may be to use the output to set a speed to a motor, but we pass is on to the drivetrain */
+    protected void usePIDOutput(double output) {				/* Normal use may be to use the output to set a speed to a motor, but we pass it on to the drivetrain */
     	Robot.drivetrain.getEncoderOutput(output);				/* subsystem to be used later when the setPIDOutputs() method is called */
     }
     

@@ -181,11 +181,11 @@ public class Robot extends IterativeRobot {
         
     	Scheduler.getInstance().run();													/* This is at the start of every mode. The scheduler is the man behind the */
         																				/* curtain that runs commands off buttons and default commands */
-        
+        //TODO change this to a switch statement
         if(oi.getAuto4()) {																/* Check if this switch is on before checking the other ones */
     		if(oi.getAuto3() && oi.getAuto1() && oi.getAuto2()) {						/* This giant monstrosity just checks all possible combinations */
     			SmartDashboard.putString("Auto is", "Base Line");						/* of the switches for setting different autos on the fly by the */
-    		} else if(oi.getAuto3() && oi.getAuto1() && !oi.getAuto2()) {				/* drivert station. It is nested becuase if the 4th switch is not flipped */
+    		} else if(oi.getAuto3() && oi.getAuto1() && !oi.getAuto2()) {				/* driver station. It is nested becuase if the 4th switch is not flipped */
     			SmartDashboard.putString("Auto is", "Gear Left");						/* auto is not run so it is set to null. Note that this only displays */
     		} else if(oi.getAuto3() && !oi.getAuto1() && oi.getAuto2()) {				/* the state to the SmartDashboard, and doesn't actually set the state */
     			SmartDashboard.putString("Auto is", "DONT RUN Gear Right");				/* of autonomousCammand */
