@@ -4,11 +4,16 @@ import org.usfirst.frc5124.WestTorranceSwagbotics2017.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class AutoDriveStraightTrash extends Command {
+public class DrivetrainAutoDriveStraightTrash extends Command {
 	
 	double power;
+	
+	// This exists because no drivetrain will ever drive straight, but PID solves this by going fast. I've observed that the faster
+	// you go, the less the drivetrain will naturally curve. However, with this command, you may want to drive slower
+	// becuase unlike with PID, this wont slow down at the end, so it may be better to go slow the whole way,
+	// and this ensures (hopefully) that the drivetrain goes straight at slow speeds
 
-    public AutoDriveStraightTrash(double power, double time) {
+    public DrivetrainAutoDriveStraightTrash(double power, double time) {
     	requires(Robot.drivetrain);												/* Uses the Drivetrain subsystem */
     	this.power = power;														/* Pass power to the global power */
     	setTimeout(time);														/* Set timeout of command to the time parameter */

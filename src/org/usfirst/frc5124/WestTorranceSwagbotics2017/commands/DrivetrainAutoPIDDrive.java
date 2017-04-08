@@ -3,11 +3,11 @@ package org.usfirst.frc5124.WestTorranceSwagbotics2017.commands;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class AutoDriveByPID extends Command {
+public class DrivetrainAutoPIDDrive extends Command {
 	
 	public double distance = 0;
 
-    public AutoDriveByPID(double distance) {
+    public DrivetrainAutoPIDDrive(double distance) {
         requires(Robot.drivetrain);																	/* Uses the drivetrain */		
         this.distance = distance;																	/* Pass distance to global distance (inches) */
     }

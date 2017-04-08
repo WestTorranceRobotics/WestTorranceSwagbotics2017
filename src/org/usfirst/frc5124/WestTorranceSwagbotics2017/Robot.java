@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutnomousTrashGear;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutoStopAuto;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousGearForRedLeft;
-import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousLeftGearTrash;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousPassBaseLine;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousStopShootingMechs;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousTrashBlueBoiler;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousTrashGear;
+import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousTrashLeftGear;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.commands.AutonomousTrashRedBoiler;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.subsystems.*;
 
@@ -54,14 +54,14 @@ public class Robot extends IterativeRobot {
         
         oi = new OI();
        
-       stopAuto = new AutoStopAuto();
+        stopAuto = new AutonomousStopShootingMechs();
        
-       CameraServer.getInstance().startAutomaticCapture();
+       	CameraServer.getInstance().startAutomaticCapture();
        
-       gyroPIDHandler.calibrate();
+       	gyroPIDHandler.calibrate();
        
-       //adding good juju
-       /*                                      
+       	//adding good juju
+       	/*                                      
                                                   ___  ____    _________  ____  ___ 
                                                  / _ \/ __ \  / ___/ __ \/ __ \/ _ \
                                                 / // / /_/ / / (_ / /_/ / /_/ / // /
@@ -219,9 +219,9 @@ public class Robot extends IterativeRobot {
     		} else if(oi.getAuto3() && oi.getAuto1() && !oi.getAuto2()) {				/* during auto will not effect the command running during auto */
     			autonomousCommand = new AutonomousGearForRedLeft();						/* This also means that if needed, these switches could be used */
     		} else if(oi.getAuto3() && !oi.getAuto1() && oi.getAuto2()) {				/* to run commands during teleop. */
-    			autonomousCommand = new AutonomousLeftGearTrash();
+    			autonomousCommand = new AutonomousTrashLeftGear();
     		} else if(oi.getAuto3() && !oi.getAuto1() && !oi.getAuto2()) {
-    			autonomousCommand = new AutnomousTrashGear();
+    			autonomousCommand = new AutonomousTrashGear();
     		} else if(!oi.getAuto3() && oi.getAuto1() && oi.getAuto2()) {
     			autonomousCommand = new AutonomousTrashBlueBoiler();
     		} else if(!oi.getAuto3() && oi.getAuto1() && !oi.getAuto2()) {
@@ -250,8 +250,9 @@ public class Robot extends IterativeRobot {
     	Robot.drivetrain.resetAllOutputs();
     	Robot.encoderPIDHandler.resetEncoders();
     	
-        if (autonomousCommand != null) autonomousCommand.cancel();						/* Stop the auto command, can be removed if you don't want to stop auto */ 				
-        stopAuto.start();
+        if (autonomousCommand != null) autonomousCommand.cancel();						/* Stop the auto command, can be removed if you don't want to stop auto */ 		
+        
+        stopAuto.start();																/* Start the stopAuto Command, just stops shooting mechs after auto */
     }
 
     public void teleopPeriodic() {														/* Runs iteratively during the teleop period */
@@ -303,6 +304,6 @@ public class Robot extends IterativeRobot {
     }
     
     public void testPeriodic() {														/* Runs iteratively during the test period. Doesn't happen during matches */
-        LiveWindow.run();																/* Runs the livewindow */
+        LiveWindow.run();																/* Runs the livewindow, aka all that stuff you added in robotmap */
     }
 }

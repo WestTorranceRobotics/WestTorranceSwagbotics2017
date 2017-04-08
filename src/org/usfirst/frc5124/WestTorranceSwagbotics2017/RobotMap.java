@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.VictorSP;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.Encoder;
 
 public class RobotMap {
@@ -82,10 +81,10 @@ public class RobotMap {
     	//////////////////////////
     	
     	gearHolderHolderSolenoid = new DoubleSolenoid(0, 3, 6);											/* Double Solenoid On PCM 0 (CAN ID) on ports 2 and 7 */			
-    	LiveWindow.addActuator("Gear Holder", "Holder Solenoid", gearHolderHolderSolenoid);
+    	//LiveWindow.addActuator("Gear Holder", "Holder Solenoid", gearHolderHolderSolenoid);
     	
     	gearHolderForkliftSolenoid = new DoubleSolenoid(0, 2, 7);										/* Double Solenoid On PCM 0 (CAN ID) on ports 3 and 6 */
-    	LiveWindow.addActuator("Gear Holder", "Forklift Solenoid", gearHolderForkliftSolenoid);
+    	//LiveWindow.addActuator("Gear Holder", "Forklift Solenoid", gearHolderForkliftSolenoid);
     	
     	
     	////////////////////////////
@@ -157,7 +156,7 @@ public class RobotMap {
     	
     	drivetrainLeftEncoder = new Encoder(8, 9);														/* Left  encoder on DIO ports 8 and 9 */
     	drivetrainLeftEncoder.setDistancePerPulse(0.0526990913949759);									/* Set the distance per encoder tick so it returns inches */
-    	LiveWindow.addSensor("Left", "Left", drivetrainLeftEncoder);									/* this number is derived from taking a distance the robot */
+    	//LiveWindow.addSensor("Left", "Left", drivetrainLeftEncoder);									/* this number is derived from taking a distance the robot */
     																									/* Was pushed, and dividing it by the number of encoder */
     																									/* ticks the encoder read over that distance, thus */
     																									/* distance per pulse (pulse is the same as tick) */
@@ -166,7 +165,7 @@ public class RobotMap {
     	
     	drivetrainRightEncoder = new Encoder(6, 7);														/* Right encoder on DIO ports 6 and 7 */
     	drivetrainRightEncoder.setDistancePerPulse(0.0526990913949759);									/* Set the distance per encoder tick so it returns inches */
-    	LiveWindow.addSensor("Right", "Right", drivetrainRightEncoder);
+    	//LiveWindow.addSensor("Right", "Right", drivetrainRightEncoder);
     	
     	drivetrainGyro = new ADXRS450_Gyro();															/* Gyro plugged in the default SPI port (there's only one) */
         //LiveWindow.addSensor("Gyro", "Gyro", drivetrainGyro);
@@ -188,12 +187,12 @@ public class RobotMap {
         
         drivetrainRobotDrive.setSafetyEnabled(false);													/* No safety? Thought this was on */
         drivetrainRobotDrive.setExpiration(0.1);														/* Set how long before safety watch dog stops drive train */
-        drivetrainRobotDrive.setSensitivity(1);															/* Don't know what this does*/
+        drivetrainRobotDrive.setSensitivity(1);															/* Don't know what this does, there by default */
         drivetrainRobotDrive.setMaxOutput(1);															/* Set the max output speed to 100% */
-        drivetrainRobotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);					/* Set this motor to reversed */
-        drivetrainRobotDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);					/* Set this motor to reversed */
-        drivetrainRobotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);					/* Set this motor to reversed */
-        drivetrainRobotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);					/* Set this motor to reversed */
+        drivetrainRobotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);					/* Set all motors to be reversed */
+        drivetrainRobotDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);					
+        drivetrainRobotDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);					
+        drivetrainRobotDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);					
 
     }
 }
