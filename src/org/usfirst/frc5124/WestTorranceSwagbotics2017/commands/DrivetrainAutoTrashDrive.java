@@ -4,11 +4,11 @@ import org.usfirst.frc5124.WestTorranceSwagbotics2017.Robot;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class AutoTrashDrive extends Command {
+public class DrivetrainAutoTrashDrive extends Command {
 	
 	double power;
     
-    public AutoTrashDrive(double power, double time) {
+    public DrivetrainAutoTrashDrive(double power, double time) {
     	setTimeout(time);													/* Pass the timeout */
         requires(Robot.drivetrain);											/* Uses drivetrain */
     	this.power = power;													/* Pass the power to global power */

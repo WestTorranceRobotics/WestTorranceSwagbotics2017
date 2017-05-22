@@ -21,7 +21,7 @@ public class Drivetrain extends Subsystem {
 	}
     	
     public void initDefaultCommand() {												/* The defualt command is the joystick driving command. This will run when */
-        setDefaultCommand(new JoystickPuppetry());									/* nothing else is running on the subsystem */ 
+        setDefaultCommand(new DrivetrainJoystickPuppetry());						/* nothing else is running on the subsystem */ 
     }
     
     public void compressorOff() {													/* Turn off the compressor */

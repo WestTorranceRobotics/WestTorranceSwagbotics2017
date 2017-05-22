@@ -3,9 +3,9 @@ package org.usfirst.frc5124.WestTorranceSwagbotics2017.commands;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class JoystickPuppetry extends Command {
+public class DrivetrainJoystickPuppetry extends Command {
 
-    public JoystickPuppetry() {
+    public DrivetrainJoystickPuppetry() {
         requires(Robot.drivetrain);																			/* Uses the drivetrain subsystem */
     }
 

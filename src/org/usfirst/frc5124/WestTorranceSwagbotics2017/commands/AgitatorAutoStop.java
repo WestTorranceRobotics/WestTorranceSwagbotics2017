@@ -3,9 +3,9 @@ package org.usfirst.frc5124.WestTorranceSwagbotics2017.commands;
 import org.usfirst.frc5124.WestTorranceSwagbotics2017.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class AgitatorStop extends Command {
+public class AgitatorAutoStop extends Command {
 
-    public AgitatorStop() {
+    public AgitatorAutoStop() {
     	requires(Robot.agitator);			/* Uses the agitator subsystem */
     }
 

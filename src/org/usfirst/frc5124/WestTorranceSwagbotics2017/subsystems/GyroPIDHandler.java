@@ -11,7 +11,7 @@ public class GyroPIDHandler extends PIDSubsystem {
 
     public GyroPIDHandler() {
     	super(0.1, 0.05, 0.56);										/* PID gains */
-    	getPIDController().setContinuous(false);					/* Not continuous sensor because it doesn't loop around, degrees go forever */
+    	getPIDController().setContinuous(false);					/* Not continuous sensor because its degrees, not a compass */
     	getPIDController().setAbsoluteTolerance(3);					/* 3 degrees of tolerance. Now that's a sensible tolerance */
     	getPIDController().setOutputRange(-0.85, 0.85);				/* Max outputs of PID loop, just afraid of full speed (-1, 1) */
     }
